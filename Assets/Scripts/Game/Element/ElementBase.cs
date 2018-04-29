@@ -7,7 +7,7 @@ namespace Play.Element
 	// 要素の基底クラス
 
 	[System.Serializable]
-	public abstract class ElementBase : MonoBehaviour
+	public abstract class ElementBase : Extensions.MonoBehaviourEx
 	{
 		/// <summary>
 		/// 初期化

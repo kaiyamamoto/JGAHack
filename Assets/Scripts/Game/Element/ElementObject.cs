@@ -15,6 +15,11 @@ namespace Play.Element
 			_elementList = new List<ElementBase>();
 			var array = this.GetComponents<ElementBase>();
 			_elementList.AddRange(array);
+
+			foreach (var element in _elementList)
+			{
+				element.Initialize();
+			}
 		}
 	}
 }
