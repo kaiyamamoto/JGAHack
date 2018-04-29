@@ -5,18 +5,29 @@ using UnityEngine;
 namespace Play.Element
 {
 	// 要素を持つオブジェクトクラス
-	public class ElementObject : MonoBehaviour
+	public class ElementObject : Extensions.MonoBehaviourEx
 	{
 		[SerializeField, Extensions.ReadOnly]
 		private List<ElementBase> _elementList = null;
 
+		public List<ElementBase> ElementList
+		{
+			get { return _elementList; }
+			set { _elementList = value; }
+		}
+
 		private void Start()
 		{
-			_elementList = new List<ElementBase>();
-			var array = this.GetComponents<ElementBase>();
-			_elementList.AddRange(array);
+			ElementUpdate();
+		}
 
-			foreach (var element in _elementList)
+		public void ElementUpdate()
+		{
+			ElementList = new List<ElementBase>();
+			var array = this.GetComponents<ElementBase>();
+			ElementList.AddRange(array);
+
+			foreach (var element in ElementList)
 			{
 				element.Initialize();
 			}
