@@ -2,39 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
-
-
 namespace Play.LockOn
 {
     //ロックオン用スクリプト
-
-    public class LockOn : MonoBehaviour
+    public class LockOn
     {
-
         //ロックオンリスト
         [SerializeField]
-        public List<GameObject> _lockOnList = new List<GameObject>();
+        private List<GameObject> _lockOnList;
 
-
-        // Use this for initialization
-        void Start() {
-            //カメラに写ってるオブジェクト取得
-            GetTargetOnScreen();
-        }
-
-        // Update is called once per frame
-        void Update() {
-
-            ////右キリックでカメラに映るオブジェクトを取得
-            //if (Input.GetMouseButtonDown(1))
-            //{
-            //    GetTargetOnScreen();
-
-            //}
-
-            //ListCheck();
-
+        public LockOn()
+        {
+            _lockOnList = new List<GameObject>();
         }
 
         //画面内のTarget対象を取得
@@ -45,24 +24,20 @@ namespace Play.LockOn
             //指定したタグのオブジェクトを全て引っ張ってくる
             foreach (GameObject obj in GameObject.FindGameObjectsWithTag("Element"))
             {
-                
-                    //カメラ範囲内に映っていた場合に処理
-                    if (CheckOnScreen(obj.transform.position))
-                    {
-                        //ロックオンリストに追加
-                        _lockOnList.Add(obj);
-                    }
-
-                
+                //カメラ範囲内に映っていた場合に処理
+                if (CheckOnScreen(obj.transform.position))
+                {
+                    //ロックオンリストに追加
+                    _lockOnList.Add(obj);
+                }
             }
         }
-
 
         //リスト内にmissingがあれば排斥
         void ListCheck()
         {
             //消すオブジェ
-            GameObject　exclusionObj = null;
+            GameObject exclusionObj = null;
 
             //リスト内のチェック
             foreach (GameObject obj in _lockOnList)
@@ -71,7 +46,6 @@ namespace Play.LockOn
                 if (!obj)
                 {
                     exclusionObj = obj;
-                   
                 }
 
             }
@@ -107,6 +81,5 @@ namespace Play.LockOn
 
             return _lockOnList;
         }
-
     }
 }

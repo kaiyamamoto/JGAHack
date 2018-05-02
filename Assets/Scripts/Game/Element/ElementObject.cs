@@ -39,6 +39,12 @@ namespace Play.Element
             {
                 int typeIndex = (int)element.Type;
 
+                if (typeIndex < 0)
+                {
+                    // タイプがない場合は削除
+                    Object.Destroy(element);
+                }
+
                 if (_elementList[typeIndex] == null)
                 {
                     _elementList[typeIndex] = element;

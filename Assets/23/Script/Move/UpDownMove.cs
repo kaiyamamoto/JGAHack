@@ -22,9 +22,14 @@ namespace Play.Element
         [SerializeField]
         //反転フラグ
         private bool _reversFlag = false;
-       
+
         //リジットボディ
         private Rigidbody2D _rigitBody2d;
+
+        void Awake()
+        {
+            _type = ElementType.Move;
+        }
 
         /// <summary>
         /// 初期化
@@ -32,8 +37,8 @@ namespace Play.Element
         public override void Initialize()
         {
             _rigitBody2d = GetComponent<Rigidbody2D>();
-             //移動量の設定初期化
-             _moveAmount = _moveAmountLimit;
+            //移動量の設定初期化
+            _moveAmount = _moveAmountLimit;
 
         }
 
@@ -46,7 +51,7 @@ namespace Play.Element
             var addX = 0;
             var addY = _speed;
 
-          
+
             //移動量加算（反転対応）
             if (_reversFlag)
             {
@@ -69,7 +74,7 @@ namespace Play.Element
         private void CheckMovement()
         {
             //移動量の減算
-            _moveAmount -= Mathf.Abs(_speed)*Time.deltaTime;
+            _moveAmount -= Mathf.Abs(_speed) * Time.deltaTime;
             //移動量リセット
             if (_moveAmount <= 0)
             {

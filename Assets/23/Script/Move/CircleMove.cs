@@ -31,19 +31,23 @@ namespace Play.Element
         //リジットボディ
         private Rigidbody2D _rigitBody2d;
 
+        void Awake()
+        {
+            // タイプ設定
+            _type = ElementType.Move;
+        }
+
         /// <summary>
         /// 初期化
         /// </summary>
         public override void Initialize()
         {
-
             _rigitBody2d = GetComponent<Rigidbody2D>();
             //移動量の設定初期化
             _moveAmount = _moveAmountLimit;
-
         }
 
-     
+
         /// 更新　円移動
         /// </summary>
         private void Update()
@@ -62,11 +66,11 @@ namespace Play.Element
                 _rigitBody2d.velocity = new Vector3(addX, addY, 0.0f) * Time.deltaTime;
             }
 
-          
 
-      
 
-         
+
+
+
         }
 
 
