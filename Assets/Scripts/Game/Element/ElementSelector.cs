@@ -114,7 +114,6 @@ namespace Play
             // TODO: 仮で選択したオブジェクトにテキストを付与
             // ======================================================
             // 子に要素追加
-            var pos = new Vector3(20.0f, 20.0f, 0.0f);
             var text = GameObject.Instantiate(_elementText);
             _targetObject.transform.SetChild(text.gameObject);
             text.transform.localPosition = Vector3.zero;
@@ -125,7 +124,19 @@ namespace Play
             text.fontSize = 1;
             text.alignment = TextAnchor.MiddleLeft;
             // テキスト変更
-            text.text = "select";
+
+            text.text = string.Empty;
+            foreach (var element in _targetObject.ElementList)
+            {
+                if (element)
+                {
+                    text.text += element.Type.ToString() + "\n";
+                }
+            }
+            if (text.text == string.Empty)
+            {
+                text.text = "NoneElement";
+            }
             // ======================================================
         }
 

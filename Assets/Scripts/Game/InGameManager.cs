@@ -20,7 +20,7 @@ namespace Play
         private GameObject _elementObjRoot = null;
         public GameObject ElementObjRoot
         {
-            get { return _uiRoot; }
+            get { return _elementObjRoot; }
         }
     }
 }
