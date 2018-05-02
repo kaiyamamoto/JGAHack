@@ -34,6 +34,9 @@ namespace Play.Element
         /// <summary>
         /// 終了処理
         /// </summary>
-        public abstract void Discard();
+        public virtual void Discard()
+        {
+
+        }
     }
 }
