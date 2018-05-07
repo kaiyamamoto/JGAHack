@@ -9,11 +9,18 @@ namespace Play.LockOn
     {
         //ロックオンリスト
         [SerializeField]
-        private List<GameObject> _lockOnList;
+        public List<GameObject> _lockOnList = new List<GameObject>();
 
-        public LockOn()
+        // Use this for initialization
+        void Start() {
+            //カメラに写ってるオブジェクト取得
+            GetTargetOnScreen();
+        }
+
+        // Update is called once per frame
+        void Update()
         {
-            _lockOnList = new List<GameObject>();
+
         }
 
         //画面内のTarget対象を取得
