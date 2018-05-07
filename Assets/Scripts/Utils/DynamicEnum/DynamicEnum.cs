@@ -63,7 +63,9 @@ namespace Util
                     string fileContent =
                    @"
 // 手動で変更しないでください
+using System;
 
+[System.Serializable]
 public enum " + SCRIPT_FILE_NAME + @"
 {
 [CONTENT]
