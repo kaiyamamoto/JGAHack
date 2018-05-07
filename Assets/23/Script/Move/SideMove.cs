@@ -23,6 +23,10 @@ namespace Play.Element
         // 前回加えた移動量
         private Vector3 _addSpeed = Vector3.zero;
 
+        void Awake()
+        {
+            _type = ElementType.Move;
+        }
         /// <summary>
         /// 初期化
         /// </summary>
