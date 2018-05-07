@@ -23,7 +23,15 @@ namespace Play.Element
 
         public ElementType Type
         {
-            get { return _type; }
+            get
+            {
+                if (_type == ElementType.None)
+                {
+                    var typeS = this.GetType().ToString();
+                    throw new System.Exception(typeS + "の要素タイプを設定してください。");
+                }
+                return _type;
+            }
         }
 
         /// <summary>
