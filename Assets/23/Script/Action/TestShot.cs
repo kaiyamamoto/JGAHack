@@ -74,7 +74,8 @@ namespace Play.Enemy
                 bullets.GetComponent<Rigidbody2D>().velocity = _bulletVel ;
                 // 弾丸の位置を調整
                 bullets.transform.position = transform.position +_shotOffset;
-
+                //弾丸をゲームオブジェクトの子供に設定
+                bullets.transform.parent = transform;
                 //発車時間の再設定
                 _shotCount = _shotInterval;
             }
