@@ -7,6 +7,7 @@ public enum Elements
 {
 	CircleElement,
 	CircleMove,
+	DiectionTest,
 	ElementBase,
 	SideMove,
 	TestActionElement,

@@ -1,13 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using DG.Tweening;
-using Extensions;
 
 namespace Play.Element
 {
-    // 円移動の要素　(仮なので当たり判定など考慮していない)
-    public class TestActionElement : ElementBase
+    public class DiectionTest : ElementBase
     {
         [SerializeField]
         private Direction _direction = Direction.Front;
@@ -15,7 +12,7 @@ namespace Play.Element
         private void Awake()
         {
             // 初期化でタイプを設定する
-            _type = ElementType.Action;
+            _type = ElementType.Direction;
         }
 
         /// <summary>
@@ -23,6 +20,7 @@ namespace Play.Element
         /// </summary>
         public override void Initialize()
         {
+            transform.eulerAngles = _direction.Vector();
         }
 
         /// <summary>
@@ -31,7 +29,7 @@ namespace Play.Element
         public override void Discard()
         {
             // 終了時の処理
+            transform.eulerAngles = Vector3.zero;
         }
-
     }
 }
