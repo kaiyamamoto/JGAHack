@@ -44,36 +44,16 @@ namespace Play.Enemy
             //発射カウント0時
             if (_shotCount <= 0)
             {
-                //方向決定と弾生成時オフセット設定
-                switch (GetComponent<EnemyStates>().direction)
-                {
-                    case Play.Enemy.EnemyStates.Direction.Up:
-                        _bulletVel = new Vector3(0, _bulletSpeed, 0);
-                        _shotOffset = new Vector3(0, gameObject.GetComponent<SpriteRenderer>().bounds.size.y, 0);
-                        break;
-
-                    case Play.Enemy.EnemyStates.Direction.Down:
-                        _bulletVel = new Vector3(0, -_bulletSpeed, 0);
-                        _shotOffset = new Vector3(0, -gameObject.GetComponent<SpriteRenderer>().bounds.size.y, 0);
-                        break;
-
-                    case Play.Enemy.EnemyStates.Direction.Left:
-                        _bulletVel = new Vector3(-_bulletSpeed, 0, 0);
-                        _shotOffset = new Vector3(-gameObject.GetComponent<SpriteRenderer>().bounds.size.x, 0, 0);
-                        break;
-
-                    case Play.Enemy.EnemyStates.Direction.Right:
-                        _bulletVel = new Vector3(_bulletSpeed, 0, 0);
-                        _shotOffset = new Vector3 (gameObject.GetComponent<SpriteRenderer>().bounds.size.x, 0, 0);
-                        break;
-                }
-
-                // 弾丸の複製
+                //弾の方向設定（正面）
+                _bulletVel = transform.up;
+                //オフセットの設定(テストなので後日修正)
+                _shotOffset = transform.up　* GetComponent<SpriteRenderer>().bounds.size.x /1.2f;
+                //// 弾丸の複製
                 GameObject bullets = GameObject.Instantiate(_bullet) as GameObject;
                 // 弾速設定
-                bullets.GetComponent<Rigidbody2D>().velocity = _bulletVel ;
+                bullets.GetComponent<Rigidbody2D>().velocity = _bulletVel * _bulletSpeed;
                 // 弾丸の位置を調整
-                bullets.transform.position = transform.position +_shotOffset;
+                bullets.transform.position = transform.position + _shotOffset;
                 //弾丸をゲームオブジェクトの子供に設定
                 bullets.transform.parent = transform;
                 //発車時間の再設定

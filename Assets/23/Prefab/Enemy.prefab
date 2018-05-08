@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 114457193636673344}
   - component: {fileID: 114347468664602684}
   - component: {fileID: 114852781964361770}
+  - component: {fileID: 114905272082989036}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Element
@@ -39,7 +40,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1228217874534282}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.8, y: -0.07, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -102,7 +103,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HP: 1
-  _direction: 1
 --- !u!114 &114457193636673344
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -132,6 +132,18 @@ MonoBehaviour:
   _shotOffset: {x: 0, y: 0, z: 0}
   _shotInterval: 1
   _shotCount: 0
+--- !u!114 &114905272082989036
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1228217874534282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9453b5115129ed843a09c1719c1945bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _direction: 0
 --- !u!212 &212352429147343178
 SpriteRenderer:
   m_ObjectHideFlags: 1
