@@ -48,8 +48,6 @@ namespace Play
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                _targetNum++;
-
                 if (_targetList == null)
                 {
                     var lockOn = new LockOn.LockOn();
@@ -57,13 +55,11 @@ namespace Play
                     _targetNum = lockOn.GetNearObjOnList();
                 }
 
-                if (_targetList.Count <= _targetNum)
-                {
-                    _targetNum = 0;
-                }
+                // 次のターゲットオブジェクトを取得
+                var next = GetNextTarget();
 
                 // 選択
-                TargetObject(_targetList[_targetNum]);
+                TargetObject(next);
             }
 
             // 要素吸出し
@@ -90,6 +86,29 @@ namespace Play
             {
                 MoveElement(_targetObject);
             }
+        }
+
+        /// <summary>
+        /// 次のターゲットを取得
+        /// </summary>
+        /// <param name="num"></param>
+        /// <returns></returns>
+        private GameObject GetNextTarget()
+        {
+            _targetNum++;
+
+            if (_targetList.Count <= _targetNum)
+            {
+                _targetNum = 0;
+            }
+            var obj = _targetList[_targetNum];
+
+            if (obj == null)
+            {
+                obj = GetNextTarget();
+            }
+
+            return obj;
         }
 
         /// <summary>
@@ -169,6 +188,7 @@ namespace Play
         /// </summary>
         private void SelectObject()
         {
+            SelectRelease();
             _selectObject = _targetObject;
             // ターゲット解除
             TargetRelease();
