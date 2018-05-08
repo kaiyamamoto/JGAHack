@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Play
 {
@@ -45,6 +46,19 @@ namespace Play
         [SerializeField]
         private Stage.StageManager _stageManager = null;
 
+        void OnGUI()
+        {
+            if (_state == State.Clear)
+            {
+                GUI.Label(new Rect(370, 50, 100, 50), "Clear");
+                // ボタンを表示する
+                if (GUI.Button(new Rect(320, 170, 100, 50), "ReStart"))
+                {
+                    GameReLoad();
+                }
+            }
+        }
+
         /// <summary>
         /// ゲームの開始
         /// </summary>
@@ -67,6 +81,13 @@ namespace Play
         public void StageOver()
         {
             _stageManager.ReTry();
+        }
+
+        public void GameReLoad()
+        {
+            Scene loadScene = SceneManager.GetActiveScene();
+            // Sceneの読み直し
+            SceneManager.LoadScene(loadScene.name);
         }
 
         /// <summary>

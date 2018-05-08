@@ -10,7 +10,10 @@ namespace Play.MapEvent
         {
             _onEnter += (Collider2D other) =>
             {
-                InGameManager.Instance.StageClear();
+                if (other.GetComponent<Player>())
+                {
+                    InGameManager.Instance.StageClear();
+                }
             };
         }
     }
