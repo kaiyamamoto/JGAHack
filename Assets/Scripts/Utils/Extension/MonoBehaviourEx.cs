@@ -129,6 +129,10 @@ namespace Extensions
         {
             return this.gameObject.GetComponent<T>() ?? this.gameObject.AddComponent<T>();
         }
+        public Component GetComponentAttach(System.Type type)
+        {
+            return this.gameObject.GetComponent(type) ?? this.gameObject.AddComponent(type);
+        }
 
         /// <summary>
         /// コンポーネントのコピー
@@ -138,7 +142,7 @@ namespace Extensions
         public T CopyComponent<T>(T orgComponent) where T : Component
         {
             var type = orgComponent.GetType();
-            var com = gameObject.AddComponent(type);
+            var com = GetComponentAttach(type);
 
             // Target
             BindingFlags flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Default | BindingFlags.DeclaredOnly;
