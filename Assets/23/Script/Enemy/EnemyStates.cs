@@ -14,24 +14,7 @@ namespace Play.Enemy
         [SerializeField]
         int HP = 3;
 
-        //現在方向(初期では↓)
-        [SerializeField]
-        Direction _direction = Direction.Down;
-        public Direction direction {
-            get { return _direction; }
-            set { _direction = value; }
-        }
-
-        //方向の定義
-        public enum Direction
-        {
-            Up,
-            Down,
-            Left,
-            Right
-        }
-
-
+        
         // Use this for initialization
         void Start()
         {
@@ -48,6 +31,8 @@ namespace Play.Enemy
 
         void OnTriggerEnter2D(Collider2D col)
         {    
+
+           
                 //被ダメ
                 HP--;
                
