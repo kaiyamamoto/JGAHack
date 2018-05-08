@@ -93,7 +93,7 @@ namespace Util.Sound
         /// <summary>
         /// サウンドを再生する
         /// 同一キーのサウンドを同時に複数鳴らすことが可能
-        /// </summary>
+        /// </summary>x
         /// <param name="key">サウンドのキー</param>
         public void PlayOneShot(AudioKey key)
         {
@@ -345,7 +345,7 @@ namespace Util.Sound
                 EditorGUILayout.EndHorizontal();
             }
         }
-    }
 #endif
-    #endregion CustomInspector
+        #endregion CustomInspector
+    }
 }

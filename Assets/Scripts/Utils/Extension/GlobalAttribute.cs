@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
 namespace Extensions
 {
-#if UNITY_EDITOR
-    using UnityEditor;
-
     /// <summary>
     /// ReadOnly なAttribute
     /// </summary>
@@ -14,6 +15,8 @@ namespace Extensions
     {
 
     }
+#if UNITY_EDITOR
+
 
     [CustomPropertyDrawer(typeof(ReadOnlyAttribute))]
     public class ReadOnlyDrawer : PropertyDrawer
