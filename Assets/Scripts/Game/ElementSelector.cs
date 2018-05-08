@@ -29,6 +29,9 @@ namespace Play
         // 選択している要素のインデックス
         private int _selectElement = -1;
 
+        private List<GameObject> _targetList = null;
+        private int _targetNum = 0;
+
         void Start()
         {
             // TODO: テキストリスト作成
@@ -45,14 +48,22 @@ namespace Play
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                var lockOn = new LockOn.LockOn();
-                var list = lockOn.GetLockOnList();
-                if (0 < list.Count)
+                _targetNum++;
+
+                if (_targetList == null)
                 {
-                    // 適当に選択
-                    var ran = Random.Range(0, list.Count);
-                    TargetObject(list[ran]);
+                    var lockOn = new LockOn.LockOn();
+                    _targetList = lockOn.GetLockOnList();
+                    _targetNum = lockOn.GetNearObjOnList();
                 }
+
+                if (_targetList.Count <= _targetNum)
+                {
+                    _targetNum = 0;
+                }
+
+                // 選択
+                TargetObject(_targetList[_targetNum]);
             }
 
             // 要素吸出し
