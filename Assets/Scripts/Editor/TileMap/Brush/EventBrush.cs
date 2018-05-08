@@ -1,8 +1,8 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 using System.IO;
 using System.Linq;
-using UnityEngine;
 
 #if UNITY_EDITOR
 
@@ -13,18 +13,12 @@ using UnityEditor;
 
 namespace UnityEditor
 {
-    [CustomGridBrush(false, false, false, "Element Brush")]
-    public class ElementBrush : GridBrushBase
+    [CreateAssetMenu]
+    [CustomGridBrush(false, false, false, "Event Brush")]
+    public class EventBrush : GridBrushBase
     {
-        // プレハブ
-        public GameObject _prefab = null;
-
-        // 要素
-        [SerializeField]
-        public List<Elements> _elements = new List<Elements>();
-
-        // 描画深度
-        public int _posZ;
+        // イベント
+        public MapEvents _event;
 
         /// <summary>
         /// 配置
@@ -38,22 +32,25 @@ namespace UnityEditor
             if (brushTarget.layer == 31)
                 return;
 
-            var instance = (GameObject)PrefabUtility.InstantiatePrefab(_prefab);
+            var instance = new GameObject(_event.ToString());
 
-            foreach (var element in _elements)
-            {
-                var className = element.ToString();
-                var type = Util.TypeUtil.GetTypeByClassName(className);
-                instance.AddComponent(type);
-            }
+            var className = _event.ToString();
+            var type = Util.TypeUtil.GetTypeByClassName(className);
+            instance.AddComponent(type);
+
+            var rigid = instance.AddComponent<Rigidbody2D>();
+            rigid.bodyType = RigidbodyType2D.Static;
+            var collider = instance.AddComponent<BoxCollider2D>();
+            collider.isTrigger = true;
 
             // Ctrl Z できるようにUndo
-            Undo.RegisterCreatedObjectUndo((Object)instance, "Paint Prefabs");
+            Undo.RegisterCreatedObjectUndo((Object)instance, "Paint Event");
 
             if (instance != null)
             {
+                // 座標調整
                 instance.transform.SetParent(brushTarget.transform);
-                instance.transform.position = grid.LocalToWorld(grid.CellToLocalInterpolated(new Vector3Int(position.x, position.y, _posZ) + new Vector3(.5f, .5f, .5f)));
+                instance.transform.position = grid.LocalToWorld(grid.CellToLocalInterpolated(position + new Vector3(.5f, .5f, .5f)));
             }
         }
 
@@ -69,19 +66,19 @@ namespace UnityEditor
             if (brushTarget.layer == 31)
                 return;
 
-            Transform erased = GetObjectInCell(grid, brushTarget.transform, new Vector3Int(position.x, position.y, _posZ));
+            Transform erased = GetEventInCell(grid, brushTarget.transform, position);
             if (erased != null)
                 Undo.DestroyObjectImmediate(erased.gameObject);
         }
 
         /// <summary>
-        /// オブジェクトの存在するCellを取得
+        /// イベントの存在するCellを取得
         /// </summary>
         /// <param name="grid"></param>
         /// <param name="parent"></param>
         /// <param name="position"></param>
         /// <returns></returns>
-        private static Transform GetObjectInCell(GridLayout grid, Transform parent, Vector3Int position)
+        private static Transform GetEventInCell(GridLayout grid, Transform parent, Vector3Int position)
         {
             int childCount = parent.childCount;
             Vector3 min = grid.LocalToWorld(grid.CellToLocalInterpolated(position));
@@ -101,35 +98,18 @@ namespace UnityEditor
 #if UNITY_EDITOR
 
     // エディタ
-    [CustomEditor(typeof(ElementBrush))]
-    public class ElementBrushEditor : GridBrushEditorBase
+    [CustomEditor(typeof(EventBrush))]
+    public class EventBrushEditor : GridBrushEditorBase
     {
-        private ElementBrush ElementBrush { get { return target as ElementBrush; } }
+        private EventBrush EventBrush { get { return target as EventBrush; } }
 
-        private SerializedProperty _prefab;
         private SerializedObject _serializedObject;
-        private ReorderableList _enumList;
+        private SerializedProperty _event;
 
         protected void OnEnable()
         {
             _serializedObject = new SerializedObject(target);
-            _prefab = _serializedObject.FindProperty("_prefab");
-
-            var prop = serializedObject.FindProperty("_elements");
-            _enumList = new ReorderableList(serializedObject, prop);
-
-            // ヘッダー
-            _enumList.drawHeaderCallback = (rect) =>
-                     EditorGUI.LabelField(rect, prop.displayName);
-
-            // 要素の表示
-            _enumList.drawElementCallback = (rect, index, isActive, isFocused) =>
-            {
-                var element = prop.GetArrayElementAtIndex(index);
-                rect.height -= 4;
-                rect.y += 2;
-                EditorGUI.PropertyField(rect, element);
-            };
+            _event = _serializedObject.FindProperty("_event");
         }
 
         public override void OnPaintInspectorGUI()
@@ -137,11 +117,7 @@ namespace UnityEditor
             serializedObject.Update();
             _serializedObject.UpdateIfRequiredOrScript();
 
-            _enumList.DoLayoutList();
-
-            ElementBrush._posZ = EditorGUILayout.IntField("Position Z", ElementBrush._posZ);
-
-            EditorGUILayout.PropertyField(_prefab, true);
+            EditorGUILayout.PropertyField(_event, true);
 
             if (GUILayout.Button("要素更新"))
             {
@@ -158,7 +134,7 @@ namespace UnityEditor
         private void ElementEnumUpdate()
         {
             // 確認するパス
-            var outputScriptPath = Directory.GetFiles(Directory.GetCurrentDirectory(), "ElementBase.cs", SearchOption.AllDirectories).FirstOrDefault();
+            var outputScriptPath = Directory.GetFiles(Directory.GetCurrentDirectory(), "EventBase.cs", SearchOption.AllDirectories).FirstOrDefault();
             if (string.IsNullOrEmpty(outputScriptPath))
             {
                 throw new System.Exception("要素の列挙を更新できません");
@@ -184,7 +160,7 @@ namespace UnityEditor
             }
 
             // 保存してenum作成
-            var gEnum = new Util.DynamicEnum("Elements");
+            var gEnum = new Util.DynamicEnum("MapEvents");
             if (gEnum.Save(names))
             {
                 AssetDatabase.Refresh();
