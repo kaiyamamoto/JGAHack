@@ -43,7 +43,8 @@ namespace UnityEditor
 
             foreach (var element in _elements)
             {
-                var type = System.Type.GetType("Play.Element." + element.ToString());
+                var className = element.ToString();
+                var type = Util.TypeUtil.GetTypeByClassName(className);
                 instance.AddComponent(type);
             }
 

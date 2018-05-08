@@ -6,9 +6,10 @@ using System;
 public enum Elements
 {
 	CircleElement,
+	CircleMove,
 	ElementBase,
-	ElementObject,
-	ElementSelector,
+	SideMove,
 	TestActionElement,
+	UpDownMove,
 
 }
