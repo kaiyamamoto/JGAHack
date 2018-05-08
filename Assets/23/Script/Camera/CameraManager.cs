@@ -33,7 +33,8 @@ public class CameraManager : MonoBehaviour
     {
         //プレイヤー取得
         _player = GameObject.Find("Player");
-        //ステージ開始カメラ起動
+
+        // TODO: ステージ開始カメラ起動
         //StageStartCameraMove();
     }
 
