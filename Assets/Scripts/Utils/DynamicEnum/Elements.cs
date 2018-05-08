@@ -10,6 +10,7 @@ public enum Elements
 	DiectionTest,
 	ElementBase,
 	SideMove,
+	Stay,
 	TestActionElement,
 	UpDownMove,
 
