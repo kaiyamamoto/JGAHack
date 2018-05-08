@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Play.LockOn
@@ -12,7 +13,8 @@ namespace Play.LockOn
         public List<GameObject> _lockOnList = new List<GameObject>();
 
         // Use this for initialization
-        void Start() {
+        void Start()
+        {
             //カメラに写ってるオブジェクト取得
             GetTargetOnScreen();
         }
@@ -38,6 +40,14 @@ namespace Play.LockOn
                     _lockOnList.Add(obj);
                 }
             }
+
+            //ロックオンリストの内容をtransform.position.xでソート(昇順)
+            _lockOnList.Sort(ComparePosXAsc);
+            ////TODO リスト内オブジェクトの表示
+            //ShowListContentsInTheDebugLog(_lockOnList);
+            ////TODO 一番近いリスト内オブジェクトのリスト番号を取得表示
+            //Debug.Log(GetNearObjOnList());
+
         }
 
         //リスト内にmissingがあれば排斥
@@ -45,13 +55,13 @@ namespace Play.LockOn
         {
             //消すオブジェ
             GameObject exclusionObj = null;
-
             //リスト内のチェック
             foreach (GameObject obj in _lockOnList)
             {
                 //missing or null だった場合
                 if (!obj)
                 {
+                    //該当オブジェクトを排斥対象に
                     exclusionObj = obj;
                 }
 
@@ -65,7 +75,7 @@ namespace Play.LockOn
         }
 
         //カメラ範囲内に映ってるか？（対象の位置を参照）
-        bool CheckOnScreen(Vector3 _pos)
+        private bool CheckOnScreen(Vector3 _pos)
         {
             //メインカメラ範囲に対しての対象の座標を参照
             Vector3 view_pos = Camera.main.WorldToViewportPoint(_pos);
@@ -88,5 +98,93 @@ namespace Play.LockOn
 
             return _lockOnList;
         }
+
+        //リスト内の要素を比較してソート（昇順）
+        public static int ComparePosXAsc(GameObject a, GameObject b)
+        {
+            // nullチェック  
+            if (a == null)
+            {
+                if (b == null)
+                {
+                    return 0;
+                }
+                return -1;
+            }
+            else
+            {
+                if (b == null)
+                {
+                    return 1;
+                }
+
+                // aとbの比較 （ポジションのXで比較） 
+                return a.transform.position.x.CompareTo(b.transform.position.x);
+            }
+        }
+
+
+        //リスト内の要素をDebug.Logに表示する
+        public void ShowListContentsInTheDebugLog<T>(List<T> list)
+        {
+            string log = "";
+
+            foreach (var content in list.Select((val, idx) => new { val, idx }))
+            {
+                if (content.idx == list.Count - 1)
+                    log += content.val.ToString();
+                else
+                    log += content.val.ToString() + ", ";
+            }
+
+            Debug.Log(log);
+        }
+
+
+
+
+
+        //指定されたオブジェクトに最も近いオブジェクトをリストから取得しその要素番号を返す。
+        public int GetNearObjOnList()
+        {
+            //TODO　Playerセット（テスト）
+            GameObject nowObj = GameObject.Find("Player");
+            //距離用一時変数
+            float tmpDis = 0;
+            //最も近いオブジェクトの距離      
+            float nearDis = 0;
+            //リストカウント（何番目か）
+            int count = 0;
+            //一番近いオブジェクトのリスト内番号
+            int nearObjNum = 0;
+
+            //リスト内のオブジェクトをプレイヤーとの距離で比較
+            foreach (GameObject obs in _lockOnList)
+            {
+                //自身と取得したオブジェクトの距離を取得
+                tmpDis = Vector3.Distance(obs.transform.position, nowObj.transform.position);
+
+                //オブジェクトの距離が近いか、距離0であればオブジェクトを取得
+                //一時変数に距離を格納
+                if (nearDis == 0 || nearDis > tmpDis)
+                {
+                    //比較用一の更新
+                    nearDis = tmpDis;
+                    //現状一番近いオブジェクトのリスト番号を記憶
+                    nearObjNum = count;
+                }
+                //カウントアップ
+                count++;
+
+            }
+            //最も近かったオブジェクトのリスト内番号を返す
+            return nearObjNum;
+        }
+
+
     }
+
+
+
+
 }
