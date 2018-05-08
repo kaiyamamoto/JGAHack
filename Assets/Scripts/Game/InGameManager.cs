@@ -43,7 +43,7 @@ namespace Play
 
         // カメラ
         [SerializeField]
-        private CameraManager _cameraManager = null;
+        private Stage.StageManager _stageManager = null;
 
         /// <summary>
         /// ゲームの開始
@@ -62,11 +62,11 @@ namespace Play
         }
 
         /// <summary>
-        /// ステージのクリア
+        /// ステージの失敗
         /// </summary>
         public void StageOver()
         {
-            _state = State.Over;
+            _stageManager.ReTry();
         }
 
         /// <summary>

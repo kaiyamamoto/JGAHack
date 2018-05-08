@@ -73,6 +73,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4538838070667812}
   - component: {fileID: 2569400266494102134}
+  - component: {fileID: 114178691199459492}
   m_Layer: 0
   m_Name: TestGrid
   m_TagString: Untagged
@@ -641,6 +642,18 @@ CompositeCollider2D:
       - {x: -5, y: -1.2682643}
       - {x: -5, y: -1.3408054}
   m_VertexDistance: 0.0005
+--- !u!114 &114178691199459492
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1579224663175468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caf1126b1545a864bb1d8b59baac4b53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _player: {fileID: 114962863638927668}
 --- !u!114 &114835344396266480
 MonoBehaviour:
   m_ObjectHideFlags: 1
