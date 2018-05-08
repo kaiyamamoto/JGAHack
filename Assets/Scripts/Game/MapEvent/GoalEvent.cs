@@ -2,10 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GoalEvent : MonoBehaviour
+namespace Play.MapEvent
 {
-    void OnTriggerEnter2D(Collider2D other)
+    public class GoalEvent : EventBase
     {
-        Debug.Log("Goal!!");
+        protected override void ColliderSetting()
+        {
+            _onEnter += (Collider2D other) =>
+            {
+                InGameManager.Instance.StageClear();
+            };
+        }
     }
 }

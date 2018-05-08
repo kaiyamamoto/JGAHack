@@ -13,7 +13,8 @@ namespace Play
             Stand = 0,
             Play,
             Pause,
-            End
+            Clear,
+            Over
         }
 
         // 状態
@@ -53,11 +54,19 @@ namespace Play
         }
 
         /// <summary>
-        /// ゲームの終わり
+        /// ステージのクリア
         /// </summary>
-        public void GameEnd()
+        public void StageClear()
         {
-            _state = State.End;
+            _state = State.Clear;
+        }
+
+        /// <summary>
+        /// ステージのクリア
+        /// </summary>
+        public void StageOver()
+        {
+            _state = State.Over;
         }
 
         /// <summary>
