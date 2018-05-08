@@ -45,16 +45,15 @@ namespace Play.Element
                     Object.Destroy(element);
                 }
 
-                if (_elementList[typeIndex] == null)
+                if (_elementList[typeIndex])
                 {
-                    _elementList[typeIndex] = element;
-                    element.Initialize();
+                    // タイプがかぶっている場合後半を反映
+                    _elementList[typeIndex].Discard();
+                    Object.Destroy(_elementList[typeIndex]);
                 }
-                else
-                {
-                    // タイプがかぶっているので2個目からは破棄
-                    Object.Destroy(element);
-                }
+
+                _elementList[typeIndex] = element;
+                element.Initialize();
             }
         }
     }
