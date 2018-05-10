@@ -257,13 +257,17 @@ namespace Play
         /// <param name="selectObj"></param>
         private void MoveElement(ElementObject selectObj)
         {
-            var element = _selectObject.ElementList[_selectElement];
+            // TODO : 送る要素が一つの時
+            // var element = _selectObject.ElementList[_selectElement];
 
-            // 要素のコピー移動
-            selectObj.CopyComponent(element);
+            // // 要素のコピー移動
+            // selectObj.CopyComponent(element);
 
-            // 要素の更新
-            selectObj.ElementUpdate();
+            // // 要素の更新
+            // selectObj.ElementUpdate();
+
+            // すべての要素を移動
+            selectObj.ReceiveAllElement(_selectObject.ElementList);
 
             // ターゲット解除
             TargetRelease();

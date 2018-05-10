@@ -142,7 +142,7 @@ namespace Extensions
         public T CopyComponent<T>(T orgComponent) where T : Component
         {
             var type = orgComponent.GetType();
-            var com = GetComponentAttach(type);
+            var com = this.gameObject.AddComponent(type);
 
             // Target
             BindingFlags flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Default | BindingFlags.DeclaredOnly;
