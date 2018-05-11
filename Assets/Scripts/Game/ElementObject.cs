@@ -17,9 +17,23 @@ namespace Play.Element
             set { _elementList = value; }
         }
 
+        // 忘れない要素
+        private ElementBase[] _rememberList = null;
+
+        // 初期位置
+        [SerializeField]
+        private Vector3 _initPos = Vector3.zero;
+
+        // 我に戻る時間(秒)
+        static readonly float _returnTime = 5.0f;
+
         /// <summary>
         /// 初期化
         /// </summary>
+        private void Awake()
+        {
+            _initPos = transform.position;
+        }
         private void Start()
         {
             ElementUpdate();
@@ -31,7 +45,7 @@ namespace Play.Element
         public void ElementUpdate()
         {
             int index = (int)ElementType.length;
-            ElementList = new ElementBase[index];
+            _elementList = new ElementBase[index];
 
             var array = this.GetComponents<ElementBase>();
 
@@ -45,6 +59,12 @@ namespace Play.Element
                     Object.Destroy(element);
                 }
 
+                // 実行されていないときはスキップ
+                if (element.enabled == false)
+                {
+                    continue;
+                }
+
                 if (_elementList[typeIndex])
                 {
                     // タイプがかぶっている場合後半を反映
@@ -55,6 +75,120 @@ namespace Play.Element
                 _elementList[typeIndex] = element;
                 element.Initialize();
             }
+        }
+
+        /// <summary>
+        /// 要素をすべて受け取る
+        /// </summary>
+        public bool ReceiveAllElement(ElementBase[] receiveList)
+        {
+            // 忘れてはいけないものがある…
+            if (_rememberList != null)
+            {
+                return false;
+            }
+
+            int index = (int)ElementType.length;
+            _rememberList = new ElementBase[index];
+
+            // 現在の要素を止める
+            for (int i = 0; i < _elementList.Length - 1; i++)
+            {
+                if (_elementList[i])
+                {
+                    _elementList[i].enabled = false;
+                    _rememberList[i] = _elementList[i];
+                }
+            }
+
+            // 要素のコピー移動
+            foreach (var element in receiveList)
+            {
+                if (element)
+                {
+                    this.CopyComponent(element);
+
+                    // 要素の更新
+                    this.ElementUpdate();
+                }
+            }
+
+            // n秒後思い出すコルーチン
+            StartCoroutine(WaitSanity());
+
+            return true;
+        }
+
+        /// <summary>
+        /// 正気に戻るのを待つ
+        /// </summary>
+        /// <returns></returns>
+        private IEnumerator WaitSanity()
+        {
+            // 待つ
+            yield return new WaitForSeconds(_returnTime);
+
+            // 正気になる
+            ReturnToSanity();
+        }
+
+        /// <summary>
+        /// 正気に戻る
+        /// </summary>
+        public void ReturnToSanity()
+        {
+            StartCoroutine(ReturnToSanityCorutine());
+        }
+        private IEnumerator ReturnToSanityCorutine()
+        {
+            // 今の要素を忘れる
+            ForgetAllElement();
+
+            // 元の位置に戻る
+            yield return ReturnToInitPos();
+
+            // 要素を思い出す
+            ReCallElement();
+        }
+
+        /// <summary>
+        /// 初期位置に戻る
+        /// </summary>
+        private IEnumerator ReturnToInitPos()
+        {
+            // TODO: ナビメッシュあたりの処理はここ
+
+            // 移動するまで待つ
+            yield return null;
+        }
+
+        // 現在の要素をすべて忘れる
+        private void ForgetAllElement()
+        {
+            foreach (var element in _elementList)
+            {
+                if (element)
+                {
+                    Destroy(element);
+                }
+            }
+            _elementList = null;
+        }
+
+        /// <summary>
+        /// 要素を思い出す
+        /// </summary>
+        private void ReCallElement()
+        {
+            foreach (var element in _rememberList)
+            {
+                if (element)
+                {
+                    element.enabled = true;
+                }
+            }
+            // 更新
+            ElementUpdate();
         }
     }
 }
