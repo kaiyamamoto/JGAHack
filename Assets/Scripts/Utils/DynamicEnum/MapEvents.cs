@@ -7,5 +7,6 @@ public enum MapEvents
 {
 	EventBase,
 	GoalEvent,
+	SwitchEvent,
 
 }
