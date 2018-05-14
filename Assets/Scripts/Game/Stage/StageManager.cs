@@ -34,5 +34,14 @@ namespace Play.Stage
         {
             return _startPos;
         }
+
+        /// <summary>
+        /// 初期位置の更新
+        /// </summary>
+        /// <param name="pos"></param>
+        public void SetStartPos(Vector3 pos)
+        {
+            _startPos = pos;
+        }
     }
 }
