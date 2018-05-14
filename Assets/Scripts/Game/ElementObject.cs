@@ -36,13 +36,13 @@ namespace Play.Element
         [SerializeField]
         private float _speed;
 
-          //帰るべき場所
+        //帰るべき場所
         [SerializeField, ReadOnly]
         private Vector3 _returnPosition;
 
         //リジットボディ
         Rigidbody2D _rigidBody2d;
-        
+
         /// <summary>
         /// 初期化
         /// </summary>
@@ -129,12 +129,12 @@ namespace Play.Element
                     // 要素の更新
                     this.ElementUpdate();
                 }
-               
+
             }
 
             //上書き時の位置を保存
             _overwritePosList.Add(transform.position);
-           
+
 
             // n秒後思い出すコルーチン
             StartCoroutine(WaitSanity());
@@ -166,12 +166,13 @@ namespace Play.Element
         {
             // 今の要素を忘れる
             ForgetAllElement();
-            
+
             // 元の位置に戻る
             yield return ReturnToInitPos();
 
             // 要素を思い出す
             ReCallElement();
+
         }
 
         /// <summary>
@@ -180,7 +181,7 @@ namespace Play.Element
         private IEnumerator ReturnToInitPos()
         {
             //リスト内要素逆回し用のカウント
-            int Count = _overwritePosList.Count-1;
+            int Count = _overwritePosList.Count - 1;
             //上書き時の位置をセット
             SetReturnMove(_overwritePosList[Count]);
 
@@ -201,12 +202,12 @@ namespace Play.Element
                     {
                         //初期位置をセット
                         SetReturnMove(_initPos);
-                    }            
+                    }
                 }
-                   
+
                 //元の位置に戻れば
                 if (transform.position == _initPos)
-                {            
+                {
                     //Debug.Log("我完全に戻れり");
                     //上書き位置リストのクリア
                     _overwritePosList.Clear();
@@ -220,8 +221,8 @@ namespace Play.Element
                 }
 
                 // 毎フレームループ
-                yield return null; 
-            }   
+                yield return null;
+            }
         }
 
         // 現在の要素をすべて忘れる
@@ -249,6 +250,10 @@ namespace Play.Element
                     element.enabled = true;
                 }
             }
+
+            // 忘れてはいけないものを忘れる…
+            _rememberList = null;
+
             // 更新
             ElementUpdate();
         }
@@ -257,7 +262,7 @@ namespace Play.Element
         {
             // Debug.Log("回帰セットぉ");
             //速度セット
-            _speed = 1.0f;     
+            _speed = 1.0f;
             //帰るべき場所セット
             _returnPosition = returnPos;
         }
