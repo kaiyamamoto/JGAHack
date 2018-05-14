@@ -4,44 +4,44 @@ using UnityEngine;
 
 namespace Play.Stage
 {
-    public class StageManager : MonoBehaviour
-    {
+	public class StageManager : MonoBehaviour
+	{
 
-        [SerializeField]
-        private Player _player = null;
+		[SerializeField]
+		private Player _player = null;
 
-        private Vector3 _startPos;
+		private Vector3 _startPos;
 
-        /// <summary>
-        /// 初期化
-        /// </summary>
-        /// <returns></returns>
-        private void Awake()
-        {
-            _startPos = _player.transform.position;
-        }
+		/// <summary>
+		/// 初期化
+		/// </summary>
+		/// <returns></returns>
+		private void Awake()
+		{
+			_startPos = _player.transform.position;
+		}
 
-        /// <summary>
-        /// リトライ
-        /// </summary>
-        public void ReTry()
-        {
-            // 初期位置に移動
-            _player.transform.position = _startPos;
-        }
+		/// <summary>
+		/// リトライ
+		/// </summary>
+		public void ReTry()
+		{
+			// 初期位置に移動
+			_player.transform.position = _startPos;
+		}
 
-        public Vector3 GetStartPos()
-        {
-            return _startPos;
-        }
+		public Vector3 GetStartPos()
+		{
+			return _startPos;
+		}
 
-        /// <summary>
-        /// 初期位置の更新
-        /// </summary>
-        /// <param name="pos"></param>
-        public void SetStartPos(Vector3 pos)
-        {
-            _startPos = pos;
-        }
-    }
+		/// <summary>
+		/// 初期位置の更新
+		/// </summary>
+		/// <param name="pos"></param>
+		public void UpdateCheckPoint(CheckPointEvent check)
+		{
+			_startPos = check.transform.position;
+		}
+	}
 }
