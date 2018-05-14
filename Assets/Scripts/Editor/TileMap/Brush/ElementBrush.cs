@@ -45,20 +45,22 @@ namespace UnityEditor
 		}
 
 		/// <summary>
-		/// 削除
+		/// けしけし
 		/// </summary>
 		/// <param name="grid"></param>
-		/// <param name="brushTarget"></param>
+		/// <param name="layer"></param>
 		/// <param name="position"></param>
-		public override void Erase(GridLayout grid, GameObject brushTarget, Vector3Int position)
+		public override void Erase(GridLayout grid, GameObject layer, Vector3Int position)
 		{
-			// 編集を許可しない
-			if (brushTarget.layer == 31)
-				return;
-
-			Transform erased = GetObjectInCell(grid, brushTarget.transform, new Vector3Int(position.x, position.y, position.z));
-			if (erased != null)
-				Undo.DestroyObjectImmediate(erased.gameObject);
+			foreach (var elementObj in AllObjects)
+			{
+				if (grid.WorldToCell(elementObj.transform.position) == position)
+				{
+					DestroyImmediate(elementObj.gameObject);
+					EditorUtil.Select(BrushUtil.GetRootGrid(false).gameObject);
+					return;
+				}
+			}
 		}
 
 		/// <summary>
