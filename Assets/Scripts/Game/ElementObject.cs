@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Extensions;
 
 namespace Play.Element
 {
@@ -24,15 +25,32 @@ namespace Play.Element
         [SerializeField]
         private Vector3 _initPos = Vector3.zero;
 
+        // 上書き時の位置リスト
+        [SerializeField]
+        private List<Vector3> _overwritePosList = new List<Vector3>();
+
         // 我に戻る時間(秒)
         static readonly float _returnTime = 5.0f;
 
+        //移動速度
+        [SerializeField]
+        private float _speed;
+
+          //帰るべき場所
+        [SerializeField, ReadOnly]
+        private Vector3 _returnPosition;
+
+        //リジットボディ
+        Rigidbody2D _rigidBody2d;
+        
         /// <summary>
         /// 初期化
         /// </summary>
         private void Awake()
         {
             _initPos = transform.position;
+            //リジットボディ取得
+            _rigidBody2d = gameObject.GetComponent<Rigidbody2D>();
         }
         private void Start()
         {
@@ -111,7 +129,12 @@ namespace Play.Element
                     // 要素の更新
                     this.ElementUpdate();
                 }
+               
             }
+
+            //上書き時の位置を保存
+            _overwritePosList.Add(transform.position);
+           
 
             // n秒後思い出すコルーチン
             StartCoroutine(WaitSanity());
@@ -143,7 +166,7 @@ namespace Play.Element
         {
             // 今の要素を忘れる
             ForgetAllElement();
-
+            
             // 元の位置に戻る
             yield return ReturnToInitPos();
 
@@ -156,10 +179,49 @@ namespace Play.Element
         /// </summary>
         private IEnumerator ReturnToInitPos()
         {
-            // TODO: ナビメッシュあたりの処理はここ
+            //リスト内要素逆回し用のカウント
+            int Count = _overwritePosList.Count-1;
+            //上書き時の位置をセット
+            SetReturnMove(_overwritePosList[Count]);
 
-            // 移動するまで待つ
-            yield return null;
+            //ループ処理
+            while (true)
+            {
+                //上書き位置に戻れば
+                if (transform.position == _overwritePosList[Count])
+                {
+                    //Debug.Log("我戻れり");
+                    if (0 < Count)
+                    {
+                        Count--;
+                        //上書き時の位置をセット
+                        SetReturnMove(_overwritePosList[Count]);
+                    }
+                    else
+                    {
+                        //初期位置をセット
+                        SetReturnMove(_initPos);
+                    }            
+                }
+                   
+                //元の位置に戻れば
+                if (transform.position == _initPos)
+                {            
+                    //Debug.Log("我完全に戻れり");
+                    //上書き位置リストのクリア
+                    _overwritePosList.Clear();
+                    //コルーチン終わり
+                    yield break;
+                }
+                else
+                {
+                    // TODO: 元の位置に向かって移動
+                    ReturnMove();
+                }
+
+                // 毎フレームループ
+                yield return null; 
+            }   
         }
 
         // 現在の要素をすべて忘れる
@@ -189,6 +251,23 @@ namespace Play.Element
             }
             // 更新
             ElementUpdate();
+        }
+
+        private void SetReturnMove(Vector3 returnPos)
+        {
+            // Debug.Log("回帰セットぉ");
+            //速度セット
+            _speed = 1.0f;     
+            //帰るべき場所セット
+            _returnPosition = returnPos;
+        }
+
+        private void ReturnMove()
+        {
+            //目的位置に向かって一定速度で移動
+            // Debug.Log("移動中");
+            _rigidBody2d.MovePosition(Vector3.MoveTowards(transform.position, _returnPosition, Time.deltaTime * _speed));
+
         }
     }
 }
