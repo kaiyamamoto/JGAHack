@@ -51,6 +51,15 @@ namespace Play
             get { return _stageManager; }
         }
 
+        // カメラ管理
+        [SerializeField]
+        private CameraManager _cameraManager = null;
+
+        public CameraManager CameraManager
+        {
+            get { return _cameraManager; }
+        }
+
         void OnGUI()
         {
             if (_state == State.Clear)
@@ -69,6 +78,7 @@ namespace Play
             // ステージプレハブの設定
 
             // カメラに必要な要素を設定
+            CameraManager.Player = StageManager.Player.gameObject;
 
             yield return null;
         }
