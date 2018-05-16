@@ -33,6 +33,7 @@ namespace UnityEditor
                 return;
 
             var instance = new GameObject(_event.ToString());
+            instance.gameObject.layer = LayerMask.NameToLayer("Event");
 
             var className = _event.ToString();
             var type = Util.TypeUtil.GetTypeByClassName(className);
