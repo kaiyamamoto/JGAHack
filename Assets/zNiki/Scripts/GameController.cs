@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Play
@@ -40,7 +41,12 @@ namespace Play
         /// </summary>
         private void CheckConnect()
         {
-            var controllerNames = Input.GetJoystickNames()[0];
+            var names = Input.GetJoystickNames();
+            string controllerNames = string.Empty;
+            if (names.Any())
+            {
+                controllerNames = names[0];
+            }
 
             if (controllerNames.Length > 0)
             {
