@@ -7,7 +7,7 @@ using UnityEngine.Tilemaps;
 
 public class BrushUtil
 {
-    const string GRID_NAME = "Grid";
+    const string GRID_NAME = "SearchGrid";
 
     /// <summary>
     /// 現在のグリッドを取得
@@ -26,17 +26,15 @@ public class BrushUtil
         if (result == null)
         {
             // Grid で探す
-            GameObject gridGameObject = GameObject.Find(GRID_NAME);
+            GameObject gridGameObject = GameObject.Find(GRID_NAME).transform.parent.gameObject;
             if (gridGameObject != null && gridGameObject.GetComponent<Grid>() != null)
             {
                 // 探したオブジェクトがグリッドを持っている場合
                 result = gridGameObject.GetComponent<Grid>();
             }
-            else if (autoCreate)
+            else
             {
-                // グリッドがない場合はグリッドを作成
-                gridGameObject = new GameObject(GRID_NAME);
-                result = gridGameObject.AddComponent<Grid>();
+                throw new System.Exception("Gridが存在しない、またはGridの親がGridを持っていません。");
             }
         }
 
