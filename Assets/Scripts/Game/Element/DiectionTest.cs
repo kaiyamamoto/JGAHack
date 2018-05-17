@@ -20,7 +20,7 @@ namespace Play.Element
         /// </summary>
         public override void Initialize()
         {
-            transform.eulerAngles = _direction.Vector();
+           GetComponentInChildren<EnemyAnimController>().ChangeAnim(_direction);
         }
 
         /// <summary>
@@ -30,6 +30,12 @@ namespace Play.Element
         {
             // 終了時の処理
             transform.eulerAngles = Vector3.zero;
+        }
+
+
+        public Direction GetDir()
+        {
+            return _direction;
         }
     }
 }

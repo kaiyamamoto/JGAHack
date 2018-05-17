@@ -48,10 +48,43 @@ namespace Play.Enemy
             //発射カウント0時
             if (_shotCount <= 0)
             {
-                //弾の方向設定（正面）
-                _bulletVel = transform.up;
-                //オフセットの設定(テストなので後日修正)
-                _shotOffset = transform.up　* GetComponent<SpriteRenderer>().bounds.size.x /1.2f;
+
+                switch (GetComponent<Play.Element.DiectionTest>().GetDir())
+                {
+                    case Direction.Front:
+                        //弾の方向設定（正面）
+                        _bulletVel = new Vector3(0,1,0);
+                        //オフセットの設定(テストなので後日修正)
+                        _shotOffset = new Vector3(0,GetComponentInChildren<SpriteRenderer>().bounds.size.y / 2, 0);
+                        break;
+
+                    case Direction.Back:
+                        //弾の方向設定（正面）
+                        _bulletVel = new Vector3(0, -1, 0);
+                        //オフセットの設定(テストなので後日修正)
+                        _shotOffset = new Vector3(0,GetComponentInChildren<SpriteRenderer>().bounds.size.y / 2, 0);
+                        break;
+
+                    case Direction.Left:
+                        //弾の方向設定（正面）
+                        _bulletVel = new Vector3(-1, 0, 0);
+                        //オフセットの設定(テストなので後日修正)
+                        _shotOffset = new Vector3(-GetComponentInChildren<SpriteRenderer>().bounds.size.x/2,0,0);
+                        break;
+
+                    case Direction.Right:
+                        //弾の方向設定（正面）
+                        _bulletVel = new Vector3(1, 1, 0);
+                        //オフセットの設定(テストなので後日修正)
+                        _shotOffset = new Vector3(GetComponentInChildren<SpriteRenderer>().bounds.size.x / 2, 0,0);
+
+                        break;
+
+
+                }
+
+
+                
                 //// 弾丸の複製
                 GameObject bullets = GameObject.Instantiate(_bullet) as GameObject;
                 // 弾速設定

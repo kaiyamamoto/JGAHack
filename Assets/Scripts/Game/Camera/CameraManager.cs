@@ -201,7 +201,7 @@ namespace Play
                 //ステージ位置カメラの優先度設定（高い程優先される）
                 _camStage.GetComponent<Cinemachine.CinemachineVirtualCamera>().Priority = MUST;
                 //ゴール位置カメラの優先度設定（初期演出用）
-                _camGoal.GetComponent<Cinemachine.CinemachineVirtualCamera>().Priority = MUST+1;
+                //_camGoal.GetComponent<Cinemachine.CinemachineVirtualCamera>().Priority = MUST+1;
                 //現在カメラのセット
                 _currentCam = _camStage;
             }
