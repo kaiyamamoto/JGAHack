@@ -187,11 +187,9 @@ namespace Play
         /// <param name="elementObj"></param>
         private void TargetElementObject(ElementObject elementObj)
         {
-            if (_targetObject)
-            {
-                // TODO: テキスト削除
-                _targetObject.transform.DestroyAllChild();
-            }
+            // ターゲット解除
+            TargetRelease();
+
             // ターゲット
             _targetObject = elementObj;
 
@@ -232,7 +230,14 @@ namespace Play
             // TODO: 追加したテキスト削除
             if (_targetObject)
             {
-                _targetObject.transform.DestroyAllChild();
+                var childs = _targetObject.transform.GetAllChild();
+                foreach (var c in childs)
+                {
+                    if (c.name == "ElementText(Clone)")
+                    {
+                        Destroy(c.gameObject);
+                    }
+                }
             }
             _targetObject = null;
         }
