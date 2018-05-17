@@ -5,21 +5,17 @@ using Extensions;
 
 public class EnemyAnimController : MonoBehaviour
 {
-
     //向き
     Direction _dir;
-    [SerializeField,ReadOnly]
+    [SerializeField, ReadOnly]
     Animator _anim;
-
 
     void Awake()
     {
-        _dir = gameObject.GetComponentInParent<Play.Element.DiectionTest>().GetDir();
+        _dir = gameObject.GetComponentInChildren<Play.Element.DiectionTest>().GetDir();
         _anim = gameObject.GetComponent<Animator>();
         ChangeAnim(_dir);
     }
-
-    // Use this for initialization
 
     public void ChangeAnim(Direction dir)
     {

@@ -20,7 +20,11 @@ namespace Play.Element
         /// </summary>
         public override void Initialize()
         {
-           GetComponentInChildren<EnemyAnimController>().ChangeAnim(_direction);
+            var anim = GetComponentInParent<EnemyAnimController>();
+            if (anim)
+            {
+                anim.ChangeAnim(_direction);
+            }
         }
 
         /// <summary>

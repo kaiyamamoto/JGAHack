@@ -41,7 +41,7 @@ namespace Play.Element
         private Vector3 _returnPosition;
 
         //リジットボディ
-        Rigidbody2D _rigidBody2d;
+        private Rigidbody2D _rigidBody2d;
 
         /// <summary>
         /// 初期化
@@ -50,7 +50,7 @@ namespace Play.Element
         {
             _initPos = transform.position;
             //リジットボディ取得
-            _rigidBody2d = gameObject.GetComponent<Rigidbody2D>();
+            _rigidBody2d = gameObject.GetComponentInParent<Rigidbody2D>();
         }
         private void Start()
         {

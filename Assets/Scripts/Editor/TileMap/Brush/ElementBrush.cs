@@ -40,7 +40,12 @@ namespace UnityEditor
             {
                 var className = element.ToString();
                 var type = Util.TypeUtil.GetTypeByClassName(className);
-                instance.AddComponent(type);
+                // 先頭の子供に要素をつける
+                var child = instance.transform.GetChild(0);
+                if (child)
+                {
+                    child.gameObject.AddComponent(type);
+                }
             }
 
             EditorUtil.SetDirty(instance);
