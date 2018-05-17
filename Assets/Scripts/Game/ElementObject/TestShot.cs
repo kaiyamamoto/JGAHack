@@ -62,7 +62,7 @@ namespace Play.Enemy
                         //弾の方向設定（正面）
                         _bulletVel = new Vector3(0, -1, 0);
                         //オフセットの設定(テストなので後日修正)
-                        _shotOffset = new Vector3(0,GetComponentInChildren<SpriteRenderer>().bounds.size.y / 2, 0);
+                        _shotOffset = new Vector3(0,-GetComponentInChildren<SpriteRenderer>().bounds.size.y / 2, 0);
                         break;
 
                     case Direction.Left:
@@ -74,7 +74,7 @@ namespace Play.Enemy
 
                     case Direction.Right:
                         //弾の方向設定（正面）
-                        _bulletVel = new Vector3(1, 1, 0);
+                        _bulletVel = new Vector3(1, 0, 0);
                         //オフセットの設定(テストなので後日修正)
                         _shotOffset = new Vector3(GetComponentInChildren<SpriteRenderer>().bounds.size.x / 2, 0,0);
 
