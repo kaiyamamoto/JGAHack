@@ -6,13 +6,21 @@ namespace Play.Stage
 {
     public class StageManager : MonoBehaviour
     {
-
+        // プレイヤー
         [SerializeField]
         private Player _player = null;
 
         public Player Player
         {
             get { return _player; }
+        }
+
+        // ゴール
+        [SerializeField]
+        private Play.MapEvent.GoalEvent _goal;
+        public Play.MapEvent.GoalEvent Goal
+        {
+            get { return _goal; }
         }
 
         private Vector3 _startPos;

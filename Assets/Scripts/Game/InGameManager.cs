@@ -73,14 +73,43 @@ namespace Play
             }
         }
 
+        void Start()
+        {
+            // ゲームの設定
+            StartCoroutine(StartSetUp());
+        }
+
         private IEnumerator StartSetUp()
         {
             // ステージプレハブの設定
+            yield return LoadStage();
 
             // カメラに必要な要素を設定
             CameraManager.Player = StageManager.Player.gameObject;
+            CameraManager.Goal = StageManager.Goal.gameObject;
 
             yield return null;
+        }
+
+        /// <summary>
+        /// ステージの読み込み
+        /// </summary>
+        /// <returns></returns>
+        private IEnumerator LoadStage()
+        {
+            // アセットのロード
+            var stageAsset = Resources.LoadAsync("Stage/TestGrid");
+
+            // ロード待ち
+            yield return new WaitWhile(() => !stageAsset.isDone);
+
+            var stageObj = stageAsset.asset as GameObject;
+            var stage = Instantiate(stageObj);
+
+            var manager = stage.GetComponent<StageManager>();
+
+            // ステージマネージャーの設定
+            _stageManager = manager;
         }
 
         /// <summary>

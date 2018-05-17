@@ -24,6 +24,12 @@ namespace Play
         //ゴール
         [SerializeField]
         private GameObject _goal;
+        public GameObject Goal
+        {
+            get { return _goal; }
+            set { _goal = value; }
+        }
+
         //カメラ本体
         [SerializeField, ReadOnly]
         private GameObject _mainCam;
@@ -62,7 +68,6 @@ namespace Play
             //カメラの初期設定
             InitCamera();
         }
-        // Use this for initialization
         void Start()
         {
             //カメラ切り替え時間の設定
@@ -192,8 +197,8 @@ namespace Play
             _camB.GetComponent<Cinemachine.CinemachineVirtualCamera>().m_Follow = null;
             _camB.GetComponent<Cinemachine.CinemachineVirtualCamera>().m_LookAt = null;
             //ゴールカメラセッティング
-            _camGoal.GetComponent<Cinemachine.CinemachineVirtualCamera>().m_Follow = _goal.transform;
-            _camGoal.GetComponent<Cinemachine.CinemachineVirtualCamera>().m_LookAt = _goal.transform;
+            _camGoal.GetComponent<Cinemachine.CinemachineVirtualCamera>().m_Follow = Goal.transform;
+            _camGoal.GetComponent<Cinemachine.CinemachineVirtualCamera>().m_LookAt = Goal.transform;
 
             //固定カメラモードなら
             if (_isFixed)
