@@ -39,6 +39,10 @@ namespace Play
         private List<GameObject> _targetList = null;
         private int _targetNum = 0;
 
+        // ターゲットのゲームオブジェクト
+        [SerializeField]
+        private GameObject _target = null;
+
         void Start()
         {
             // TODO: テキストリスト作成
@@ -198,13 +202,18 @@ namespace Play
             // 子に要素追加
             var text = GameObject.Instantiate(_elementText);
             _targetObject.transform.SetChild(text.gameObject);
+            // ターゲットマーカー作成
+            var obj = Instantiate(_target);
+            text.transform.SetChild(obj);
             text.transform.localPosition = Vector3.zero;
             text.gameObject.AddComponent<Canvas>();
             var scaler = text.gameObject.AddComponent<CanvasScaler>();
             scaler.dynamicPixelsPerUnit = 20;
-            text.transform.localScale = new Vector3(0.1f, 0.1f, 1.0f);
+            text.transform.localPosition = new Vector3(0.0f, 0.5f, 0.0f);
+            text.transform.localScale = new Vector3(0.3f, 0.3f, 1.0f);
             text.fontSize = 1;
             text.alignment = TextAnchor.MiddleLeft;
+
             // テキスト変更
 
             text.text = string.Empty;
