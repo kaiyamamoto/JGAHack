@@ -645,8 +645,7 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 114816275284278896, guid: 103e886021a222240bdcd60b6697528d, type: 2}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 103e886021a222240bdcd60b6697528d, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &807441206
@@ -697,8 +696,22 @@ Prefab:
       propertyPath: _direction
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 212979625701904570, guid: 103e886021a222240bdcd60b6697528d,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300002, guid: 39ef514bafbec7f4d8aeb70a22154a0d,
+        type: 3}
+    - target: {fileID: 1226374070059844, guid: 103e886021a222240bdcd60b6697528d, type: 2}
+      propertyPath: m_TagString
+      value: Element
+      objectReference: {fileID: 0}
+    - target: {fileID: 1415946925500992, guid: 103e886021a222240bdcd60b6697528d, type: 2}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 114816275284278896, guid: 103e886021a222240bdcd60b6697528d, type: 2}
+    - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: 103e886021a222240bdcd60b6697528d, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &850296876
@@ -1327,6 +1340,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99a0f08dd60794844bc329d09233e159, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _anim: {fileID: 0}
 --- !u!95 &1574810630
 Animator:
   serializedVersion: 3
@@ -5123,39 +5137,6 @@ MonoBehaviour:
     FarClipPlane: 5000
     Dutch: 0
   m_ComponentOwner: {fileID: 375648289}
---- !u!1 &2076999143 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1415946925500992, guid: 103e886021a222240bdcd60b6697528d,
-    type: 2}
-  m_PrefabInternal: {fileID: 668409070}
---- !u!95 &2076999148
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2076999143}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 3ca6140dada29d548991d257aa2fd954, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &2076999149
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2076999143}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99a0f08dd60794844bc329d09233e159, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2119539756
 GameObject:
   m_ObjectHideFlags: 3
