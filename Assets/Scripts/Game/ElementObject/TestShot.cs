@@ -7,29 +7,31 @@ using UnityEngine;
 namespace Play.Enemy
 {
 
-	//簡易射撃テストスクリプト
-	public class TestShot : MonoBehaviour
-	{
-		//生成オブジェクト（弾）
-		[SerializeField]
-		GameObject _bullet;
-		//弾の速さ
-		[SerializeField]
-		float _bulletSpeed;
-		//弾のベクトル
-		[SerializeField]
-		Vector3 _bulletVel;
-		//発射時のズレ
-		[SerializeField]
-		Vector3 _shotOffset;
-		//発射間隔
-		[SerializeField]
-		float _shotInterval = 2;
-		//発射カウント
-		[SerializeField]
-		float _shotCount;
+    //簡易射撃テストスクリプト
+    public class TestShot : MonoBehaviour
+    {
+        //生成オブジェクト（弾）
+        [SerializeField]
+        GameObject _bullet;
+        //弾の速さ
+        [SerializeField]
+        float _bulletSpeed;
+        //弾のベクトル
+        [SerializeField]
+        Vector3 _bulletVel;
+        //発射時のズレ
+        [SerializeField]
+        Vector3 _shotOffset;
+        //発射間隔
+        [SerializeField]
+        float _shotInterval = 2;
+        //発射カウント
+        [SerializeField]
+        float _shotCount;
         //弾置き場
         GameObject _bulletPlace;
+        // レンダラー
+        SpriteRenderer _renderer = null;
 
         // Use this for initialization
         void Start()
@@ -37,7 +39,8 @@ namespace Play.Enemy
             //弾置き場探し
             _bulletPlace = GameObject.Find("BulletPlace");
             //発射カウントのリセット
-            _shotCount = _shotInterval;         
+            _shotCount = _shotInterval;
+            _renderer = GetComponentInParent<SpriteRenderer>();
         }
 
         // Update is called once per frame
@@ -48,11 +51,40 @@ namespace Play.Enemy
             //発射カウント0時
             if (_shotCount <= 0)
             {
-                //弾の方向設定（正面）
-                _bulletVel = transform.up;
-                //オフセットの設定(テストなので後日修正)
-                _shotOffset = transform.up　* GetComponent<SpriteRenderer>().bounds.size.x /1.2f;
-                //// 弾丸の複製
+                var dir = GetComponent<Play.Element.DiectionTest>();
+                switch (dir.GetDir())
+                {
+                    case Direction.Front:
+                        //弾の方向設定（正面）
+                        _bulletVel = new Vector3(0, 1, 0);
+                        //オフセットの設定(テストなので後日修正)
+                        _shotOffset = new Vector3(0, _renderer.bounds.size.y / 2, 0);
+
+                        break;
+                    case Direction.Back:
+                        //弾の方向設定（正面）
+                        _bulletVel = new Vector3(0, -1, 0);
+                        //オフセットの設定(テストなので後日修正)
+                        _shotOffset = new Vector3(0, -_renderer.bounds.size.y / 2, 0);
+
+                        break;
+                    case Direction.Left:
+                        //弾の方向設定（正面）
+                        _bulletVel = new Vector3(-1, 0, 0);
+                        //オフセットの設定(テストなので後日修正)
+                        _shotOffset = new Vector3(-_renderer.bounds.size.x / 2, 0, 0);
+
+                        break;
+                    case Direction.Right:
+                        //弾の方向設定（正面）
+                        _bulletVel = new Vector3(1, 0, 0);
+                        //オフセットの設定(テストなので後日修正)
+                        _shotOffset = new Vector3(_renderer.bounds.size.x / 2, 0, 0);
+
+                        break;
+                }
+
+                // 弾丸の複製
                 GameObject bullets = GameObject.Instantiate(_bullet) as GameObject;
                 // 弾速設定
                 bullets.GetComponent<Rigidbody2D>().velocity = _bulletVel * _bulletSpeed;
@@ -68,7 +100,7 @@ namespace Play.Enemy
                     //弾丸をゲームオブジェクトの子供に設定
                     bullets.transform.parent = transform;
                 }
-      
+
                 //発車時間の再設定
                 _shotCount = _shotInterval;
             }

@@ -47,7 +47,7 @@ namespace Play.Element
         public override void Initialize()
         {
             //リジットボディ取得
-            _rigitBody2d = GetComponent<Rigidbody2D>();
+            _rigitBody2d = GetComponentInParent<Rigidbody2D>();
             //移動可能時間のセット
             _moveCount = _requiredTime;
             //速度の決定
@@ -87,7 +87,7 @@ namespace Play.Element
             //反転識別用移動カウントダウン
             _moveCount -= Time.deltaTime;
 
-           
+
 
             //移動時間での反転
             if (_moveCount <= 0)

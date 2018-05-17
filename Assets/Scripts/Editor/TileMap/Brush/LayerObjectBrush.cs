@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Extensions;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -123,10 +124,20 @@ public abstract class LayerObjectBrush<T> : GridBrushBase
     {
         foreach (var gameObject in gameObjects)
         {
-            T obj = gameObject.GetComponent<T>();
-            if (obj != null)
+            var child = gameObject.transform.GetAllChild();
+            if (0 < child.Length)
             {
-                return obj;
+                var objList = new List<GameObject>();
+                objList.AddRange(child);
+                return GetObject(objList);
+            }
+            else
+            {
+                T obj = gameObject.GetComponent<T>();
+                if (obj != null)
+                {
+                    return obj;
+                }
             }
         }
         return default(T);

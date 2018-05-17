@@ -17,20 +17,20 @@ namespace Play.Element
         //リジットボディ
         private Rigidbody2D _rigitBody2d;
 
+        void Awake()
+        {
+            _type = ElementType.Move;
+        }
+
         public override void Initialize()
         {
             //リジットボディ取得
-            _rigitBody2d = transform.GetComponent<Rigidbody2D>();
+            _rigitBody2d = GetComponentInChildren<Rigidbody2D>();
             //滞在位置取得
             _stayPos = transform.position;
 
         }
 
-
-        void Awake()
-        {
-            _type = ElementType.Move;
-        }
 
         // Update is called once per frame
         void Update()
