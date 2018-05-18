@@ -3,7 +3,7 @@
 	Properties
 	{
 		//メインテクスチャ　2D
-		_MainTex ("Sprite Texture", 2D) = "white" {}
+		_MainTex ("Sprite Texture", 2D) = "" {}
 		//ゆがめる量
 		_Amount ("Distort",Float) = 0.0
 	}
