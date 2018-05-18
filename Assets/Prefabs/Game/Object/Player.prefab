@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 61062076392002180}
   - component: {fileID: 95123623046843392}
   - component: {fileID: 114808365670641888}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4084921921390650}
   - component: {fileID: 114399878619736062}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ElementSelector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -166,6 +166,7 @@ MonoBehaviour:
   _elementText: {fileID: 114226643485333420, guid: 546392ba5ab9045488d4cf8c5c867df5,
     type: 2}
   _textList: []
+  _target: {fileID: 0}
 --- !u!114 &114808365670641888
 MonoBehaviour:
   m_ObjectHideFlags: 1
