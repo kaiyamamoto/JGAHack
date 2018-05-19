@@ -5,274 +5,298 @@ using Extensions;
 
 namespace Play.Element
 {
-    // 要素を持つオブジェクトクラス
-    public class ElementObject : Extensions.MonoBehaviourEx
-    {
-        // 付与されている要素たち
-        [SerializeField, Extensions.ReadOnly]
-        private ElementBase[] _elementList = null;
+	// 要素を持つオブジェクトクラス
+	public class ElementObject : Extensions.MonoBehaviourEx
+	{
+		// 要素オブジェクトの状態
+		public enum ElementStates
+		{
+			Default,
+			Element,
+			Remember,
+			Dead
+		}
 
-        public ElementBase[] ElementList
-        {
-            get { return _elementList; }
-            set { _elementList = value; }
-        }
+		// 現在の状態
+		[SerializeField]
+		private ElementStates _stats = ElementStates.Default;
+		public ElementStates Stats
+		{
+			get { return _stats; }
+		}
 
-        // 忘れない要素
-        private ElementBase[] _rememberList = null;
+		// 付与されている要素たち
+		[SerializeField, Extensions.ReadOnly]
+		private ElementBase[] _elementList = null;
 
-        // 初期位置
-        [SerializeField]
-        private Vector3 _initPos = Vector3.zero;
+		public ElementBase[] ElementList
+		{
+			get { return _elementList; }
+			set { _elementList = value; }
+		}
 
-        // 上書き時の位置リスト
-        [SerializeField]
-        private List<Vector3> _overwritePosList = new List<Vector3>();
+		// 忘れない要素
+		private ElementBase[] _rememberList = null;
 
-        // 我に戻る時間(秒)
-        static readonly float _returnTime = 5.0f;
+		// 初期位置
+		[SerializeField]
+		private Vector3 _initPos = Vector3.zero;
 
-        //移動速度
-        [SerializeField]
-        private float _speed;
+		// 上書き時の位置リスト
+		[SerializeField]
+		private List<Vector3> _overwritePosList = new List<Vector3>();
 
-        //帰るべき場所
-        [SerializeField, ReadOnly]
-        private Vector3 _returnPosition;
+		// 我に戻る時間(秒)
+		static readonly float _returnTime = 5.0f;
 
-        //リジットボディ
-        private Rigidbody2D _rigidBody2d;
+		//移動速度
+		[SerializeField]
+		private float _speed;
 
-        /// <summary>
-        /// 初期化
-        /// </summary>
-        private void Awake()
-        {
-            _initPos = transform.position;
-            //リジットボディ取得
-            _rigidBody2d = gameObject.GetComponentInParent<Rigidbody2D>();
-        }
-        private void Start()
-        {
-            ElementUpdate();
-        }
+		//帰るべき場所
+		[SerializeField, ReadOnly]
+		private Vector3 _returnPosition;
 
-        /// <summary>
-        /// アタッチされている要素を検出
-        /// </summary>
-        public void ElementUpdate()
-        {
-            int index = (int)ElementType.length;
-            _elementList = new ElementBase[index];
+		//リジットボディ
+		private Rigidbody2D _rigidBody2d;
 
-            var array = this.GetComponents<ElementBase>();
+		/// <summary>
+		/// 初期化
+		/// </summary>
+		private void Awake()
+		{
+			_initPos = transform.position;
+			//リジットボディ取得
+			_rigidBody2d = gameObject.GetComponentInParent<Rigidbody2D>();
+		}
+		private void Start()
+		{
+			ElementUpdate();
+		}
 
-            foreach (var element in array)
-            {
-                int typeIndex = (int)element.Type;
+		/// <summary>
+		/// アタッチされている要素を検出
+		/// </summary>
+		public void ElementUpdate()
+		{
+			int index = (int)ElementType.length;
+			_elementList = new ElementBase[index];
 
-                if (typeIndex < 0)
-                {
-                    // タイプがない場合は削除
-                    Object.Destroy(element);
-                }
+			var array = this.GetComponents<ElementBase>();
 
-                // 実行されていないときはスキップ
-                if (element.enabled == false)
-                {
-                    continue;
-                }
+			foreach (var element in array)
+			{
+				int typeIndex = (int)element.Type;
 
-                if (_elementList[typeIndex])
-                {
-                    // タイプがかぶっている場合後半を反映
-                    _elementList[typeIndex].Discard();
-                    Object.Destroy(_elementList[typeIndex]);
-                }
+				if (typeIndex < 0)
+				{
+					// タイプがない場合は削除
+					Object.Destroy(element);
+				}
 
-                _elementList[typeIndex] = element;
-                element.Initialize();
-            }
-        }
+				// 実行されていないときはスキップ
+				if (element.enabled == false)
+				{
+					continue;
+				}
 
-        /// <summary>
-        /// 要素をすべて受け取る
-        /// </summary>
-        public bool ReceiveAllElement(ElementBase[] receiveList)
-        {
-            // 忘れてはいけないものがある…
-            if (_rememberList != null)
-            {
-                return false;
-            }
+				if (_elementList[typeIndex])
+				{
+					// タイプがかぶっている場合後半を反映
+					_elementList[typeIndex].Discard();
+					Object.Destroy(_elementList[typeIndex]);
+				}
 
-            int index = (int)ElementType.length;
-            _rememberList = new ElementBase[index];
+				_elementList[typeIndex] = element;
+				element.Initialize();
+			}
+		}
 
-            // 現在の要素を止める
-            for (int i = 0; i < _elementList.Length; i++)
-            {
-                if (_elementList[i])
-                {
-                    _elementList[i].enabled = false;
-                    _rememberList[i] = _elementList[i];
-                }
-            }
+		/// <summary>
+		/// 要素をすべて受け取る
+		/// </summary>
+		public bool ReceiveAllElement(ElementBase[] receiveList)
+		{
+			// 忘れてはいけないものがある…
+			if (_rememberList != null)
+			{
+				return false;
+			}
 
-            // 要素のコピー移動
-            foreach (var element in receiveList)
-            {
-                if (element)
-                {
-                    this.CopyComponent(element);
+			int index = (int)ElementType.length;
+			_rememberList = new ElementBase[index];
 
-                    // 要素の更新
-                    this.ElementUpdate();
-                }
+			// 現在の要素を止める
+			for (int i = 0; i < _elementList.Length; i++)
+			{
+				if (_elementList[i])
+				{
+					_elementList[i].enabled = false;
+					_rememberList[i] = _elementList[i];
+				}
+			}
 
-            }
+			// 要素のコピー移動
+			foreach (var element in receiveList)
+			{
+				if (element)
+				{
+					this.CopyComponent(element);
 
-            //上書き時の位置を保存
-            _overwritePosList.Add(transform.position);
+					// 要素の更新
+					this.ElementUpdate();
+				}
 
+			}
 
-            // n秒後思い出すコルーチン
-            StartCoroutine(WaitSanity());
+			// 状態の変更
+			_stats = ElementStates.Element;
 
-            return true;
-        }
+			//上書き時の位置を保存
+			_overwritePosList.Add(transform.position);
 
-        /// <summary>
-        /// 正気に戻るのを待つ
-        /// </summary>
-        /// <returns></returns>
-        private IEnumerator WaitSanity()
-        {
-            // 待つ
-            yield return new WaitForSeconds(_returnTime);
+			// n秒後思い出すコルーチン
+			StartCoroutine(WaitSanity());
 
-            // 正気になる
-            ReturnToSanity();
-        }
+			return true;
+		}
 
-        /// <summary>
-        /// 正気に戻る
-        /// </summary>
-        public void ReturnToSanity()
-        {
-            StartCoroutine(ReturnToSanityCorutine());
-        }
-        private IEnumerator ReturnToSanityCorutine()
-        {
-            // 今の要素を忘れる
-            ForgetAllElement();
+		/// <summary>
+		/// 正気に戻るのを待つ
+		/// </summary>
+		/// <returns></returns>
+		private IEnumerator WaitSanity()
+		{
+			// 待つ
+			yield return new WaitForSeconds(_returnTime);
 
-            // 元の位置に戻る
-            yield return ReturnToInitPos();
+			// 正気になる
+			ReturnToSanity();
+		}
 
-            // 要素を思い出す
-            ReCallElement();
+		/// <summary>
+		/// 正気に戻る
+		/// </summary>
+		public void ReturnToSanity()
+		{
+			StartCoroutine(ReturnToSanityCorutine());
+		}
+		private IEnumerator ReturnToSanityCorutine()
+		{
+			// 状態の変更
+			_stats = ElementStates.Remember;
 
-        }
+			// 今の要素を忘れる
+			ForgetAllElement();
 
-        /// <summary>
-        /// 初期位置に戻る
-        /// </summary>
-        private IEnumerator ReturnToInitPos()
-        {
-            //リスト内要素逆回し用のカウント
-            int Count = _overwritePosList.Count - 1;
-            //上書き時の位置をセット
-            SetReturnMove(_overwritePosList[Count]);
+			// 元の位置に戻る
+			yield return ReturnToInitPos();
 
-            //ループ処理
-            while (true)
-            {
-                //上書き位置に戻れば
-                if (transform.position == _overwritePosList[Count])
-                {
-                    //Debug.Log("我戻れり");
-                    if (0 < Count)
-                    {
-                        Count--;
-                        //上書き時の位置をセット
-                        SetReturnMove(_overwritePosList[Count]);
-                    }
-                    else
-                    {
-                        //初期位置をセット
-                        SetReturnMove(_initPos);
-                    }
-                }
+			// 要素を思い出す
+			ReCallElement();
+		}
 
-                //元の位置に戻れば
-                if (transform.position == _initPos)
-                {
-                    //Debug.Log("我完全に戻れり");
-                    //上書き位置リストのクリア
-                    _overwritePosList.Clear();
-                    //コルーチン終わり
-                    yield break;
-                }
-                else
-                {
-                    // TODO: 元の位置に向かって移動
-                    ReturnMove();
-                }
+		/// <summary>
+		/// 初期位置に戻る
+		/// </summary>
+		private IEnumerator ReturnToInitPos()
+		{
+			//リスト内要素逆回し用のカウント
+			int Count = _overwritePosList.Count - 1;
+			//上書き時の位置をセット
+			SetReturnMove(_overwritePosList[Count]);
 
-                // 毎フレームループ
-                yield return null;
-            }
-        }
+			//ループ処理
+			while (true)
+			{
+				//上書き位置に戻れば
+				if (transform.position == _overwritePosList[Count])
+				{
+					//Debug.Log("我戻れり");
+					if (0 < Count)
+					{
+						Count--;
+						//上書き時の位置をセット
+						SetReturnMove(_overwritePosList[Count]);
+					}
+					else
+					{
+						//初期位置をセット
+						SetReturnMove(_initPos);
+					}
+				}
 
-        // 現在の要素をすべて忘れる
-        private void ForgetAllElement()
-        {
-            foreach (var element in _elementList)
-            {
-                if (element)
-                {
-                    Destroy(element);
-                }
-            }
-            _elementList = null;
-        }
+				//元の位置に戻れば
+				if (transform.position == _initPos)
+				{
+					//Debug.Log("我完全に戻れり");
+					//上書き位置リストのクリア
+					_overwritePosList.Clear();
+					//コルーチン終わり
+					yield break;
+				}
+				else
+				{
+					// TODO: 元の位置に向かって移動
+					ReturnMove();
+				}
 
-        /// <summary>
-        /// 要素を思い出す
-        /// </summary>
-        private void ReCallElement()
-        {
-            foreach (var element in _rememberList)
-            {
-                if (element)
-                {
-                    element.enabled = true;
-                }
-            }
+				// 毎フレームループ
+				yield return null;
+			}
+		}
 
-            // 忘れてはいけないものを忘れる…
-            _rememberList = null;
+		// 現在の要素をすべて忘れる
+		private void ForgetAllElement()
+		{
+			foreach (var element in _elementList)
+			{
+				if (element)
+				{
+					Destroy(element);
+				}
+			}
+			_elementList = null;
+		}
 
-            // 更新
-            ElementUpdate();
-        }
+		/// <summary>
+		/// 要素を思い出す
+		/// </summary>
+		private void ReCallElement()
+		{
+			foreach (var element in _rememberList)
+			{
+				if (element)
+				{
+					element.enabled = true;
+				}
+			}
 
-        private void SetReturnMove(Vector3 returnPos)
-        {
-            // Debug.Log("回帰セットぉ");
-            //速度セット
-            _speed = 1.0f;
-            //帰るべき場所セット
-            _returnPosition = returnPos;
-        }
+			// 忘れてはいけないものを忘れる…
+			_rememberList = null;
 
-        private void ReturnMove()
-        {
-            //目的位置に向かって一定速度で移動
-            // Debug.Log("移動中");
-            _rigidBody2d.MovePosition(Vector3.MoveTowards(transform.position, _returnPosition, Time.deltaTime * _speed));
+			// 更新
+			ElementUpdate();
 
-        }
-    }
+			// 状態の変更
+			_stats = ElementStates.Default;
+		}
+
+		private void SetReturnMove(Vector3 returnPos)
+		{
+			// Debug.Log("回帰セットぉ");
+			//速度セット
+			_speed = 1.0f;
+			//帰るべき場所セット
+			_returnPosition = returnPos;
+		}
+
+		private void ReturnMove()
+		{
+			//目的位置に向かって一定速度で移動
+			// Debug.Log("移動中");
+			_rigidBody2d.MovePosition(Vector3.MoveTowards(transform.position, _returnPosition, Time.deltaTime * _speed));
+
+		}
+	}
 }
