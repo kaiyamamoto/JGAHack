@@ -64,6 +64,10 @@ namespace Play
 		[SerializeField]
 		private GameObject _pausePlane = null;
 
+		// 復活管理システム
+		[SerializeField]
+		private RebornManager _rebornManager = null;
+
 		void OnGUI()
 		{
 			if (_state == State.Clear)
@@ -88,6 +92,9 @@ namespace Play
 
 		private IEnumerator StartSetUp()
 		{
+			// 復活マネージャーの取得
+			_rebornManager = this.GetComponent<RebornManager>();
+
 			// ステージプレハブの設定
 			yield return LoadStage();
 
@@ -172,6 +179,18 @@ namespace Play
 		public Vector3 GetStartPos()
 		{
 			return StageManager.GetStartPos();
+		}
+
+		/// <summary>
+		/// 復活のセット
+		/// </summary>
+		/// <param name="bObj"></param>
+		public void RebornSet(Element.BreakElement bObj)
+		{
+			if (_rebornManager)
+			{
+				_rebornManager.RebornSet(bObj);
+			}
 		}
 	}
 }
