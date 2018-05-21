@@ -52,6 +52,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4246242612407680}
   - component: {fileID: 114994067485788136}
+  - component: {fileID: 114390965517521882}
   m_Layer: 0
   m_Name: InGameManager
   m_TagString: Untagged
@@ -139,6 +140,17 @@ Transform:
   m_Father: {fileID: 4246242612407680}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114390965517521882
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1618923966080664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e9008b2db680a04e825956f6573f0e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114667435761158540
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -286,6 +298,7 @@ MonoBehaviour:
   _stageManager: {fileID: 0}
   _cameraManager: {fileID: 0}
   _pausePlane: {fileID: 1868515674335686}
+  _rebornManager: {fileID: 0}
 --- !u!222 &222176233548400234
 CanvasRenderer:
   m_ObjectHideFlags: 1
