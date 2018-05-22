@@ -47,7 +47,7 @@ namespace Play.Element
         public override void Initialize()
         {
             //リジットボディ取得
-            _rigitBody2d = GetComponentInParent<Rigidbody2D>();
+            _rigitBody2d = transform.parent.GetComponent<Rigidbody2D>();
             //移動可能時間のセット
             _moveCount = _requiredTime;
             //速度の決定

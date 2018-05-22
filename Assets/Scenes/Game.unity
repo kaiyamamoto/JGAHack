@@ -293,6 +293,11 @@ Prefab:
       propertyPath: m_Lens.OrthographicSize
       value: 6.6
       objectReference: {fileID: 0}
+    - target: {fileID: 114043893524444192, guid: c15c10ff3282bcf4992d7f7c2781f15f,
+        type: 2}
+      propertyPath: _isFixed
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c15c10ff3282bcf4992d7f7c2781f15f, type: 2}
   m_IsPrefabParent: 0
