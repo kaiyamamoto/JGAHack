@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Extensions;
 
 namespace Play
 {
@@ -19,13 +20,21 @@ namespace Play
         private bool _fall = false;
         private RideFloor _ride = null;
 
+        // 親の前フレームの位置
+        private Vector3 _old;
+
         void Awake()
         {
             _parent = transform.parent;
+            SetParent(_parent);
         }
 
         void FixedUpdate()
         {
+            var v = transform.parent.transform.position - _old;
+            transform.position = transform.position + v * Time.deltaTime;
+            _old = transform.parent.transform.position;
+
             if (!_check) return;
 
             if (_ride)
@@ -33,21 +42,21 @@ namespace Play
                 // 乗る(親子関係)
                 if (_ride.transform != transform.parent)
                 {
-                    transform.parent = _ride.transform;
+                    SetParent(_ride.transform.parent.transform);
                 }
             }
             else
             {
                 if (_parent)
                 {
-                    transform.parent = _parent;
+                    SetParent(_parent);
                 }
             }
 
             if (_fall && (!_ride))
             {
                 Debug.Log("落ちたな");
-                Play.InGameManager.Instance.StageOver();
+                //Play.InGameManager.Instance.StageOver();
             }
 
             _fall = false;
@@ -79,10 +88,18 @@ namespace Play
         {
             // 離れたとき親子関係解除
             var ride = other.GetComponent<RideFloor>();
-            if (ride == _ride)
+            if (!ride) return;
+
+            if (ride.transform == transform.parent)
             {
-                transform.parent = _parent;
+                SetParent(_parent);
             }
+        }
+
+        void SetParent(Transform parent)
+        {
+            transform.parent = parent;
+            _old = parent.transform.position;
         }
     }
 }
