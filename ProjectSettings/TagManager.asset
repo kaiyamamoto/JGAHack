@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Element
   - Terrain
+  - Hole
+  - Ride
   layers:
   - Default
   - TransparentFX
@@ -21,7 +23,7 @@ TagManager:
   - Immortal
   - CanBreak
   - Event
-  - 
+  - Ride
   - 
   - 
   - 
