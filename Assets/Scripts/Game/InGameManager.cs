@@ -103,7 +103,7 @@ namespace Play
             CameraManager.Goal = StageManager.Goal.gameObject;
 
             //カメラ初期化
-            CameraManager.InitCamera();
+            StartCoroutine(CameraManager.InitCamera());
 
             _state = State.Play;
         }
