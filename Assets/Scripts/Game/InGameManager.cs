@@ -142,7 +142,10 @@ namespace Play
         /// </summary>
         public void StageOver()
         {
-            StageManager.ReTry();
+            if (_state == State.Play)
+            {
+                StageManager.ReTry();
+            }
         }
 
         public void GameReLoad()

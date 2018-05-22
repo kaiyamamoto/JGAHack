@@ -56,7 +56,7 @@ namespace Play
             if (_fall && (!_ride))
             {
                 Debug.Log("落ちたな");
-                //Play.InGameManager.Instance.StageOver();
+                Play.InGameManager.Instance.StageOver();
             }
 
             _fall = false;
@@ -90,7 +90,7 @@ namespace Play
             var ride = other.GetComponent<RideFloor>();
             if (!ride) return;
 
-            if (ride.transform == transform.parent)
+            if (ride.transform.parent == transform.parent)
             {
                 SetParent(_parent);
             }
