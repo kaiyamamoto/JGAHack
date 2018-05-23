@@ -90,15 +90,19 @@ namespace Play
 
             if (isTarget != TargetChoice.None)
             {
-                // 次のターゲットオブジェクトを取得
-                if (isTarget != TargetChoice.Next)
+                // カメラにエレメントオブジェクトが移っているとき探す
+                if (_lockOn.CheckOnScreenAll())
                 {
-                    // 選択
-                    TargetObject(GetTarget(1));
-                }
-                else if (isTarget != TargetChoice.Front)
-                {
-                    TargetObject(GetTarget(-1));
+                    // 次のターゲットオブジェクトを取得
+                    if (isTarget != TargetChoice.Next)
+                    {
+                        // 選択
+                        TargetObject(GetTarget(1));
+                    }
+                    else if (isTarget != TargetChoice.Front)
+                    {
+                        TargetObject(GetTarget(-1));
+                    }
                 }
             }
 
