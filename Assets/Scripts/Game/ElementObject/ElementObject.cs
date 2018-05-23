@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Extensions;
+using DG.Tweening;
 
 namespace Play.Element
 {
@@ -42,20 +43,13 @@ namespace Play.Element
         [SerializeField]
         private Vector3 _initPos = Vector3.zero;
 
-        // 上書き時の位置リスト
+        // 上書き時の位置
         [SerializeField]
-        private List<Vector3> _overwritePosList = new List<Vector3>();
+        private List<Vector3> _overwritePos = new List<Vector3>();
 
         // 我に戻る時間(秒)
-        static readonly float _returnTime = 5.0f;
-
-        //移動速度
         [SerializeField]
-        private float _speed;
-
-        //帰るべき場所
-        [SerializeField, ReadOnly]
-        private Vector3 _returnPosition;
+        static readonly float _returnTime = 5.0f;
 
         //リジットボディ
         private Rigidbody2D _rigidBody2d;
@@ -65,9 +59,9 @@ namespace Play.Element
         /// </summary>
         private void Awake()
         {
-            _initPos = transform.position;
             //リジットボディ取得
             _rigidBody2d = gameObject.transform.parent.GetComponent<Rigidbody2D>();
+            _initPos = _rigidBody2d.transform.position;
         }
         private void Start()
         {
@@ -153,7 +147,7 @@ namespace Play.Element
             _stats = ElementStates.Element;
 
             //上書き時の位置を保存
-            _overwritePosList.Add(transform.position);
+            _overwritePos.Add(_rigidBody2d.transform.position);
 
             // n秒後思い出すコルーチン
             StartCoroutine(WaitSanity());
@@ -167,11 +161,16 @@ namespace Play.Element
         /// <returns></returns>
         private IEnumerator WaitSanity()
         {
+            var index = _overwritePos.Count;
+
             // 待つ
             yield return new WaitForSeconds(_returnTime);
 
-            // 正気になる
-            ReturnToSanity();
+            if (index == _overwritePos.Count)
+            {
+                // 正気になる
+                ReturnToSanity();
+            }
         }
 
         /// <summary>
@@ -201,49 +200,16 @@ namespace Play.Element
         /// </summary>
         private IEnumerator ReturnToInitPos()
         {
-            //リスト内要素逆回し用のカウント
-            int Count = _overwritePosList.Count - 1;
-            //上書き時の位置をセット
-            SetReturnMove(_overwritePosList[Count]);
-
-            //ループ処理
-            while (true)
+            // 上書き位置まで移動
+            foreach (var pos in _overwritePos)
             {
-                //上書き位置に戻れば
-                if (transform.position == _overwritePosList[Count])
-                {
-                    //Debug.Log("我戻れり");
-                    if (0 < Count)
-                    {
-                        Count--;
-                        //上書き時の位置をセット
-                        SetReturnMove(_overwritePosList[Count]);
-                    }
-                    else
-                    {
-                        //初期位置をセット
-                        SetReturnMove(_initPos);
-                    }
-                }
-
-                //元の位置に戻れば
-                if (transform.position == _initPos)
-                {
-                    //Debug.Log("我完全に戻れり");
-                    //上書き位置リストのクリア
-                    _overwritePosList.Clear();
-                    //コルーチン終わり
-                    yield break;
-                }
-                else
-                {
-                    // TODO: 元の位置に向かって移動
-                    ReturnMove();
-                }
-
-                // 毎フレームループ
-                yield return null;
+                yield return StartCoroutine(ReturnMove(pos));
             }
+
+            _overwritePos = new List<Vector3>();
+
+            // 初期位置に移動
+            yield return StartCoroutine(ReturnMove(_initPos));
         }
 
         // 現在の要素をすべて忘れる
@@ -282,21 +248,19 @@ namespace Play.Element
             _stats = ElementStates.Default;
         }
 
-        private void SetReturnMove(Vector3 returnPos)
+        /// <summary>
+        /// 指定位置への移動
+        /// </summary>
+        /// <param name="pos"></param>
+        /// <returns></returns>
+        private IEnumerator ReturnMove(Vector3 pos)
         {
-            // Debug.Log("回帰セットぉ");
-            //速度セット
-            _speed = 1.0f;
-            //帰るべき場所セット
-            _returnPosition = returnPos;
-        }
+            // 目的位置に向かって一定時間で移動 TODO : 変更が入る場合1.0fの部分を変数に
+            var tween = _rigidBody2d.transform.DOMove(pos, 1.0f);
+            bool finish = false;
+            tween.OnComplete(() => finish = true);
 
-        private void ReturnMove()
-        {
-            //目的位置に向かって一定速度で移動
-            // Debug.Log("移動中");
-            _rigidBody2d.MovePosition(Vector3.MoveTowards(transform.position, _returnPosition, Time.deltaTime * _speed));
-
+            yield return new WaitUntil(() => finish);
         }
 
         /// <summary>

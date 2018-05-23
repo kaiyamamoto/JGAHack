@@ -40,6 +40,26 @@ namespace Play.LockOn
             _lockOnList.Sort(ComparePosXAsc);
         }
 
+        /// <summary>
+        /// ターゲットできるオブジェクトが１つでもあるか？
+        /// </summary>
+        /// <returns></returns>
+        public bool CheckOnScreenAll()
+        {
+            foreach (var obj in _lockOnList)
+            {
+                if (CheckOnScreen(obj.transform.position))
+                {
+                    if (obj.Stats == ElementObject.ElementStates.Remember)
+                    {
+                        continue;
+                    }
+                    return true;
+                }
+            }
+            return false;
+        }
+
         //カメラ範囲内に映ってるか？（対象の位置を参照）
         public bool CheckOnScreen(Vector3 _pos)
         {

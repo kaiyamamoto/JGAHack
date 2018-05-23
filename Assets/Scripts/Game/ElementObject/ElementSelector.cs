@@ -23,18 +23,15 @@ namespace Play
         [SerializeField, ReadOnly]
         private ElementObject _targetObject = null;
 
-        // 選択しているオブジェクト
+        // 選択している要素コンテナ
         [SerializeField, ReadOnly]
-        private ElementObject _selectObject = null;
+        private ElementContainer _container = null;
 
         // TODO:選択したオブジェクトの要素テキスト
         [SerializeField]
         private Text _elementText;
         [SerializeField, ReadOnly]
         private Text[] _textList = null;
-
-        // 選択している要素のインデックス
-        private int _selectElement = -1;
 
         private List<ElementObject> _targetList = null;
         private int _targetNum = 0;
@@ -48,6 +45,9 @@ namespace Play
 
         void Start()
         {
+            // コンテナ取得
+            _container = GetComponent<ElementContainer>();
+
             // TODO: テキストリスト作成
             int num = (int)ElementType.length;
             _textList = new Text[num];
@@ -90,15 +90,19 @@ namespace Play
 
             if (isTarget != TargetChoice.None)
             {
-                // 次のターゲットオブジェクトを取得
-                if (isTarget != TargetChoice.Next)
+                // カメラにエレメントオブジェクトが移っているとき探す
+                if (_lockOn.CheckOnScreenAll())
                 {
-                    // 選択
-                    TargetObject(GetTarget(1));
-                }
-                else if (isTarget != TargetChoice.Front)
-                {
-                    TargetObject(GetTarget(-1));
+                    // 次のターゲットオブジェクトを取得
+                    if (isTarget != TargetChoice.Next)
+                    {
+                        // 選択
+                        TargetObject(GetTarget(1));
+                    }
+                    else if (isTarget != TargetChoice.Front)
+                    {
+                        TargetObject(GetTarget(-1));
+                    }
                 }
             }
 
@@ -111,20 +115,13 @@ namespace Play
                 }
             }
 
-            // 選択要素切り替え
-            if (Input.GetKeyDown(KeyCode.X))
-            {
-                if (_selectObject)
-                {
-                    // 次の要素を取得
-                    ChangeNextElement();
-                }
-            }
-
             // 要素を移す
             if (isChange)
             {
-                MoveElement(_targetObject);
+                if (_targetObject)
+                {
+                    MoveElement(_targetObject);
+                }
             }
         }
 
@@ -189,11 +186,8 @@ namespace Play
         {
             if (obj)
             {
-                if (obj)
-                {
-                    // 要素をターゲット
-                    TargetElementObject(obj);
-                }
+                // 要素をターゲット
+                TargetElementObject(obj);
             }
         }
 
@@ -269,13 +263,11 @@ namespace Play
         private void SelectObject()
         {
             SelectRelease();
-            _selectObject = _targetObject;
+            _container.ReceiveAllElement(_targetObject.ElementList);
             // ターゲット解除
             TargetRelease();
-            // TODO:要素UI更新
-            ElementUIUpdate();
             // TODO: テキスト追加
-            AddText(_selectObject.ElementList);
+            AddText(_container.List.ToArray());
         }
 
         /// <summary>
@@ -290,18 +282,7 @@ namespace Play
                     GameObject.Destroy(text.gameObject);
                 }
             }
-            _selectObject = null;
-            _selectElement = -1;
-        }
-
-        /// <summary>
-        /// 選択要素を次に移動
-        /// </summary>
-        private void ChangeNextElement()
-        {
-            // 次の要素を取得
-            _selectElement = SearchSelectElement(_selectObject, _selectElement);
-            ElementUIUpdate();
+            _container.AllDelete();
         }
 
         /// <summary>
@@ -337,40 +318,18 @@ namespace Play
         /// <param name="selectObj"></param>
         private void MoveElement(ElementObject selectObj)
         {
-            // TODO : 送る要素が一つの時
-            // var element = _selectObject.ElementList[_selectElement];
+            // リストを記憶していない場合は移動しない
+            if (_container.List == null) return;
 
-            // // 要素のコピー移動
-            // selectObj.CopyComponent(element);
+            // すべての要素を移動
+            selectObj.ReceiveAllElement(_container.List.ToArray());
 
-            // // 要素の更新
-            // selectObj.ElementUpdate();
-
-            if (_selectObject)
-            {
-                // すべての要素を移動
-                selectObj.ReceiveAllElement(_selectObject.ElementList);
-
-                // ターゲット解除
-                TargetRelease();
-
-                // 選択解除
-                SelectRelease();
-            }
+            // ターゲット解除
+            TargetRelease();
         }
         // TODO: 要素テキスト追加
         private void AddText(ElementBase[] elements)
         {
-            // TODO:初期要素を選択状態に
-            foreach (var element in elements)
-            {
-                if (element == null)
-                {
-                    continue;
-                }
-                _selectElement = (int)element.Type;
-            }
-
             // テキスト削除
             float y = 0.0f;
             foreach (var element in elements)
@@ -399,31 +358,6 @@ namespace Play
 
                 y -= 30.0f;
             }
-
-            // 選択更新時処理
-            ElementUIUpdate();
-        }
-
-        // TODO: 選択要素の表示更新
-        private void ElementUIUpdate()
-        {
-            if (_selectElement == -1)
-            {
-                // 選択されている要素がない場合はなにもしない
-                return;
-            }
-
-            foreach (var text in _textList)
-            {
-                if (text == null)
-                {
-                    continue;
-                }
-                text.fontSize = 25;
-            }
-
-            // TODO: 仮ででかくする
-            _textList[_selectElement].fontSize = 30;
         }
 
         /// <summary>
