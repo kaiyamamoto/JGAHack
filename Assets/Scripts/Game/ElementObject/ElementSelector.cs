@@ -118,7 +118,10 @@ namespace Play
             // 要素を移す
             if (isChange)
             {
-                MoveElement(_targetObject);
+                if (_targetObject)
+                {
+                    MoveElement(_targetObject);
+                }
             }
         }
 
@@ -315,6 +318,9 @@ namespace Play
         /// <param name="selectObj"></param>
         private void MoveElement(ElementObject selectObj)
         {
+            // リストを記憶していない場合は移動しない
+            if (_container.List == null) return;
+
             // すべての要素を移動
             selectObj.ReceiveAllElement(_container.List.ToArray());
 
