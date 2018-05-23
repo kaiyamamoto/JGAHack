@@ -357,9 +357,6 @@ namespace Play
 
                 // ターゲット解除
                 TargetRelease();
-
-                // 選択解除
-                SelectRelease();
             }
         }
         // TODO: 要素テキスト追加
