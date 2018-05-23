@@ -45,7 +45,7 @@ namespace Play.Element
 
         // 上書き時の位置
         [SerializeField]
-        private Vector3 _overwritePos = new Vector3();
+        private List<Vector3> _overwritePos = new List<Vector3>();
 
         // 我に戻る時間(秒)
         [SerializeField]
@@ -147,7 +147,7 @@ namespace Play.Element
             _stats = ElementStates.Element;
 
             //上書き時の位置を保存
-            _overwritePos = _rigidBody2d.transform.position;
+            _overwritePos.Add(_rigidBody2d.transform.position);
 
             // n秒後思い出すコルーチン
             StartCoroutine(WaitSanity());
@@ -161,11 +161,16 @@ namespace Play.Element
         /// <returns></returns>
         private IEnumerator WaitSanity()
         {
+            var index = _overwritePos.Count;
+
             // 待つ
             yield return new WaitForSeconds(_returnTime);
 
-            // 正気になる
-            ReturnToSanity();
+            if (index == _overwritePos.Count)
+            {
+                // 正気になる
+                ReturnToSanity();
+            }
         }
 
         /// <summary>
@@ -196,7 +201,12 @@ namespace Play.Element
         private IEnumerator ReturnToInitPos()
         {
             // 上書き位置まで移動
-            yield return StartCoroutine(ReturnMove(_overwritePos));
+            foreach (var pos in _overwritePos)
+            {
+                yield return StartCoroutine(ReturnMove(pos));
+            }
+
+            _overwritePos = new List<Vector3>();
 
             // 初期位置に移動
             yield return StartCoroutine(ReturnMove(_initPos));
