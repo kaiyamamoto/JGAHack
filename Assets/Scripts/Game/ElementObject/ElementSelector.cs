@@ -183,11 +183,8 @@ namespace Play
         {
             if (obj)
             {
-                if (obj)
-                {
-                    // 要素をターゲット
-                    TargetElementObject(obj);
-                }
+                // 要素をターゲット
+                TargetElementObject(obj);
             }
         }
 

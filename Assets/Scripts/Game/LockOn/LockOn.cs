@@ -41,7 +41,7 @@ namespace Play.LockOn
         }
 
         /// <summary>
-        /// カメラに写っているオブジェクトが一つでもあるか？
+        /// ターゲットできるオブジェクトが１つでもあるか？
         /// </summary>
         /// <returns></returns>
         public bool CheckOnScreenAll()
@@ -50,6 +50,10 @@ namespace Play.LockOn
             {
                 if (CheckOnScreen(obj.transform.position))
                 {
+                    if (obj.Stats == ElementObject.ElementStates.Remember)
+                    {
+                        continue;
+                    }
                     return true;
                 }
             }
