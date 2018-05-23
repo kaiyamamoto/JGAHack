@@ -620,6 +620,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4590048723418756}
   - component: {fileID: 114417124461348786}
+  - component: {fileID: 114767482810472432}
   m_Layer: 8
   m_Name: ElementSelector
   m_TagString: Untagged
@@ -3413,7 +3414,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _targetObject: {fileID: 0}
-  _selectObject: {fileID: 0}
+  _container: {fileID: 0}
   _elementText: {fileID: 114226643485333420, guid: 546392ba5ab9045488d4cf8c5c867df5,
     type: 2}
   _textList: []
@@ -3867,6 +3868,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _canRebirth: 1
+--- !u!114 &114767482810472432
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1769103144857858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62dc8f6ef3a0264408443b922b744d41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114780015990892888
 MonoBehaviour:
   m_ObjectHideFlags: 1
