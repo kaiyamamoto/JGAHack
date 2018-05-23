@@ -294,7 +294,7 @@ Prefab:
     - target: {fileID: 198801609043833538, guid: 5eeccdd3496d57b4fbdcff44e2f72c45,
         type: 2}
       propertyPath: TrailModule.colorOverLifetime.maxGradient.key1.a
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 198801609043833538, guid: 5eeccdd3496d57b4fbdcff44e2f72c45,
         type: 2}
@@ -310,6 +310,45 @@ Prefab:
         type: 2}
       propertyPath: TrailModule.colorOverLifetime.maxGradient.key1.b
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4658898731915878, guid: 5eeccdd3496d57b4fbdcff44e2f72c45, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4658898731915878, guid: 5eeccdd3496d57b4fbdcff44e2f72c45, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198801609043833538, guid: 5eeccdd3496d57b4fbdcff44e2f72c45,
+        type: 2}
+      propertyPath: LightsModule.light
+      value: 
+      objectReference: {fileID: 108345473069737482, guid: 3ba7bfe67c66e3142a2a86a1f1709e08,
+        type: 2}
+    - target: {fileID: 198801609043833538, guid: 5eeccdd3496d57b4fbdcff44e2f72c45,
+        type: 2}
+      propertyPath: randomSeed
+      value: 800253033
+      objectReference: {fileID: 0}
+    - target: {fileID: 198801609043833538, guid: 5eeccdd3496d57b4fbdcff44e2f72c45,
+        type: 2}
+      propertyPath: LightsModule.ratio
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198801609043833538, guid: 5eeccdd3496d57b4fbdcff44e2f72c45,
+        type: 2}
+      propertyPath: LightsModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198801609043833538, guid: 5eeccdd3496d57b4fbdcff44e2f72c45,
+        type: 2}
+      propertyPath: TrailModule.textureMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198801609043833538, guid: 5eeccdd3496d57b4fbdcff44e2f72c45,
+        type: 2}
+      propertyPath: TrailModule.generateLightingData
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5eeccdd3496d57b4fbdcff44e2f72c45, type: 2}
