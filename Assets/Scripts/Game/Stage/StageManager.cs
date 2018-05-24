@@ -37,10 +37,21 @@ namespace Play.Stage
         /// <summary>
         /// リトライ
         /// </summary>
-        public void ReTry()
+        public IEnumerator ReTry(CameraManager camManager)
         {
+            //カメラシェイク
+            camManager.GetComponent<CameraManager>().ShakeCamera();
+            //カメラの切り替え
+            camManager.GetComponent<CameraManager>().MainCameraChange();
+
             // 初期位置に移動
             Player.transform.position = _startPos;
+
+            // カメラ遷移終了まで待つ
+            yield return new WaitUntil(() => !camManager.IsChanging);
+
+            // プレイヤー復活
+            _player.Reborn();
         }
 
         public Vector3 GetStartPos()

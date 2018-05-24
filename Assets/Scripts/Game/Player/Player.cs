@@ -23,7 +23,7 @@ namespace Play
         }
 
         [SerializeField]
-        private State playerState = State.Alive;
+        private State _playerState = State.Alive;
 
         private bool _terrain = true;
 
@@ -34,7 +34,14 @@ namespace Play
 
         void Update()
         {
-            if (playerState == State.Dead)
+            if (InGameManager.Instance.GameState != InGameManager.State.Play)
+            {
+                // ゲームが開始していないときは移動しない
+                return;
+            }
+
+            // 死んでいるときは動かない
+            if (_playerState == State.Dead)
             {
                 _rigidbody.velocity = Vector2.zero;
                 return;
@@ -137,26 +144,26 @@ namespace Play
             }
         }
 
-
-        //プレイヤー死亡確定時の演出（カメラ込み）
-        public void PlayerDead()
+        /// <summary>
+        /// 死亡
+        /// </summary>
+        public void Dead(bool retry = true)
         {
-
-            //プレイヤー死亡演出（アニメーション）開始
-            
-
-            //アニメーション終わったら以下演出
-           
+            _playerState = State.Dead;
 
             //プレイヤー死亡処理
-            InGameManager.Instance.StageOver();
-            //カメラ振動
-            CameraManager.Instance.ShakeCamera();
-            //メインカメラ切り替え
-            CameraManager.Instance.MainCameraChange();     
+            if (retry)
+            {
+                InGameManager.Instance.StageOver();
+            }
         }
 
-
-       
+        /// <summary>
+        /// 復活
+        /// </summary>
+        public void Reborn()
+        {
+            _playerState = State.Alive;
+        }
     }
 }
