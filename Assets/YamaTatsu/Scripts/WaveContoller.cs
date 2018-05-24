@@ -5,6 +5,7 @@ using UnityEngine;
 public class WaveContoller : MonoBehaviour {
 
     //ターゲットの座標
+    [SerializeField]
     private Vector3 targetPos = new Vector3(0, 0, 0);
 
     //スピード
@@ -28,7 +29,7 @@ public class WaveContoller : MonoBehaviour {
         //計算
         Vector3 pos = targetPos - transform.position;
         //正規化
-        transform.position += pos.normalized * 0.4f;
+        transform.position += pos.normalized * _speed;
 
     }
 
