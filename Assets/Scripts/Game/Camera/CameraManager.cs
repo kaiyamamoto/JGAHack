@@ -57,17 +57,19 @@ namespace Play
         //カメラ切り替え中か？
         [SerializeField, ReadOnly]
         private bool _isChanging = false;
+        public bool IsChanging
+        {
+            get { return _isChanging; }
+        }
+
         //開始フラグ（初期演出用）
         private bool _isStarted = false;
         //固定カメラかどうか？
         [SerializeField]
         private bool _isFixed = false;
         //演出が終わったか？
-        [SerializeField,ReadOnly]
+        [SerializeField, ReadOnly]
         private bool _isEndProduction = false;
-
-
-
 
         // Update is called once per frame
         void Update()
@@ -113,7 +115,7 @@ namespace Play
         void StartCamMove()
         {
             _camGoal.GetComponent<Cinemachine.CinemachineVirtualCamera>().Priority = LOWEST;
-            _currentCam.GetComponent<Cinemachine.CinemachineVirtualCamera>().Priority = MUST;         
+            _currentCam.GetComponent<Cinemachine.CinemachineVirtualCamera>().Priority = MUST;
         }
 
         //カメラの設定変更
@@ -134,7 +136,7 @@ namespace Play
         void CamCheck()
         {
             //カメラ切り替え中にセッティング変更
-            if (_isChanging)
+            if (IsChanging)
             {
                 //切り替えディレイ
                 _camChangeTime -= Time.deltaTime;
@@ -158,7 +160,7 @@ namespace Play
         }
 
         //カメラの初期設定
-        public  IEnumerator InitCamera()
+        public IEnumerator InitCamera()
         {
             //メインカメラ取得
             _mainCam = Camera.main.gameObject;
@@ -218,7 +220,7 @@ namespace Play
                 _isStarted = true;
             }
             //カメラ遷移時間分待機
-             yield return new WaitForSeconds(_mainCam.GetComponent<Cinemachine.CinemachineBrain>().m_DefaultBlend.m_Time);
+            yield return new WaitForSeconds(_mainCam.GetComponent<Cinemachine.CinemachineBrain>().m_DefaultBlend.m_Time);
             //演出終わりフラグON
             _isEndProduction = true;
 
@@ -246,7 +248,7 @@ namespace Play
         //カメラ切り替え中か？
         public bool GetChangeCam()
         {
-            return _isChanging;
+            return IsChanging;
         }
     }
 }

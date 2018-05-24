@@ -105,6 +105,9 @@ namespace Play
             //カメラ初期化
             StartCoroutine(CameraManager.InitCamera());
 
+            // カメラ遷移終了待ち
+            yield return new WaitUntil(() => _cameraManager.GetEndProduction());
+
             _state = State.Play;
         }
 
@@ -144,7 +147,7 @@ namespace Play
         {
             if (_state == State.Play)
             {
-                StageManager.ReTry();
+                StartCoroutine(StageManager.ReTry(_cameraManager));
             }
         }
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Extensions;
+using DG.Tweening;
 
 namespace Play
 {
@@ -23,12 +24,18 @@ namespace Play
         // 親の前フレームの位置
         private Vector3 _old;
 
+        /// <summary>
+        /// 初期化
+        /// </summary>
         void Awake()
         {
             _parent = transform.parent;
             SetParent(_parent);
         }
 
+        /// <summary>
+        /// 判定前の更新
+        /// </summary>
         void FixedUpdate()
         {
             var v = transform.parent.transform.position - _old;
@@ -55,8 +62,8 @@ namespace Play
 
             if (_fall && (!_ride))
             {
-                Debug.Log("落ちたな");
-                Play.InGameManager.Instance.StageOver();
+                // 落ちた
+                StartCoroutine(this.Fall());
             }
 
             _fall = false;
@@ -64,6 +71,10 @@ namespace Play
             _ride = null;
         }
 
+        /// <summary>
+        /// 当たっているとき
+        /// </summary>
+        /// <param name="other"></param>
         void OnTriggerStay2D(Collider2D other)
         {
             // 足元で判定
@@ -84,6 +95,10 @@ namespace Play
             }
         }
 
+        /// <summary>
+        /// 判定から外れたとき
+        /// </summary>
+        /// <param name="other"></param>
         void OnTriggerExit2D(Collider2D other)
         {
             // 離れたとき親子関係解除
@@ -96,10 +111,54 @@ namespace Play
             }
         }
 
+        /// <summary>
+        /// 親の設定
+        /// </summary>
+        /// <param name="parent"></param>
         void SetParent(Transform parent)
         {
             transform.parent = parent;
             _old = parent.transform.position;
+        }
+
+        /// <summary>
+        /// 落ちる
+        /// </summary>
+        /// <returns></returns>
+        private IEnumerator Fall()
+        {
+            Debug.Log("落ちたな");
+
+            // プレイヤー死亡
+            var player = this.GetComponent<Player>();
+            if (player)
+            {
+                player.Dead(false);
+            }
+
+            yield return StartCoroutine(FallStaging());
+
+            // サイズを戻す
+            this.transform.localScale = Vector3.one;
+
+            // TODO 謎
+            player.gameObject.SetActive(false);
+            player.gameObject.SetActive(true);
+
+            // リトライ
+            Play.InGameManager.Instance.StageOver();
+
+        }
+        private IEnumerator FallStaging()
+        {
+            bool end = false;
+
+            // 小さくしていく
+            var tween = this.transform.DOScale(Vector3.zero, 1.0f)
+                .OnComplete(() => end = true);
+
+            // 終わるまで待つ
+            yield return new WaitUntil(() => end);
         }
     }
 }
