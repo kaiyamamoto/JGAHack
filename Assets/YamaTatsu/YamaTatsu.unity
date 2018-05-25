@@ -276,6 +276,7 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+<<<<<<< 725cd6c2ec4d0a978c8250c8f58f8bbd7dea784a
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0e948e6d58536cb409a316bbd6dcdd05, type: 2}
   m_IsPrefabParent: 0
@@ -387,6 +388,8 @@ Prefab:
       propertyPath: m_Color.a
       value: 0
       objectReference: {fileID: 0}
+=======
+>>>>>>> 軌跡の作成
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0e948e6d58536cb409a316bbd6dcdd05, type: 2}
   m_IsPrefabParent: 0
@@ -429,6 +432,7 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+<<<<<<< 725cd6c2ec4d0a978c8250c8f58f8bbd7dea784a
     - target: {fileID: 114450098364736852, guid: 5eeccdd3496d57b4fbdcff44e2f72c45,
         type: 2}
       propertyPath: targetPos.x
@@ -539,6 +543,8 @@ Prefab:
       propertyPath: looping
       value: 0
       objectReference: {fileID: 0}
+=======
+>>>>>>> 軌跡の作成
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5eeccdd3496d57b4fbdcff44e2f72c45, type: 2}
   m_IsPrefabParent: 0
