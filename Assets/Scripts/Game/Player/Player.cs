@@ -25,6 +25,11 @@ namespace Play
         [SerializeField]
         private State _playerState = State.Alive;
 
+        public State PlayerState
+        {
+            get { return _playerState; }
+        }
+
         private bool _terrain = true;
 
         void Start()
@@ -41,7 +46,7 @@ namespace Play
             }
 
             // 死んでいるときは動かない
-            if (_playerState == State.Dead)
+            if (PlayerState == State.Dead)
             {
                 _rigidbody.velocity = Vector2.zero;
                 return;
@@ -77,11 +82,11 @@ namespace Play
                 }
 
                 if (tryMove != _tmpMove)
-                {              
+                {
                     //アニメーション切り替え
                     gameObject.GetComponent<PlayerAnimController>().ChangeAnim(tryMove);
                     _tmpMove = tryMove;
-                    
+
                 }
 
             }
@@ -105,7 +110,7 @@ namespace Play
             if (Input.GetKey(KeyCode.DownArrow))
                 tryMove += Vector3Int.down;
 
-             return tryMove;
+            return tryMove;
         }
 
         /// <summary>
@@ -114,7 +119,7 @@ namespace Play
         private Vector3 ControllerControl(GameController con)
         {
             Vector3 tryMove = Vector3.zero;
-            
+
             if (con.Move(Direction.Left))
                 tryMove += Vector3Int.left;
             if (con.Move(Direction.Right))

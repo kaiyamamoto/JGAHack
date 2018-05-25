@@ -131,22 +131,28 @@ namespace Play
 
             // プレイヤー死亡
             var player = this.GetComponent<Player>();
+
             if (player)
             {
+                if (player.PlayerState == Player.State.Dead)
+                {
+                    yield break;
+                }
+
                 player.Dead(false);
+
+                yield return StartCoroutine(FallStaging());
+
+                // サイズを戻す
+                this.transform.localScale = Vector3.one;
+
+                // TODO 謎
+                player.gameObject.SetActive(false);
+                player.gameObject.SetActive(true);
+
+                // リトライ
+                Play.InGameManager.Instance.StageOver();
             }
-
-            yield return StartCoroutine(FallStaging());
-
-            // サイズを戻す
-            this.transform.localScale = Vector3.one;
-
-            // TODO 謎
-            player.gameObject.SetActive(false);
-            player.gameObject.SetActive(true);
-
-            // リトライ
-            Play.InGameManager.Instance.StageOver();
 
         }
         private IEnumerator FallStaging()
