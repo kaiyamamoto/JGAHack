@@ -5,10 +5,8 @@ using UnityEngine;
 public class WaveContoller : MonoBehaviour {
 
     //ターゲットの座標
-<<<<<<< 725cd6c2ec4d0a978c8250c8f58f8bbd7dea784a
     [SerializeField]
-=======
->>>>>>> 軌跡の作成
+    //軌跡の作成
     private Vector3 targetPos = new Vector3(0, 0, 0);
 
     //スピード
@@ -32,11 +30,7 @@ public class WaveContoller : MonoBehaviour {
         //計算
         Vector3 pos = targetPos - transform.position;
         //正規化
-<<<<<<< 725cd6c2ec4d0a978c8250c8f58f8bbd7dea784a
         transform.position += pos.normalized * _speed;
-=======
-        transform.position += pos.normalized * 0.4f;
->>>>>>> 軌跡の作成
 
     }
 

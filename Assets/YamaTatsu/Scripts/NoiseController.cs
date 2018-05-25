@@ -11,6 +11,9 @@ public class NoiseController : MonoBehaviour {
     [SerializeField]
     private int _speed = 30;
 
+    //フラグ
+    private bool _flag = true;
+
 	// Use this for initialization
 	IEnumerator GeneratePulseNoise()
     {
@@ -26,8 +29,10 @@ public class NoiseController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        GeneratePulseNoise();
-		
+        if (_flag == true)
+        {
+            GeneratePulseNoise();
+        }
 	}
 
     
