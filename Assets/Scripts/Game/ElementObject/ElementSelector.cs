@@ -34,10 +34,6 @@ namespace Play
         [SerializeField, ReadOnly]
         private Text[] _textList = null;
 
-        // ターゲットのゲームオブジェクト
-        [SerializeField]
-        public GameObject _target = null;
-
         // ロックオン
         private LockOn.LockOn _lockOn = null;
 

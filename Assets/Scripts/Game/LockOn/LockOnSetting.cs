@@ -1,9 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class LockOnSetting : ScriptableObject
+namespace Play.LockOn
 {
-    [SerializeField]
-    private Vector3 _test;
+    public class LockOnSetting : ScriptableObject
+    {
+        // ターゲットのゲームオブジェクト
+        [SerializeField]
+        public GameObject _target = null;
+
+        // TODO:選択したオブジェクトの要素テキスト
+        [SerializeField]
+        public Text _elementText;
+    }
 }

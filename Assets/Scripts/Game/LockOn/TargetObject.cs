@@ -11,6 +11,10 @@ namespace Play.LockOn
     {
         // 参照しているセレクター
         private ElementSelector _selector = null;
+        public ElementSelector Selector
+        {
+            get { return _selector; }
+        }
 
         // 要素オブジェクト
         private Element.ElementObject _elementObj = null;
@@ -21,25 +25,27 @@ namespace Play.LockOn
             { return _elementObj; }
         }
 
-        public ElementSelector Selector
+        private LockOnSetting _setting = null;
+        public LockOnSetting Setting
         {
-            get { return _selector; }
+            get { return _setting ? _setting : _setting = Resources.Load("Settings\\LockOnSetting") as LockOnSetting; }
         }
 
         /// <summary>
         /// 初期化
         /// </summary>
-        void Setting()
+        void InitSetting()
         {
             _elementObj = GetComponent<Element.ElementObject>();
 
             // TODO: 仮で選択したオブジェクトにテキストを付与
             // ======================================================
             // 子に要素追加
-            var text = GameObject.Instantiate(Selector._elementText);
+            var setting = Setting;
+            var text = GameObject.Instantiate(setting._elementText);
             transform.SetChild(text.gameObject);
             // ターゲットマーカー作成
-            var obj = Instantiate(Selector._target);
+            var obj = Instantiate(setting._target);
             text.transform.SetChild(obj);
             text.transform.localPosition = Vector3.zero;
             text.gameObject.AddComponent<Canvas>();
@@ -49,9 +55,6 @@ namespace Play.LockOn
             text.transform.localScale = new Vector3(0.3f, 0.3f, 1.0f);
             text.fontSize = 1;
             text.alignment = TextAnchor.MiddleLeft;
-
-
-            // ターゲットされていることを自覚させる
 
             // テキスト変更
 
@@ -78,7 +81,7 @@ namespace Play.LockOn
         {
             _selector = selector;
 
-            Setting();
+            InitSetting();
         }
 
         void Update()
