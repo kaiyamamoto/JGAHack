@@ -7,11 +7,18 @@ using Play.Element;
 namespace Play.LockOn
 {
     //ロックオン用スクリプト
-    public class LockOn
+    public class LockOn : MonoBehaviour
     {
         //ロックオンリスト
         [SerializeField]
         public List<ElementObject> _lockOnList = null;
+        private int _targetNum = 0;
+
+        void Awake()
+        {
+            _lockOnList = GetLockOnList();
+            _targetNum = GetNearObjOnList();
+        }
 
         //ステージ内のすべての「Element」タグオブジェをリストに収納(シーン開始時に呼ぶ)
         void CreateLockonList()
@@ -168,6 +175,60 @@ namespace Play.LockOn
             }
             //最も近かったオブジェクトのリスト内番号を返す
             return nearObjNum;
+        }
+
+        /// <summary>
+        /// ターゲットの取得
+        /// </summary>
+        /// <param name="num"></param>
+        /// <returns></returns>        
+        public ElementObject GetTarget(int num)
+        {
+            _targetNum += num;
+
+            if (_lockOnList.Count <= _targetNum)
+            {
+                _targetNum = 0;
+            }
+            else if (_targetNum < 0)
+            {
+                _targetNum = _lockOnList.Count - 1;
+            }
+
+            var obj = _lockOnList[_targetNum];
+            //オブジェクトが「missing」（破壊済み）の場合
+            if (obj == null)
+            {
+                //消すオブジェ
+                //該当オブジェクトを排斥対象に
+                var exclusionObj = obj;
+                //リストから排斥
+                _lockOnList.Remove(exclusionObj);
+                //再起呼び出し
+                obj = GetTarget(num);
+            }
+            //オブジェクトのチェックが外れている（再生待機）時
+            else if (obj.gameObject.activeInHierarchy == false)
+            {
+                //再起呼び出し
+                obj = GetTarget(num);
+            }
+
+            //カメラ内に入っていなければ飛ばし
+            if (CheckOnScreen(obj.transform.position) == false)
+            {
+                //再起呼び出し
+                obj = GetTarget(num);
+            }
+
+            // 思い出し中はタゲしない
+            if (obj.Stats == ElementObject.ElementStates.Remember)
+            {
+                //再起呼び出し
+                obj = GetTarget(num);
+            }
+
+            return obj;
         }
     }
 }
