@@ -68,6 +68,14 @@ namespace Play
         [SerializeField]
         private RebornManager _rebornManager = null;
 
+        // message
+        [SerializeField]
+        private Message _messenger = null;
+        public Message Messenger
+        {
+            get { return _messenger; }
+        }
+
         void OnGUI()
         {
             if (_state == State.Clear)

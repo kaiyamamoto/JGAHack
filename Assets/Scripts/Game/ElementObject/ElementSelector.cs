@@ -119,7 +119,7 @@ namespace Play
         /// <summary>
         /// オブジェクトをターゲット
         /// </summary>
-        private void TargetObject(ElementObject obj)
+        virtual protected void TargetObject(ElementObject obj)
         {
             if (obj == null)
             {
@@ -173,7 +173,7 @@ namespace Play
         /// <summary>
         /// オブジェクトを選択
         /// </summary>
-        private void SelectObject()
+        virtual protected void SelectObject()
         {
             SelectRelease();
             _container.ReceiveAllElement(_targetObject.ElementList);
@@ -229,7 +229,7 @@ namespace Play
         /// 要素の移動
         /// </summary>
         /// <param name="selectObj"></param>
-        private void MoveElement(ElementObject selectObj)
+        virtual protected void MoveElement(ElementObject selectObj)
         {
             // リストを記憶していない場合は移動しない
             if (_container.List == null) return;
