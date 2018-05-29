@@ -118,7 +118,7 @@ namespace Play
         private IEnumerator LoadStage()
         {
             // アセットのロード
-            var stageAsset = Resources.LoadAsync("Stage/TestGrid");
+            var stageAsset = Resources.LoadAsync("Stage/Tutorial");
 
             // ロード待ち
             yield return new WaitWhile(() => !stageAsset.isDone);
