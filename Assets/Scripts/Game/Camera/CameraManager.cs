@@ -132,6 +132,23 @@ namespace Play
             oldCam.transform.position = resetPos;
         }
 
+        public void StartPosSet()
+        {
+            //プレイヤー復活地点を取得
+            Vector3 resetPos = InGameManager.Instance.GetStartPos();
+            resetPos.z = -10.0f;
+
+            if (_currentCam == _camA)
+            {   
+            _camB.transform.position = resetPos;       
+            }
+            else if (_currentCam == _camB)
+            {
+               //プレイヤー復活地点を取得     
+            _camA.transform.position = resetPos;
+            }
+        }
+
         //カメラの状態チェック
         void CamCheck()
         {

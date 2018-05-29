@@ -51,7 +51,9 @@ namespace Play.LockOn
             text.gameObject.AddComponent<Canvas>();
             var scaler = text.gameObject.AddComponent<CanvasScaler>();
             scaler.dynamicPixelsPerUnit = 20;
-            text.transform.localPosition = new Vector3(0.0f, 0.5f, 0.0f);
+            text.transform.localPosition = new Vector3(-1.0f, 0.5f, 0.0f);
+            obj.transform.localPosition = new Vector3(3.5f, -1.5f, 0.0f);
+
             text.transform.localScale = new Vector3(0.3f, 0.3f, 1.0f);
             text.fontSize = 1;
             text.alignment = TextAnchor.MiddleLeft;

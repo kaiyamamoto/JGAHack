@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
+
 
 namespace Play
 {
@@ -155,6 +155,7 @@ namespace Play
         public void Dead(bool retry = true)
         {
             _playerState = State.Dead;
+            GetComponentInChildren<ElementSelector>().SelectRelease();
 
             //プレイヤー死亡処理
             if (retry)

@@ -66,6 +66,7 @@ namespace Play.Stage
         public void UpdateCheckPoint(CheckPointEvent check)
         {
             _startPos = check.transform.position;
+            CameraManager.Instance.StartPosSet();
         }
     }
 }

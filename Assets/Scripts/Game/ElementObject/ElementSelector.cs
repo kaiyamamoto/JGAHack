@@ -186,7 +186,7 @@ namespace Play
         /// <summary>
         /// オブジェクトへの選択を解除
         /// </summary>
-        private void SelectRelease()
+        public void SelectRelease()
         {
             foreach (var text in _textList)
             {
