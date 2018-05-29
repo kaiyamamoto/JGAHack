@@ -8,30 +8,23 @@ namespace Play.Turrial
 {
     public class TutrialManager : SingletonMonoBehaviour<TutrialManager>
     {
+        [SerializeField]
+        private string _initText = string.Empty;
+
         void Start()
         {
-            var inManager = InGameManager.Instance;
-
-            // テキストパネルを表示
-            var messenger = inManager.Messenger;
-            messenger.ShowWindow();
-
-            StartCoroutine(test());
-
+            StartCoroutine(StartText());
         }
 
-        IEnumerator test()
+        IEnumerator StartText()
         {
-            var inManager = InGameManager.Instance;
-            var messenger = inManager.Messenger;
+            var manager = InGameManager.Instance;
+            var cameraMan = manager.CameraManager;
 
-            messenger.SetMessagePanel("「やったぜ」");
-            yield return new WaitForSeconds(5.0f);
-            messenger.SetMessagePanel("「投稿者」");
-            yield return new WaitForSeconds(5.0f);
-            messenger.SetMessagePanel("「変態糞土方」");
-            yield return new WaitForSeconds(5.0f);
+            yield return new WaitUntil(() => cameraMan.GetEndProduction());
+
+            var messenger = manager.Messenger;
+            messenger.SetMessagePanel(_initText);
         }
-
     }
 }
