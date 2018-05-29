@@ -4,27 +4,40 @@ using UnityEngine;
 using Util;
 using Extensions;
 
-namespace Play.Turrial
+namespace Play.Tutrial
 {
-    public class TutrialManager : SingletonMonoBehaviour<TutrialManager>
-    {
-        [SerializeField]
-        private string _initText = string.Empty;
+	public class TutrialManager : SingletonMonoBehaviour<TutrialManager>
+	{
+		[SerializeField]
+		private string _initText = string.Empty;
 
-        void Start()
-        {
-            StartCoroutine(StartText());
-        }
+		[SerializeField, ReadOnly]
+		private int _step = 1;
 
-        IEnumerator StartText()
-        {
-            var manager = InGameManager.Instance;
-            var cameraMan = manager.CameraManager;
+		public int Step
+		{
+			get { return _step; }
+		}
 
-            yield return new WaitUntil(() => cameraMan.GetEndProduction());
+		void Start()
+		{
+			StartCoroutine(StartText());
+		}
 
-            var messenger = manager.Messenger;
-            messenger.SetMessagePanel(_initText);
-        }
-    }
+		IEnumerator StartText()
+		{
+			var manager = InGameManager.Instance;
+			var cameraMan = manager.CameraManager;
+
+			yield return new WaitUntil(() => cameraMan.GetEndProduction());
+
+			var messenger = manager.Messenger;
+			messenger.SetMessagePanel(_initText);
+		}
+
+		public void StepSet(int num)
+		{
+			_step = num;
+		}
+	}
 }
