@@ -28,7 +28,7 @@ public class WaveContoller : MonoBehaviour {
         //計算
         Vector3 pos = targetPos - transform.position;
         //正規化
-        transform.position += pos.normalized * 0.4f;
+        transform.position += pos.normalized * _speed;
 
     }
 
