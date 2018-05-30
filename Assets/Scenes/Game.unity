@@ -113,12 +113,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &686063078 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114058730408255996, guid: b517da6467e789540b57512a223f8b26,
-    type: 2}
-  m_PrefabInternal: {fileID: 1974447556}
-  m_Script: {fileID: 11500000, guid: 015b4a764b8260440a25767680437afc, type: 3}
 --- !u!1 &775806971
 GameObject:
   m_ObjectHideFlags: 0
@@ -231,11 +225,6 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: Cinemachine.CinemachineBrain+VcamEvent, Assembly-CSharp, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!1 &935530163 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1868515674335686, guid: b517da6467e789540b57512a223f8b26,
-    type: 2}
-  m_PrefabInternal: {fileID: 1974447556}
 --- !u!1001 &1314025256
 Prefab:
   m_ObjectHideFlags: 0
@@ -421,24 +410,9 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114994067485788136, guid: b517da6467e789540b57512a223f8b26,
         type: 2}
-      propertyPath: _stageManager
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114994067485788136, guid: b517da6467e789540b57512a223f8b26,
-        type: 2}
       propertyPath: _cameraManager
       value: 
       objectReference: {fileID: 1314025257}
-    - target: {fileID: 114994067485788136, guid: b517da6467e789540b57512a223f8b26,
-        type: 2}
-      propertyPath: _pausePlane
-      value: 
-      objectReference: {fileID: 935530163}
-    - target: {fileID: 114994067485788136, guid: b517da6467e789540b57512a223f8b26,
-        type: 2}
-      propertyPath: _messenger
-      value: 
-      objectReference: {fileID: 686063078}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b517da6467e789540b57512a223f8b26, type: 2}
   m_IsPrefabParent: 0

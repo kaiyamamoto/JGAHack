@@ -9,6 +9,9 @@ namespace Play
     // インゲームの管理クラス
     public class InGameManager : Util.SingletonMonoBehaviour<InGameManager>
     {
+        [SerializeField]
+        private string _initStageName = string.Empty;
+
         // ゲームの状態
         public enum State
         {
@@ -126,7 +129,7 @@ namespace Play
         private IEnumerator LoadStage()
         {
             // アセットのロード
-            var stageAsset = Resources.LoadAsync("Stage/Tutorial");
+            var stageAsset = Resources.LoadAsync("Stage/" + _initStageName);
 
             // ロード待ち
             yield return new WaitWhile(() => !stageAsset.isDone);
