@@ -49,7 +49,7 @@ namespace Play.Element
 
         // 我に戻る時間(秒)
         [SerializeField]
-        static readonly float _returnTime = 5.0f;
+        private float _returnTime = 5.0f;
 
         //リジットボディ
         private Rigidbody2D _rigidBody2d;
