@@ -410,11 +410,6 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114994067485788136, guid: b517da6467e789540b57512a223f8b26,
         type: 2}
-      propertyPath: _stageManager
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114994067485788136, guid: b517da6467e789540b57512a223f8b26,
-        type: 2}
       propertyPath: _cameraManager
       value: 
       objectReference: {fileID: 1314025257}

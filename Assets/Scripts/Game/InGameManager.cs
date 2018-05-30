@@ -9,6 +9,9 @@ namespace Play
     // インゲームの管理クラス
     public class InGameManager : Util.SingletonMonoBehaviour<InGameManager>
     {
+        [SerializeField]
+        private string _initStageName = string.Empty;
+
         // ゲームの状態
         public enum State
         {
@@ -68,6 +71,14 @@ namespace Play
         [SerializeField]
         private RebornManager _rebornManager = null;
 
+        // message
+        [SerializeField]
+        private Message _messenger = null;
+        public Message Messenger
+        {
+            get { return _messenger; }
+        }
+
         void OnGUI()
         {
             if (_state == State.Clear)
@@ -118,7 +129,7 @@ namespace Play
         private IEnumerator LoadStage()
         {
             // アセットのロード
-            var stageAsset = Resources.LoadAsync("Stage/TestGrid");
+            var stageAsset = Resources.LoadAsync("Stage/" + _initStageName);
 
             // ロード待ち
             yield return new WaitWhile(() => !stageAsset.isDone);
