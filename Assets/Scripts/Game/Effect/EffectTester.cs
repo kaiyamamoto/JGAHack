@@ -30,8 +30,9 @@ namespace Play
         {
 
             //GoalTest();
-            ConsorlTest();
+            //ConsorlTest();
             //WaveTest();
+            DestoryTest();
 
         }
 
@@ -51,6 +52,22 @@ namespace Play
 
 
 
+            }
+
+        }
+
+        void DestoryTest()
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                GameObject player;
+
+                player = GameObject.Find("Enemy");
+
+                EffectManager.Instance.CreateEffect(EffectID.EnemyRespown, player);
+                //effect.GetComponent<RectTransform>().localPosition = Vector3.zero;
+
+              
             }
 
         }
