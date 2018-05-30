@@ -6,38 +6,78 @@ using Extensions;
 
 namespace Play.Tutrial
 {
-	public class TutrialManager : SingletonMonoBehaviour<TutrialManager>
-	{
-		[SerializeField]
-		private string _initText = string.Empty;
+    public class TutrialManager : SingletonMonoBehaviour<TutrialManager>
+    {
+        [System.Serializable]
+        public struct StepData
+        {
+            public string text;
+            public bool isMove;
+            public bool isTarget;
+            public bool isCopy;
+            public bool isPaste;
+        }
 
-		[SerializeField, ReadOnly]
-		private int _step = 1;
+        [SerializeField]
+        private List<StepData> _stepData = new List<StepData>();
 
-		public int Step
-		{
-			get { return _step; }
-		}
+        [SerializeField, ReadOnly]
+        private int _step = 0;
 
-		void Start()
-		{
-			StartCoroutine(StartText());
-		}
+        public int Step
+        {
+            get { return _step; }
+        }
 
-		IEnumerator StartText()
-		{
-			var manager = InGameManager.Instance;
-			var cameraMan = manager.CameraManager;
+        void Start()
+        {
+            _step = 0;
+            StartCoroutine(StartText());
+        }
 
-			yield return new WaitUntil(() => cameraMan.GetEndProduction());
+        IEnumerator StartText()
+        {
+            var manager = InGameManager.Instance;
+            var cameraMan = manager.CameraManager;
 
-			var messenger = manager.Messenger;
-			messenger.SetMessagePanel(_initText);
-		}
+            yield return new WaitUntil(() => cameraMan.GetEndProduction());
 
-		public void StepSet(int num)
-		{
-			_step = num;
-		}
-	}
+            var messenger = manager.Messenger;
+            messenger.SetMessagePanel(_stepData[_step].text);
+        }
+
+        /// <summary>
+        /// 次のステップに移行
+        /// </summary>
+        public void NextStep()
+        {
+            _step++;
+            var manager = InGameManager.Instance;
+            var messenger = manager.Messenger;
+            var data = _stepData[_step];
+            messenger.SetMessagePanel(data.text);
+        }
+
+        // 確認メソッドたち
+
+        public bool CanTarget()
+        {
+            return _stepData[_step].isTarget;
+        }
+
+        public bool CanCopy()
+        {
+            return _stepData[_step].isCopy;
+        }
+
+        public bool CanMove()
+        {
+            return _stepData[_step].isMove;
+        }
+
+        public bool CanPaste()
+        {
+            return _stepData[_step].isPaste;
+        }
+    }
 }

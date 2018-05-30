@@ -97,7 +97,7 @@ namespace Play
         /// <summary>
         /// キーボードでの操作
         /// </summary>
-        private Vector3 KeyboardControl()
+        virtual protected Vector3 KeyboardControl()
         {
             Vector3 tryMove = Vector3.zero;
 
@@ -116,7 +116,7 @@ namespace Play
         /// <summary>
         /// コントローラーの操作
         /// </summary>
-        private Vector3 ControllerControl(GameController con)
+        virtual protected Vector3 ControllerControl(GameController con)
         {
             Vector3 tryMove = Vector3.zero;
 
