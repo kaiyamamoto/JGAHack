@@ -14,8 +14,6 @@ namespace Play
 
         private Vector3 _tmpMove = Vector3.zero;
 
-
-
         public enum State
         {
             Alive,
@@ -31,6 +29,11 @@ namespace Play
         }
 
         private bool _terrain = true;
+
+        // 向き
+        [SerializeField, Extensions.ReadOnly]
+        private Direction _direction = Direction.Front;
+        public Direction Dir { get { return _direction; } }
 
         void Start()
         {
@@ -102,13 +105,25 @@ namespace Play
             Vector3 tryMove = Vector3.zero;
 
             if (Input.GetKey(KeyCode.LeftArrow))
+            {
                 tryMove += Vector3Int.left;
+                _direction = Direction.Left;
+            }
             if (Input.GetKey(KeyCode.RightArrow))
+            {
                 tryMove += Vector3Int.right;
+                _direction = Direction.Right;
+            }
             if (Input.GetKey(KeyCode.UpArrow))
+            {
                 tryMove += Vector3Int.up;
+                _direction = Direction.Back;
+            }
             if (Input.GetKey(KeyCode.DownArrow))
+            {
                 tryMove += Vector3Int.down;
+                _direction = Direction.Front;
+            }
 
             return tryMove;
         }
@@ -121,13 +136,25 @@ namespace Play
             Vector3 tryMove = Vector3.zero;
 
             if (con.Move(Direction.Left))
+            {
                 tryMove += Vector3Int.left;
+                _direction = Direction.Left;
+            }
             if (con.Move(Direction.Right))
+            {
                 tryMove += Vector3Int.right;
+                _direction = Direction.Right;
+            }
             if (con.Move(Direction.Front))
+            {
                 tryMove += Vector3Int.up;
+                _direction = Direction.Back;
+            }
             if (con.Move(Direction.Back))
+            {
                 tryMove += Vector3Int.down;
+                _direction = Direction.Front;
+            }
 
             return tryMove;
         }
@@ -170,7 +197,7 @@ namespace Play
         public void Reborn()
         {
             _playerState = State.Alive;
-            
+
         }
     }
 }
