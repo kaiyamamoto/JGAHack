@@ -90,6 +90,7 @@ namespace Play
                 if (ride)
                 {
                     _ride = ride;
+                    _fall = false;
                 }
                 _check = true;
             }
@@ -141,7 +142,7 @@ namespace Play
 
                 player.Dead(false);
 
-                yield return StartCoroutine(FallStaging());
+                yield return StartCoroutine(FallStaging(player));
 
                 // サイズを戻す
                 this.transform.localScale = Vector3.one;
@@ -155,13 +156,30 @@ namespace Play
             }
 
         }
-        private IEnumerator FallStaging()
+        private IEnumerator FallStaging(Player player)
         {
             bool end = false;
 
             // 小さくしていく
-            var tween = this.transform.DOScale(Vector3.zero, 1.0f)
+            this.transform.DOScale(Vector3.zero, 1.0f)
                 .OnComplete(() => end = true);
+
+            var pos = player.transform.position;
+            switch (player.Dir)
+            {
+                case Direction.Left:
+                    this.transform.DOMoveX(pos.x - 0.5f, 1.0f);
+                    break;
+                case Direction.Right:
+                    this.transform.DOMoveX(pos.x + 0.5f, 1.0f);
+                    break;
+                case Direction.Back:
+                    this.transform.DOMoveY(pos.y + 0.5f, 1.0f);
+                    break;
+                case Direction.Front:
+                    this.transform.DOMoveY(pos.y - 0.5f, 1.0f);
+                    break;
+            }
 
             // 終わるまで待つ
             yield return new WaitUntil(() => end);
