@@ -1719,7 +1719,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1211886336188786}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.07, y: 3.5, z: 0}
+  m_LocalPosition: {x: 11.5, y: -5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4904016925501434}
@@ -3767,7 +3767,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cda3dd3a9608d74980d055835eb6f99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _canRebirth: 1
+  _canRebirth: 0
 --- !u!114 &114091440960726140
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3795,6 +3795,7 @@ MonoBehaviour:
   _elementText: {fileID: 114226643485333420, guid: 546392ba5ab9045488d4cf8c5c867df5,
     type: 2}
   _textList: []
+  _target: {fileID: 1928845370931122, guid: b9f75b0b906d0b54182d9bc7e8c8d965, type: 2}
 --- !u!114 &114112126840965264
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3954,7 +3955,6 @@ MonoBehaviour:
   _moveAmount: 5
   _requiredTime: 3
   _reversFlag: 0
-  _isSetRevers: 0
   _basePos: {x: 0, y: 0, z: 0}
   _UpEndPos: {x: 0, y: 0, z: 0}
   _DownEndPos: {x: 0, y: 0, z: 0}
@@ -4018,7 +4018,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cda3dd3a9608d74980d055835eb6f99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _canRebirth: 1
+  _canRebirth: 0
 --- !u!114 &114347371524646616
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4030,7 +4030,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cda3dd3a9608d74980d055835eb6f99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _canRebirth: 1
+  _canRebirth: 0
 --- !u!114 &114357138351422138
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4106,7 +4106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cda3dd3a9608d74980d055835eb6f99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _canRebirth: 1
+  _canRebirth: 0
 --- !u!114 &114436903395487568
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4174,7 +4174,6 @@ MonoBehaviour:
   _moveAmount: 3
   _requiredTime: 3
   _reversFlag: 0
-  _isSetRevers: 0
   _basePos: {x: 0, y: 0, z: 0}
   _UpEndPos: {x: 0, y: 0, z: 0}
   _DownEndPos: {x: 0, y: 0, z: 0}
@@ -4294,7 +4293,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cda3dd3a9608d74980d055835eb6f99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _canRebirth: 1
+  _canRebirth: 0
 --- !u!114 &114547798279862560
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4470,7 +4469,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cda3dd3a9608d74980d055835eb6f99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _canRebirth: 1
+  _canRebirth: 0
 --- !u!114 &114708700904220206
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4523,7 +4522,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cda3dd3a9608d74980d055835eb6f99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _canRebirth: 1
+  _canRebirth: 0
 --- !u!114 &114805707093057090
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4547,7 +4546,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cda3dd3a9608d74980d055835eb6f99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _canRebirth: 1
+  _canRebirth: 0
 --- !u!114 &114812248312471678
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4630,7 +4629,6 @@ MonoBehaviour:
   _moveAmount: 3
   _requiredTime: 3
   _reversFlag: 0
-  _isSetRevers: 0
   _basePos: {x: 0, y: 0, z: 0}
   _UpEndPos: {x: 0, y: 0, z: 0}
   _DownEndPos: {x: 0, y: 0, z: 0}
@@ -4728,7 +4726,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cda3dd3a9608d74980d055835eb6f99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _canRebirth: 1
+  _canRebirth: 0
 --- !u!114 &114940113938195956
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4821,7 +4819,6 @@ MonoBehaviour:
   _moveAmount: 4
   _requiredTime: 4
   _reversFlag: 0
-  _isSetRevers: 0
   _basePos: {x: 0, y: 0, z: 0}
   _RightEndPos: {x: 0, y: 0, z: 0}
   _LeftEndPos: {x: 0, y: 0, z: 0}
