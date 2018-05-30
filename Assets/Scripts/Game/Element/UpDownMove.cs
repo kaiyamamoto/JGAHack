@@ -23,7 +23,7 @@ namespace Play.Element
         private bool _reversFlag = false;
         //初期反転状態
         [SerializeField, ReadOnly]
-        private bool _isSetRevers
+        private bool _isSetRevers;
         //移動開始座標
         [SerializeField, ReadOnly]
         private Vector3 _basePos;
@@ -38,7 +38,7 @@ namespace Play.Element
         private float _moveCount = 0.0f;
         //リジットボディ
         private Rigidbody2D _rigitBody2d;
-       ;
+       
 
         void Awake()
         {
