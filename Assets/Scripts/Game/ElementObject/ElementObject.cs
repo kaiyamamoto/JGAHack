@@ -277,6 +277,8 @@ namespace Play.Element
 
             // 復活
             transform.parent.gameObject.SetActive(true);
+            //復活エフェクト
+            EffectManager.Instance.CreateEffect(EffectID.DestoryEnemy, transform.parent.gameObject.transform.position);
         }
     }
 }
