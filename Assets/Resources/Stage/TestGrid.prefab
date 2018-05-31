@@ -3698,6 +3698,7 @@ MonoBehaviour:
   _elementList: []
   _initPos: {x: 0, y: 0, z: 0}
   _overwritePos: []
+  _returnTime: 5
 --- !u!114 &114025940627024976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3795,7 +3796,6 @@ MonoBehaviour:
   _elementText: {fileID: 114226643485333420, guid: 546392ba5ab9045488d4cf8c5c867df5,
     type: 2}
   _textList: []
-  _target: {fileID: 1928845370931122, guid: b9f75b0b906d0b54182d9bc7e8c8d965, type: 2}
 --- !u!114 &114112126840965264
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3809,6 +3809,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moveSpeed: 5
   _playerState: 0
+  _direction: 0
 --- !u!114 &114127312788220444
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3848,6 +3849,7 @@ MonoBehaviour:
   _elementList: []
   _initPos: {x: 0, y: 0, z: 0}
   _overwritePos: []
+  _returnTime: 5
 --- !u!114 &114172832736695232
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3955,6 +3957,7 @@ MonoBehaviour:
   _moveAmount: 5
   _requiredTime: 3
   _reversFlag: 0
+  _isSetRevers: 0
   _basePos: {x: 0, y: 0, z: 0}
   _UpEndPos: {x: 0, y: 0, z: 0}
   _DownEndPos: {x: 0, y: 0, z: 0}
@@ -4069,6 +4072,7 @@ MonoBehaviour:
   _elementList: []
   _initPos: {x: 0, y: 0, z: 0}
   _overwritePos: []
+  _returnTime: 5
 --- !u!114 &114387646655354998
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4084,6 +4088,7 @@ MonoBehaviour:
   _elementList: []
   _initPos: {x: 0, y: 0, z: 0}
   _overwritePos: []
+  _returnTime: 5
 --- !u!114 &114433287273934554
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4174,6 +4179,7 @@ MonoBehaviour:
   _moveAmount: 3
   _requiredTime: 3
   _reversFlag: 0
+  _isSetRevers: 0
   _basePos: {x: 0, y: 0, z: 0}
   _UpEndPos: {x: 0, y: 0, z: 0}
   _DownEndPos: {x: 0, y: 0, z: 0}
@@ -4193,6 +4199,7 @@ MonoBehaviour:
   _elementList: []
   _initPos: {x: 0, y: 0, z: 0}
   _overwritePos: []
+  _returnTime: 5
 --- !u!114 &114473544214394340
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4267,6 +4274,7 @@ MonoBehaviour:
   _elementList: []
   _initPos: {x: 0, y: 0, z: 0}
   _overwritePos: []
+  _returnTime: 5
 --- !u!114 &114523345073202186
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4282,6 +4290,7 @@ MonoBehaviour:
   _elementList: []
   _initPos: {x: 0, y: 0, z: 0}
   _overwritePos: []
+  _returnTime: 5
 --- !u!114 &114539355253480276
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4349,6 +4358,7 @@ MonoBehaviour:
   _elementList: []
   _initPos: {x: 0, y: 0, z: 0}
   _overwritePos: []
+  _returnTime: 5
 --- !u!114 &114609906871157220
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4376,6 +4386,7 @@ MonoBehaviour:
   _elementList: []
   _initPos: {x: 0, y: 0, z: 0}
   _overwritePos: []
+  _returnTime: 5
 --- !u!114 &114622461219894570
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4496,6 +4507,7 @@ MonoBehaviour:
   _elementList: []
   _initPos: {x: 0, y: 0, z: 0}
   _overwritePos: []
+  _returnTime: 5
 --- !u!114 &114748019014908732
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4511,6 +4523,7 @@ MonoBehaviour:
   _elementList: []
   _initPos: {x: 0, y: 0, z: 0}
   _overwritePos: []
+  _returnTime: 5
 --- !u!114 &114770924974696762
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4562,6 +4575,7 @@ MonoBehaviour:
   _elementList: []
   _initPos: {x: 0, y: 0, z: 0}
   _overwritePos: []
+  _returnTime: 5
 --- !u!114 &114834549040354814
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4629,6 +4643,7 @@ MonoBehaviour:
   _moveAmount: 3
   _requiredTime: 3
   _reversFlag: 0
+  _isSetRevers: 0
   _basePos: {x: 0, y: 0, z: 0}
   _UpEndPos: {x: 0, y: 0, z: 0}
   _DownEndPos: {x: 0, y: 0, z: 0}
@@ -4778,6 +4793,7 @@ MonoBehaviour:
   _elementList: []
   _initPos: {x: 0, y: 0, z: 0}
   _overwritePos: []
+  _returnTime: 5
 --- !u!114 &114964088619857894
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4793,6 +4809,7 @@ MonoBehaviour:
   _elementList: []
   _initPos: {x: 0, y: 0, z: 0}
   _overwritePos: []
+  _returnTime: 5
 --- !u!114 &114970560182956044
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4819,6 +4836,7 @@ MonoBehaviour:
   _moveAmount: 4
   _requiredTime: 4
   _reversFlag: 0
+  _isSetRevers: 0
   _basePos: {x: 0, y: 0, z: 0}
   _RightEndPos: {x: 0, y: 0, z: 0}
   _LeftEndPos: {x: 0, y: 0, z: 0}
@@ -8438,7 +8456,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300042, guid: 5c51c62b699fd0144b18bf666edbe465, type: 3}
   m_Color: {r: 0.55862063, g: 1, b: 0.5, a: 1}
   m_FlipX: 0
@@ -9362,7 +9380,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300042, guid: 5c51c62b699fd0144b18bf666edbe465, type: 3}
   m_Color: {r: 0.55862063, g: 1, b: 0.5, a: 1}
   m_FlipX: 0
