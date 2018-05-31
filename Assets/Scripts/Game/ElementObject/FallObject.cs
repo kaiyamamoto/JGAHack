@@ -17,7 +17,6 @@ namespace Play
 
         private Transform _parent = null;
 
-        private bool _check = false;
         private bool _fall = false;
         private RideFloor _ride = null;
 
@@ -38,11 +37,10 @@ namespace Play
         /// </summary>
         void FixedUpdate()
         {
+            // 親の移動量を取得
             var v = transform.parent.transform.position - _old;
             transform.position = transform.position + v * Time.deltaTime;
             _old = transform.parent.transform.position;
-
-            if (!_check) return;
 
             if (_ride)
             {
@@ -67,7 +65,6 @@ namespace Play
             }
 
             _fall = false;
-            _check = false;
             _ride = null;
         }
 
@@ -92,8 +89,8 @@ namespace Play
                     _ride = ride;
                     _fall = false;
                 }
-                _check = true;
             }
+
         }
 
         /// <summary>

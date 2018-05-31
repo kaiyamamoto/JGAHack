@@ -225,67 +225,6 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: Cinemachine.CinemachineBrain+VcamEvent, Assembly-CSharp, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!1001 &904787165
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 66988064560854016, guid: eea854c89ca944147bc60bae96ce9c7b,
-        type: 2}
-      propertyPath: m_ColliderPaths.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 66966205586386058, guid: eea854c89ca944147bc60bae96ce9c7b,
-        type: 2}
-      propertyPath: m_ColliderPaths.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 66924462926585384, guid: eea854c89ca944147bc60bae96ce9c7b,
-        type: 2}
-      propertyPath: m_ColliderPaths.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4062114667343776, guid: eea854c89ca944147bc60bae96ce9c7b, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4062114667343776, guid: eea854c89ca944147bc60bae96ce9c7b, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4062114667343776, guid: eea854c89ca944147bc60bae96ce9c7b, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4062114667343776, guid: eea854c89ca944147bc60bae96ce9c7b, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4062114667343776, guid: eea854c89ca944147bc60bae96ce9c7b, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4062114667343776, guid: eea854c89ca944147bc60bae96ce9c7b, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4062114667343776, guid: eea854c89ca944147bc60bae96ce9c7b, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4062114667343776, guid: eea854c89ca944147bc60bae96ce9c7b, type: 2}
-      propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1161996943430576, guid: eea854c89ca944147bc60bae96ce9c7b, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: eea854c89ca944147bc60bae96ce9c7b, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1001 &1314025256
 Prefab:
   m_ObjectHideFlags: 0
@@ -474,6 +413,11 @@ Prefab:
       propertyPath: _cameraManager
       value: 
       objectReference: {fileID: 1314025257}
+    - target: {fileID: 114994067485788136, guid: b517da6467e789540b57512a223f8b26,
+        type: 2}
+      propertyPath: _initStageName
+      value: TestGrid
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b517da6467e789540b57512a223f8b26, type: 2}
   m_IsPrefabParent: 0
