@@ -95,10 +95,12 @@ namespace Play
                 StartPos = obj1.transform.position;
                 EndPos = obj2.transform.position;
 
+                GameObject target = GameObject.Find("Enemy");
+
                 GameObject effect;
                 effect = EffectManager.Instance.CreateEffect(EffectID.Wave);
                 effect.transform.position = StartPos;
-                effect.GetComponent<WaveContoller>().setVelocity(EndPos);
+                effect.GetComponent<WaveContoller>().setVelocity(target.transform);
             }
 
             if (Input.GetMouseButtonDown(1))
@@ -106,10 +108,12 @@ namespace Play
                 StartPos = obj1.transform.position;
                 EndPos = obj2.transform.position;
 
+                GameObject target = GameObject.Find("Enemy");
+
                 GameObject effect;
                 effect = EffectManager.Instance.CreateEffect(EffectID.Wave);
                 effect.transform.position = EndPos;
-                effect.GetComponent<WaveContoller>().setVelocity(StartPos);
+                effect.GetComponent<WaveContoller>().setVelocity(target.transform);
             }
         }
 
