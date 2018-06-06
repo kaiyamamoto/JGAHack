@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using Extensions;
 using DG.Tweening;
+using UnityEngine.UI;
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 namespace Main
 {
@@ -52,17 +57,6 @@ namespace Main
             pos.x = -7.0f;
             stage.transform.localPosition = pos;
             stage.transform.DOLocalMoveX(pos.x + 10.0f, 5.0f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear);
-        }
-
-        void Update()
-        {
-            if (Input.GetMouseButtonDown(_button))
-            {
-                Play.InGameManager.Destroy();
-                TakeOverData.Instance.StageNum = 1;
-                // 呼び出しはこれ
-                Util.Scene.SceneManager.Instance.ChangeSceneFadeInOut(_sceneName);
-            }
         }
     }
 }

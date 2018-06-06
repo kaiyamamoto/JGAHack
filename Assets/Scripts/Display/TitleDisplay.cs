@@ -54,7 +54,7 @@ namespace Main
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                DisplayManager.Instance.ChangeDisplay(_selectDisplay);
+                StartCoroutine(Change());
             }
         }
 
@@ -70,6 +70,30 @@ namespace Main
             {
                 _startTween = _pressStart.DOColor(color, 1.0f).SetLoops(-1, LoopType.Yoyo);
             }
+        }
+
+        private IEnumerator Change()
+        {
+            var load = Resources.LoadAsync("PopUp");
+            yield return new WaitWhile(() => !load.isDone);
+
+            var obj = load.asset as GameObject;
+            var popObj = Instantiate(obj);
+            var pop = popObj.GetComponent<PopUp>();
+
+            bool result = false;
+
+            yield return StartCoroutine(pop.ShowPopUp("チュートリアルをプレイしますか？", (flag) => result = flag));
+
+            if (result)
+            {
+                Play.InGameManager.Destroy();
+                TakeOverData.Instance.StageNum = 0;
+                // 呼び出しはこれ
+                Util.Scene.SceneManager.Instance.ChangeSceneFadeInOut("Game");
+            }
+
+            DisplayManager.Instance.ChangeDisplay(_selectDisplay);
         }
     }
 }

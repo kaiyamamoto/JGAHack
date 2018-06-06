@@ -72,6 +72,13 @@ namespace Main
                 ChangeStageName(index);
             }
 
+            if (Input.GetKeyDown(KeyCode.Z))
+            {
+                Play.InGameManager.Destroy();
+                TakeOverData.Instance.StageNum = 1;
+                // 呼び出しはこれ
+                Util.Scene.SceneManager.Instance.ChangeSceneFadeInOut("Game");
+            }
         }
 
         /// <summary>
