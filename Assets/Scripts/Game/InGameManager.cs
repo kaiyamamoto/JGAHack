@@ -134,7 +134,8 @@ namespace Play
         private IEnumerator LoadStage()
         {
             // アセットのロード
-            var stageAsset = Resources.LoadAsync("Stage/" + _initStageName);
+            var stageNum = Main.TakeOverData.Instance.StageNum;
+            var stageAsset = Resources.LoadAsync("Stage/Stage_" + stageNum);
 
             // ロード待ち
             yield return new WaitWhile(() => !stageAsset.isDone);
