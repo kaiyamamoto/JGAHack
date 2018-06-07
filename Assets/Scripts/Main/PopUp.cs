@@ -21,7 +21,7 @@ public class PopUp : MonoBehaviour
     private Text _text = null;
 
     [SerializeField]
-    private Image _arrow = null;
+    private Arrow _arrow = null;
 
     [SerializeField]
     private Text _yes = null;
@@ -92,18 +92,39 @@ public class PopUp : MonoBehaviour
 
     void KeyInput()
     {
-        if ((Input.GetKeyDown(KeyCode.RightArrow)) ||
-            (Input.GetKeyDown(KeyCode.LeftArrow)))
-        {
-            _selectNum++;
-            if ((int)Select.length <= _selectNum) _selectNum = 0;
+        var controller = GameController.Instance;
 
-            SetArrow();
+        if (controller.GetConnectFlag())
+        {
+            if (controller.MoveDown(Direction.Right) ||
+                (controller.MoveDown(Direction.Left)))
+            {
+                _selectNum++;
+                if ((int)Select.length <= _selectNum) _selectNum = 0;
+
+                SetArrow();
+            }
+
+            if (controller.ButtonDown(Button.A))
+            {
+                _push = true;
+            }
         }
-
-        if (Input.GetKeyDown(KeyCode.Space))
+        else
         {
-            _push = true;
+            if ((Input.GetKeyDown(KeyCode.RightArrow)) ||
+            (Input.GetKeyDown(KeyCode.LeftArrow)))
+            {
+                _selectNum++;
+                if ((int)Select.length <= _selectNum) _selectNum = 0;
+
+                SetArrow();
+            }
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                _push = true;
+            }
         }
     }
 
@@ -112,10 +133,8 @@ public class PopUp : MonoBehaviour
         var pos = _arrow.transform.localPosition;
         var arrowPos = pos;
         arrowPos.x = GetleftSidePos(_select[_selectNum]);
-        _arrow.transform.localPosition = arrowPos;
 
-        _move.Kill();
-        _move = _arrow.transform.DOLocalMoveX(arrowPos.x + 20.0f, 0.2f).SetLoops(-1, LoopType.Yoyo).SetUpdate(true);
+        _arrow.SetPos(arrowPos);
     }
 
     private float GetleftSidePos(Text textObj)

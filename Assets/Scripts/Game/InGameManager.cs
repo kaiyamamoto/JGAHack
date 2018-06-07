@@ -9,9 +9,6 @@ namespace Play
     // インゲームの管理クラス
     public class InGameManager : Util.SingletonMonoBehaviour<InGameManager>
     {
-        [SerializeField]
-        private string _initStageName = string.Empty;
-
         // ゲームの状態
         public enum State
         {
@@ -65,7 +62,7 @@ namespace Play
 
         // Pause Panel
         [SerializeField]
-        private GameObject _pausePlane = null;
+        private PausePanel _pausePlane = null;
 
         // 復活管理システム
         [SerializeField]
@@ -94,9 +91,6 @@ namespace Play
 
         void Start()
         {
-            // Planeを非表示
-            _pausePlane.SetActive(false);
-
             // ゲームの設定
             StartCoroutine(StartSetUp());
         }
@@ -180,15 +174,17 @@ namespace Play
         /// </summary>
         public void GamePause(bool active)
         {
-            _pausePlane.SetActive(active);
+            if (_pausePlane.Move) return;
+
             if (active)
             {
-                Time.timeScale = 0f;
+                _pausePlane.gameObject.SetActive(true);
+                _pausePlane.Show();
                 _state = State.Pause;
             }
             else
             {
-                Time.timeScale = 1f;
+                _pausePlane.Hide();
                 _state = State.Play;
             }
         }

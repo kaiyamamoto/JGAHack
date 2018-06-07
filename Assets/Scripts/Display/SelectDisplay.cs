@@ -28,9 +28,12 @@ namespace Main
 
         public override IEnumerator Enter()
         {
-            _phoneImage.transform.DOLocalMove(new Vector3(100.0f, 0.0f, 0.0f), _transTime).SetEase(Ease.OutElastic);
-            _phoneImage.transform.DOScale(new Vector3(3.0f, 1.8f, 1.0f), _transTime).SetEase(Ease.OutElastic);
-            _phoneImage.transform.DOLocalRotate(new Vector3(0.0f, 0.0f, -90.0f), _transTime).SetEase(Ease.OutElastic);
+            _phoneImage.transform.DOLocalMove(new Vector3(100.0f, -3.0f, 0.0f), _transTime).SetEase(Ease.OutElastic);
+            _phoneImage.transform.DOScale(new Vector3(1.0f, 1.0f, 1.0f), _transTime).SetEase(Ease.OutElastic);
+            _phoneImage.transform.DOLocalRotate(new Vector3(0.0f, 0.0f, 0.0f), _transTime).SetEase(Ease.OutElastic);
+
+            var button = _phoneImage.transform.FindChild("Button");
+            button.transform.DOScale(Vector3.one, _transTime);
 
             yield return new WaitForSeconds(_transTime);
 
@@ -55,29 +58,64 @@ namespace Main
 
         public override void KeyInput()
         {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                DisplayManager.Instance.ChangeDisplay(_titleDisplay);
-            }
 
-            if (Input.GetKey(KeyCode.UpArrow))
-            {
-                var index = _phoneScreen.PanelBefore();
-                ChangeStageName(index);
-            }
+            var controller = GameController.Instance;
 
-            if (Input.GetKey(KeyCode.DownArrow))
+            if (controller.GetConnectFlag())
             {
-                var index = _phoneScreen.PanelNext();
-                ChangeStageName(index);
-            }
+                // コントローラー
+                if (controller.ButtonDown(Button.B))
+                {
+                    DisplayManager.Instance.ChangeDisplay(_titleDisplay);
+                }
 
-            if (Input.GetKeyDown(KeyCode.Z))
+                if (controller.Move(Direction.Front))
+                {
+                    var index = _phoneScreen.PanelBefore();
+                    ChangeStageName(index);
+                }
+
+                if (controller.Move(Direction.Back))
+                {
+                    var index = _phoneScreen.PanelNext();
+                    ChangeStageName(index);
+                }
+
+                if (Input.GetKeyDown(KeyCode.A))
+                {
+                    Play.InGameManager.Destroy();
+                    TakeOverData.Instance.StageNum = 1;
+                    // 呼び出しはこれ
+                    Util.Scene.SceneManager.Instance.ChangeSceneFadeInOut("Game");
+                }
+            }
+            else
             {
-                Play.InGameManager.Destroy();
-                TakeOverData.Instance.StageNum = 1;
-                // 呼び出しはこれ
-                Util.Scene.SceneManager.Instance.ChangeSceneFadeInOut("Game");
+                // キーボード
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    DisplayManager.Instance.ChangeDisplay(_titleDisplay);
+                }
+
+                if (Input.GetKey(KeyCode.UpArrow))
+                {
+                    var index = _phoneScreen.PanelBefore();
+                    ChangeStageName(index);
+                }
+
+                if (Input.GetKey(KeyCode.DownArrow))
+                {
+                    var index = _phoneScreen.PanelNext();
+                    ChangeStageName(index);
+                }
+
+                if (Input.GetKeyDown(KeyCode.Z))
+                {
+                    Play.InGameManager.Destroy();
+                    TakeOverData.Instance.StageNum = 1;
+                    // 呼び出しはこれ
+                    Util.Scene.SceneManager.Instance.ChangeSceneFadeInOut("Game");
+                }
             }
         }
 
