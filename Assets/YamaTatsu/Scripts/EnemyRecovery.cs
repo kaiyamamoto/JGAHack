@@ -28,16 +28,14 @@ public class EnemyRecovery : MonoBehaviour {
 	void Start () {
 
         gage = transform.Find("gage").GetComponent<Image>();
-<<<<<<< HEAD
-	}
-=======
+
         gage2 = transform.Find("gage2").GetComponent<Image>();
         exmation = transform.Find("exclamation").GetComponent<Image>();
         gage.enabled = true;
         gage2.enabled = true;
 
     }
->>>>>>> fb32fab6dc0ac4f5f7de011b362065cc46f5388b
+
 	
 	// Update is called once per frame
 	void Update () {
