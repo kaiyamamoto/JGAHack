@@ -98,7 +98,7 @@ namespace Play
         {
             return _secondCount;
         }
-        
+
         // タイム取得（ミリ秒）
         public float GetMillisecond()
         {
