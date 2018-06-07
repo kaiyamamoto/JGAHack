@@ -43,7 +43,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _targetTransform: {fileID: 0}
-  offset: {x: 0, y: 0.5, z: 0}
+  _offset: {x: 0, y: 0, z: 0}
+  _isVariable: 0
 --- !u!114 &114265801584785030
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -58,6 +59,7 @@ MonoBehaviour:
   _alfa: 0
   _speed: 0.02
   _state: 0
+  _flag: 1
   pos: {x: 10, y: 10, z: 0}
 --- !u!114 &114714810820456134
 MonoBehaviour:
@@ -78,7 +80,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 714e484784598264088f59abb7d7b7c3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 56e9b23e94ece3a44a113109846ad656, type: 3}
   m_Type: 3
   m_PreserveAspect: 1
   m_FillCenter: 1
