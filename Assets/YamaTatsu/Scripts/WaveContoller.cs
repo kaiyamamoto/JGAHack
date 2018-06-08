@@ -6,55 +6,48 @@ using DG.Tweening;
 
 public class WaveContoller : MonoBehaviour {
 
-    private Transform myTrans;
+    //ターゲットのトランスフォーム
+    [SerializeField]
+    private Transform _target;
 
-    public Transform _target;
+    private Vector3 pos = Vector3.zero;
 
-    private Tweener tweener;
+    //スピード
+    [SerializeField]
+    private float _speed = 0.5f;
 
+    //ターゲットの範囲
+    [SerializeField]
+    private float _range = 1.0f;
+   
     // 起動時
     void Start()
     {
-        myTrans = transform;
-
-        StartCoroutine(start());
-    }
-
-    private IEnumerator start()
-    {
-        // 待つ
-        yield return new WaitForSeconds(1);
-
-        Sequence seq = DOTween.Sequence();
-        // バウンド
-        seq.Append(myTrans.DOLocalMoveY(0.1f, 1f).SetEase(Ease.OutBounce).OnComplete(callback).SetRelative());
-        seq.Join(myTrans.DOLocalMoveX(0, 1f).SetRelative());
+      
     }
 
     // 更新
     void Update()
     {
-        
-        // バウンド終了後から監視する
-        if (tweener != null)
+        Move();
+
+        if(Mathf.Abs(transform.position.x + _target.transform.position.x) < Mathf.Abs(_target.transform.position.x + _range) &&
+           Mathf.Abs(transform.position.y + _target.transform.position.y) < Mathf.Abs(_target.transform.position.y + _range))
         {
-            // ある程度近づいたら消す
-            if (Vector3.Distance(myTrans.position, _target.position) < 0.05f) {
-                // 消す
-                gameObject.SetActive(false);
-            }
-            // 終点を更新
-            tweener.ChangeEndValue(_target.position, 0.2f, true);
+            Destroy(gameObject);
         }
+
     }
 
-    // バウンド終了後に呼ばれる
-    private void callback()
+    //移動処理
+    private void Move()
     {
-        tweener = myTrans.DOMove(_target.position, 0.5f);
+        pos = (_target.transform.position - transform.position);
+        transform.position += pos.normalized * _speed;
     }
 
-    //pPos プレイヤーの座標　tPos ターゲットの座標
+   
+    //ターゲットのTransformを代入
     public void setVelocity(Transform target)
     {
         _target = target;
