@@ -291,6 +291,9 @@ namespace Play.Element
             // 初期位置
             _rigidBody2d.gameObject.transform.position = _initPos;
 
+            //復活エフェクト
+            EffectManager.Instance.CreateEffect(EffectID.EnemyRespown, gameObject.transform.position, 2);
+
             // 動きリセット
             ElementUpdate();
 
