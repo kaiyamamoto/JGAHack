@@ -1031,7 +1031,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _testPhone: {fileID: 1424261661}
-  _phoneScene: {fileID: 1354425690}
+  _phoneScreen: {fileID: 1354425692}
   _transTime: 0.5
 --- !u!1 &705533938
 GameObject:
@@ -1528,21 +1528,19 @@ RectTransform:
 --- !u!114 &1354425692
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114402104019585012, guid: b517da6467e789540b57512a223f8b26,
-    type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1354425690}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ca1530837a1f8346a16712d56500624, type: 3}
+  m_Script: {fileID: 11500000, guid: 97bb35d41203c2942a76cf89c764f28b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stagePanel: {fileID: 114161745951593086, guid: e0e653bf97b65c84b9829896256aa5f6,
-    type: 2}
-  _initPos: {x: 15, y: 0, z: 0}
-  _popOffSet: {x: 15, y: 15}
-  STAGE_NUM: 30
+  _panel: {fileID: 114208863819683938, guid: 1bdab41671a207948a9b8013a8216330, type: 2}
   _panelList: []
+  _initPos: {x: 0, y: 50, z: 0}
+  _popOffSet: {x: 0, y: 15}
+  _arrow: {fileID: 1644330904}
 --- !u!114 &1354425693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1550,7 +1548,7 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1354425690}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 

@@ -5,6 +5,12 @@ using DG.Tweening;
 
 public class Arrow : MonoBehaviour
 {
+	private Vector3 _initpos;
+
+	public Vector3 Initpos
+	{
+		get { return _initpos; }
+	}
 
 	private RectTransform _rectTransform;
 
@@ -13,6 +19,7 @@ public class Arrow : MonoBehaviour
 	void Awake()
 	{
 		_rectTransform = GetComponent<RectTransform>();
+		_initpos = _rectTransform.localPosition;
 
 		SetPos(_rectTransform.localPosition);
 	}

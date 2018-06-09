@@ -6,62 +6,18 @@ using DG.Tweening;
 
 namespace Main
 {
-	public class PhoneScreen : MonoBehaviour
+	public class PhoneScreen : ScreenBase
 	{
-		[SerializeField]
-		private Image _stagePanel = null;
-
-		[SerializeField]
-		private Vector3 _initPos = Vector3.zero;
-
-		[SerializeField]
-		private Vector2 _popOffSet = Vector2.zero;
-
 		// 作成するパネルの数
 		public int STAGE_NUM = 7;
-
-		[SerializeField]
-		private List<Image> _panelList = new List<Image>();
-
-		private RectTransform _rectTransform = null;
-
-		private Vector2 _panelRect = Vector2.zero;
-
-		private int _selectIndex = 0;
-		public int SelectIndex
-		{
-			get { return _selectIndex; }
-		}
 
 		private Tween _moveTween = null;
 
 		public void SetUp()
 		{
-			_panelRect = _stagePanel.rectTransform.sizeDelta;
-
-			_rectTransform = GetComponent<RectTransform>();
+			base.SetUp();
 
 			PanelSlide(0);
-		}
-
-		/// <summary>
-		/// パネルの作成
-		/// </summary>
-		/// <param name="pos"></param>
-		/// <returns></returns>
-		private Image CreatePanel(Vector3 pos, int index)
-		{
-			var obj = Instantiate(_stagePanel, pos, Quaternion.identity);
-			obj.rectTransform.SetParent(_rectTransform);
-			_panelList.Add(obj);
-
-			obj.rectTransform.localScale = Vector3.one;
-			obj.rectTransform.localPosition = pos;
-
-			var text = obj.GetComponentInChildren<Text>();
-			text.text = "STAGE " + (index + 1);
-
-			return obj;
 		}
 
 		private Image MovePanel(Vector3 pos, int index)
@@ -80,11 +36,7 @@ namespace Main
 		/// </summary>
 		private void PanelSetup()
 		{
-			bool create = false;
-			if (_panelList.Count == 0)
-			{
-				create = true;
-			}
+			var create = IsCreated();
 
 			for (int i = 0; i < STAGE_NUM; i++)
 			{
@@ -99,7 +51,14 @@ namespace Main
 				var posY = i * (_panelRect.y + offSet.y);
 				var pos = new Vector3(_initPos.x - posX, _initPos.y - posY, _initPos.z);
 
-				if (create) CreatePanel(pos, i);
+				if (create)
+				{
+					var obj = CreatePanel(pos, i);
+
+					// テキスト変更
+					var text = obj.GetComponentInChildren<Text>();
+					text.text = "STAGE " + (i + 1);
+				}
 				else MovePanel(pos, i);
 			}
 		}
