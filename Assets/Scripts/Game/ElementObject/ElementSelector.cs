@@ -111,6 +111,9 @@ namespace Play
             {
                 if (_targetObject)
                 {
+                    GameObject effect = EffectManager.Instance.CreateEffect(EffectID.Wave, _targetObject.transform.position, 2);
+                    effect.GetComponent<WaveContoller>().setVelocity(gameObject.transform.parent.transform);
+
                     SelectObject();
                 }
             }
@@ -120,6 +123,17 @@ namespace Play
             {
                 if (_targetObject)
                 {
+
+                    GameObject effect = EffectManager.Instance.CreateEffect(EffectID.Wave, gameObject.transform.parent.position, 2);
+                    effect.GetComponent<WaveContoller>().setVelocity(_targetObject.transform);
+
+                    GameObject refrec = EffectManager.Instance.CreateEffect(EffectID.EnemyRecovery, _targetObject.transform.position);
+                    refrec.GetComponent<UISet>().SetTransform(_targetObject.transform);
+                   // refrec.GetComponent<EnemyRecovery>().SetTime(_targetObject.GetComponent<ElementObject>().GetReturnTime());
+
+
+
+
                     MoveElement(_targetObject);
                 }
             }

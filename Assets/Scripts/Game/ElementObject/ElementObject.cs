@@ -297,5 +297,12 @@ namespace Play.Element
             // 復活
             transform.parent.gameObject.SetActive(true);
         }
+
+
+        public float GetReturnTime()
+        {
+            return _returnTime;
+
+        }
     }
 }

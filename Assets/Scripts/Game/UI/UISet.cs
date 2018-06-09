@@ -21,6 +21,8 @@ public class UISet : MonoBehaviour
     {    
         //自身のRectTransform取得
         _rectTransform = GetComponent<RectTransform>();
+
+       
     }
 
     void Update()

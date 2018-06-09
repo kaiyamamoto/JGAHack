@@ -1343,7 +1343,8 @@ MonoBehaviour:
   _text: {fileID: 0}
   _icon: {fileID: 0}
   _icon2: {fileID: 0}
-  _images: []
+  _controllerImages: []
+  _keybordImages: []
 --- !u!1 &1207840897
 GameObject:
   m_ObjectHideFlags: 0
@@ -1399,7 +1400,8 @@ MonoBehaviour:
   _text: {fileID: 0}
   _icon: {fileID: 0}
   _icon2: {fileID: 0}
-  _images: []
+  _controllerImages: []
+  _keybordImages: []
 --- !u!1001 &1314025256
 Prefab:
   m_ObjectHideFlags: 0
@@ -1642,7 +1644,8 @@ MonoBehaviour:
   _text: {fileID: 0}
   _icon: {fileID: 0}
   _icon2: {fileID: 0}
-  _images: []
+  _controllerImages: []
+  _keybordImages: []
 --- !u!1 &1406459967
 GameObject:
   m_ObjectHideFlags: 0
