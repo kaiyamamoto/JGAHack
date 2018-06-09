@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EnemyRecovery : MonoBehaviour {
+public class EnemyRecovery : MonoBehaviour
+{
 
-    
+
     private Image gage;
     private Image gage2;
 
@@ -25,22 +26,10 @@ public class EnemyRecovery : MonoBehaviour {
     //スケール
     private Vector3 _scale = new Vector3(0.1f, 0.1f, 0.1f);
 
-    //スケールs
-    private Vector3 _scale = new Vector3(0.1f, 0.1f, 0.1f);
-
-<<<<<<< HEAD
-    //カラー
-    //private Cach
-
-
-    // Use this for initialization
-    void Start ()
-    {
-=======
     //赤色→緑
     IEnumerator ChangeGageColor()
     {
-        while(true)
+        while (true)
         {
             //yield return StartCoroutine(ChangeColor(Color.red, 2.5f));
             //yield return StartCoroutine(ChangeColor(Color.green, 2.5f));
@@ -48,7 +37,7 @@ public class EnemyRecovery : MonoBehaviour {
         yield break;
     }
 
-    IEnumerator ChangeColor(Color toColor,float duration)
+    IEnumerator ChangeColor(Color toColor, float duration)
     {
         Color fromColor = gage.color;
         float startTime = Time.time;
@@ -57,7 +46,7 @@ public class EnemyRecovery : MonoBehaviour {
         float marginG = toColor.g - fromColor.g;
         float marginB = toColor.b - fromColor.b;
 
-        while(Time.deltaTime < endTime)
+        while (Time.deltaTime < endTime)
         {
             fromColor.r = fromColor.r + (Time.deltaTime / duration) * marginR;
             fromColor.g = fromColor.g + (Time.deltaTime / duration) * marginG;
@@ -72,37 +61,34 @@ public class EnemyRecovery : MonoBehaviour {
 
     }
 
-	// Use this for initialization
-	void Start () {
->>>>>>> b285b70bef37b3a29488a1ff2b8768786c7f121c
+    // Use this for initialization
+
+    // Use this for initialization
+    void Start()
+    {
 
         gage = transform.Find("gage").GetComponent<Image>();
         gage2 = transform.Find("gage2").GetComponent<Image>();
         exmation = transform.Find("exclamation").GetComponent<Image>();
-<<<<<<< HEAD
-
         exmation.transform.localScale = Vector3.zero;
 
-=======
-        exmation.transform.localScale = Vector3.zero;
->>>>>>> b285b70bef37b3a29488a1ff2b8768786c7f121c
         gage.enabled = true;
         gage2.enabled = true;
 
         gage.color = Color.red;
-
         StartCoroutine(ChangeColor(Color.green, _timeMax));
-       
+
     }
 
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update()
+    {
 
         gage.fillAmount += Time.deltaTime / _timeMax;
         //Debug.Log(gage.fillAmount);
-		
-        if(gage.fillAmount >= 1)
+
+        if (gage.fillAmount >= 1)
         {
             Show();
         }
@@ -115,10 +101,6 @@ public class EnemyRecovery : MonoBehaviour {
             if (exmation.transform.localScale.x < 1.0f)
             {
                 exmation.transform.localScale += _scale;
-<<<<<<< HEAD
-                //Debug.Log(exmation.transform.localScale);
-=======
->>>>>>> b285b70bef37b3a29488a1ff2b8768786c7f121c
             }
 
             if (_timeCount > _timeDestroy)
@@ -138,7 +120,7 @@ public class EnemyRecovery : MonoBehaviour {
         _destroyFlag = true;
     }
 
-    void SetTime(float time)
+    public void SetTime(float time)
     {
         _timeMax = time;
     }

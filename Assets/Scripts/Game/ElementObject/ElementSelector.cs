@@ -111,6 +111,9 @@ namespace Play
             {
                 if (_targetObject)
                 {
+                    //コピー時エフェクト
+                    CopyEffect();
+
                     SelectObject();
                 }
             }
@@ -120,6 +123,11 @@ namespace Play
             {
                 if (_targetObject)
                 {
+                    //コピー時エフェクト
+                    PasteEffect();
+                    //復帰演出セット
+                    RecoverSet();
+             
                     MoveElement(_targetObject);
                 }
             }
@@ -131,9 +139,7 @@ namespace Play
                 {
                     TargetUIRelease();
                 }
-
             }
-
         }
 
         /// <summary>
@@ -418,6 +424,36 @@ namespace Play
                 y -= 30.0f;
             }
         }
+
+
+
+        //コピー時エフェクト
+        void CopyEffect()
+        {
+            //コピー時エフェクト
+            GameObject effect = EffectManager.Instance.CreateEffect(EffectID.Wave, _targetObject.transform.position, 2);
+            effect.GetComponent<WaveContoller>().setVelocity(gameObject.transform.parent.transform);
+        }
+
+        //ペースト時エフェクト
+        void PasteEffect()
+        {
+            //送信エフェクト
+            GameObject effect = EffectManager.Instance.CreateEffect(EffectID.Wave, gameObject.transform.parent.position, 2);
+            effect.GetComponent<WaveContoller>().setVelocity(_targetObject.transform);
+        }
+
+        //復帰演出セット
+        void RecoverSet()
+        {
+            //復帰演出セット＆開始
+            GameObject recover = EffectManager.Instance.CreateEffect(EffectID.EnemyRecovery, _targetObject.transform.position);
+            recover.GetComponent<UISet>().SetTransform(_targetObject.transform);
+            recover.GetComponent<EnemyRecovery>().SetTime(_targetObject.GetComponent<ElementObject>().GetReturnTime());
+        }
+
+
+
 
         /// <summary>
         /// TODO:左クリックしたオブジェクトを取得 
