@@ -23,14 +23,24 @@ public class EnemyRecovery : MonoBehaviour {
     //デストロイフラグ
     private bool _destroyFlag = false;
 
+    //スケールs
+    private Vector3 _scale = new Vector3(0.1f, 0.1f, 0.1f);
 
-	// Use this for initialization
-	void Start () {
+    //カラー
+    //private Cach
+
+
+    // Use this for initialization
+    void Start ()
+    {
 
         gage = transform.Find("gage").GetComponent<Image>();
 
         gage2 = transform.Find("gage2").GetComponent<Image>();
         exmation = transform.Find("exclamation").GetComponent<Image>();
+
+        exmation.transform.localScale = Vector3.zero;
+
         gage.enabled = true;
         gage2.enabled = true;
 
@@ -48,18 +58,24 @@ public class EnemyRecovery : MonoBehaviour {
             Show();
         }
 
-        if(_destroyFlag)
+        if (_destroyFlag)
         {
 
             _timeCount += Time.deltaTime;
 
-            if(_timeCount > _timeDestroy)
+            if (exmation.transform.localScale.x < 1.0f)
+            {
+                exmation.transform.localScale += _scale;
+                //Debug.Log(exmation.transform.localScale);
+            }
+
+            if (_timeCount > _timeDestroy)
             {
                 Destroy(gameObject);
             }
         }
 
-	}
+    }
 
     void Show()
     {
@@ -68,6 +84,11 @@ public class EnemyRecovery : MonoBehaviour {
         gage2.enabled = false;
         exmation.enabled = true;
         _destroyFlag = true;
+    }
+
+    void SetTime(float time)
+    {
+        _timeMax = time;
     }
 
 }
