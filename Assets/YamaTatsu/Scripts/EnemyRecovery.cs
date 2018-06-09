@@ -22,18 +22,59 @@ public class EnemyRecovery : MonoBehaviour {
     private float _timeCount = 0.0f;
     //デストロイフラグ
     private bool _destroyFlag = false;
+    //スケール
+    private Vector3 _scale = new Vector3(0.1f, 0.1f, 0.1f);
 
+
+    //赤色→緑
+    IEnumerator ChangeGageColor()
+    {
+        while(true)
+        {
+            //yield return StartCoroutine(ChangeColor(Color.red, 2.5f));
+            //yield return StartCoroutine(ChangeColor(Color.green, 2.5f));
+        }
+        yield break;
+    }
+
+    IEnumerator ChangeColor(Color toColor,float duration)
+    {
+        Color fromColor = gage.color;
+        float startTime = Time.time;
+        float endTime = Time.time + duration;
+        float marginR = toColor.r - fromColor.r;
+        float marginG = toColor.g - fromColor.g;
+        float marginB = toColor.b - fromColor.b;
+
+        while(Time.deltaTime < endTime)
+        {
+            fromColor.r = fromColor.r + (Time.deltaTime / duration) * marginR;
+            fromColor.g = fromColor.g + (Time.deltaTime / duration) * marginG;
+            fromColor.b = fromColor.b + (Time.deltaTime / duration) * marginB;
+
+            gage.color = fromColor;
+            yield return 0;
+        }
+
+        gage.color = toColor;
+        yield break;
+
+    }
 
 	// Use this for initialization
 	void Start () {
 
         gage = transform.Find("gage").GetComponent<Image>();
-
         gage2 = transform.Find("gage2").GetComponent<Image>();
         exmation = transform.Find("exclamation").GetComponent<Image>();
+        exmation.transform.localScale = Vector3.zero;
         gage.enabled = true;
         gage2.enabled = true;
 
+        gage.color = Color.red;
+
+        StartCoroutine(ChangeColor(Color.green, _timeMax));
+       
     }
 
 	
@@ -53,7 +94,12 @@ public class EnemyRecovery : MonoBehaviour {
 
             _timeCount += Time.deltaTime;
 
-            if(_timeCount > _timeDestroy)
+            if (exmation.transform.localScale.x < 1.0f)
+            {
+                exmation.transform.localScale += _scale;
+            }
+
+            if (_timeCount > _timeDestroy)
             {
                 Destroy(gameObject);
             }
@@ -61,7 +107,7 @@ public class EnemyRecovery : MonoBehaviour {
 
 	}
 
-    void Show()
+    public void Show()
     {
         //ゲージを非表示
         gage.enabled = false;
