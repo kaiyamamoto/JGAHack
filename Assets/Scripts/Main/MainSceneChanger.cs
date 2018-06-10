@@ -34,6 +34,20 @@ namespace Main
 			// 初期ディスプレイ
 			Util.Display.DisplayManager.Instance.ChangeDisplay(display);
 
+			// ステージタイムデータ読み込み
+			var time = Play.Stage.StageTimeData.Instance;
+			time.Initialize();
+			var dic = time.StageTime.ToDictionary();
+
+			for (int i = 0; i < 20; i++)
+			{
+				for (int j = 0; j < 3; j++)
+				{
+					string key = i.ToString() + "_" + j.ToString();
+				}
+			}
+
+			time.Save();
 		}
 
 		void Start()

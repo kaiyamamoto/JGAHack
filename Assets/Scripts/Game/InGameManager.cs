@@ -76,6 +76,10 @@ namespace Play
 			get { return _messenger; }
 		}
 
+		// TimeCounter
+		[SerializeField]
+		private TimeCounter _counter = null;
+
 		void OnGUI()
 		{
 			if (_state == State.Clear)
@@ -120,6 +124,9 @@ namespace Play
 
 			GuidUI.Instance.GetComponent<GuidUI>().ChangeGuid(GuidUI.GUID_STEP.Normal);
 			_state = State.Play;
+
+			// タイムカウント開始
+			_counter.StartTimer();
 		}
 
 		/// <summary>
@@ -150,6 +157,9 @@ namespace Play
 		public void StageClear()
 		{
 			_state = State.Clear;
+
+			// タイムカウント終了
+			_counter.EndTimer();
 		}
 
 		/// <summary>

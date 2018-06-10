@@ -62,7 +62,7 @@ namespace Util.Save
 		/// <summary>
 		/// データの保存
 		/// </summary>
-		public void Save()
+		virtual public void Save(string json = "")
 		{
 			if (_instance == null)
 			{
@@ -70,7 +70,8 @@ namespace Util.Save
 			}
 
 			// Json化
-			string json = JsonUtility.ToJson(_instance);
+			if (json == string.Empty)
+				json = JsonUtility.ToJson(_instance);
 
 			// 暗号化
 			string iv;
