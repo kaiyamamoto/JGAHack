@@ -1,15 +1,17 @@
 fileFormatVersion: 2
-guid: e33ecd58cf23d7441a310aeb4b79870d
-timeCreated: 1528446858
+guid: c3e47c3ab0c679748be1aefc426e4b1d
+timeCreated: 1528595418
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Gate_0
-    21300002: Gate_1
-    21300004: Gate_2
-    21300006: Gate_3
-    21300008: Gate_4
-    21300010: Gate_5
+    21300000: Goal 1_0
+    21300002: Goal 1_1
+    21300004: Goal 1_2
+    21300006: Goal 1_3
+    21300008: Goal 1_4
+    21300010: Goal 1_5
+    21300012: Goal 1_6
+    21300014: Goal 1_7
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -83,7 +85,7 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-  - buildTarget: Android
+  - buildTarget: iPhone
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -93,7 +95,7 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-  - buildTarget: iPhone
+  - buildTarget: Android
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -107,35 +109,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Gate_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Gate_1
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Gate_2
+      name: Goal 1_0
       rect:
         serializedVersion: 2
         x: 0
@@ -149,7 +123,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Gate_3
+      name: Goal 1_1
       rect:
         serializedVersion: 2
         x: 32
@@ -163,7 +137,35 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Gate_4
+      name: Goal 1_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Goal 1_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Goal 1_4
       rect:
         serializedVersion: 2
         x: 0
@@ -177,10 +179,38 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Gate_5
+      name: Goal 1_5
       rect:
         serializedVersion: 2
         x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Goal 1_6
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Goal 1_7
+      rect:
+        serializedVersion: 2
+        x: 96
         y: 0
         width: 32
         height: 32
