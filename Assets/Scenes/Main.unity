@@ -333,6 +333,7 @@ MonoBehaviour:
   _phoneImage: {fileID: 549767244}
   _transTime: 0.5
   _phoneScreen: {fileID: 415577365}
+  _timePanel: {fileID: 1782816851}
 --- !u!1 &390902810
 GameObject:
   m_ObjectHideFlags: 0
@@ -772,7 +773,7 @@ GameObject:
   - component: {fileID: 846414847}
   - component: {fileID: 846414846}
   m_Layer: 0
-  m_Name: Text3
+  m_Name: Text2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -846,7 +847,7 @@ GameObject:
   - component: {fileID: 853432163}
   - component: {fileID: 853432162}
   m_Layer: 0
-  m_Name: Text2
+  m_Name: Text1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1637,6 +1638,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1782816850}
+  - component: {fileID: 1782816851}
   m_Layer: 0
   m_Name: Time
   m_TagString: Untagged
@@ -1664,6 +1666,20 @@ RectTransform:
   m_AnchoredPosition: {x: -140, y: -60}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1782816851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1782816849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1cc148e8fa494f45bf2b7302165a5c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _fixedSentence: "{0}\u4F4D {1}"
+  textHead: Text
+  _textsParent: {fileID: 35801121}
 --- !u!1 &1833635799
 GameObject:
   m_ObjectHideFlags: 0
@@ -1855,7 +1871,7 @@ GameObject:
   - component: {fileID: 2026622333}
   - component: {fileID: 2026622332}
   m_Layer: 0
-  m_Name: Text1
+  m_Name: Text0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

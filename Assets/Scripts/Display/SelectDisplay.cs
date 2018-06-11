@@ -8,131 +8,140 @@ using Util.Display;
 
 namespace Main
 {
-	public sealed class SelectDisplay : DisplayBase
-	{
-		// タイトルディスプレイ
-		[SerializeField]
-		private TitleDisplay _titleDisplay = null;
+    public sealed class SelectDisplay : DisplayBase
+    {
+        // タイトルディスプレイ
+        [SerializeField]
+        private TitleDisplay _titleDisplay = null;
 
-		// 携帯UI
-		[SerializeField]
-		private Image _phoneImage = null;
+        // 携帯UI
+        [SerializeField]
+        private Image _phoneImage = null;
 
-		[SerializeField]
-		private float _transTime = 1.0f;
+        [SerializeField]
+        private float _transTime = 1.0f;
 
-		[SerializeField]
-		private Main.PhoneScreen _phoneScreen = null;
+        [SerializeField]
+        private Main.PhoneScreen _phoneScreen = null;
 
-		private Text _stageName = null;
+        private Text _stageName = null;
 
-		public override IEnumerator Enter()
-		{
-			_phoneImage.transform.DOLocalMove(new Vector3(100.0f, -3.0f, 0.0f), _transTime).SetEase(Ease.OutElastic);
-			_phoneImage.transform.DOScale(new Vector3(1.0f, 1.0f, 1.0f), _transTime).SetEase(Ease.OutElastic);
-			_phoneImage.transform.DOLocalRotate(new Vector3(0.0f, 0.0f, 0.0f), _transTime).SetEase(Ease.OutElastic);
+        [SerializeField]
+        private StageTimePanel _timePanel = null;
 
-			var button = _phoneImage.transform.Find("Button");
-			button.transform.DOScale(Vector3.one, _transTime);
+        public override IEnumerator Enter()
+        {
+            _phoneImage.transform.DOLocalMove(new Vector3(100.0f, -3.0f, 0.0f), _transTime).SetEase(Ease.OutElastic);
+            _phoneImage.transform.DOScale(new Vector3(1.0f, 1.0f, 1.0f), _transTime).SetEase(Ease.OutElastic);
+            _phoneImage.transform.DOLocalRotate(new Vector3(0.0f, 0.0f, 0.0f), _transTime).SetEase(Ease.OutElastic);
 
-			yield return new WaitForSeconds(_transTime);
+            var button = _phoneImage.transform.Find("Button");
+            button.transform.DOScale(Vector3.one, _transTime);
 
-			// 携帯画面にステージパネルを出す
-			_phoneScreen.SetUp();
+            yield return new WaitForSeconds(_transTime);
 
-			// ステージ名テキストを取得
-			_stageName = this.transform.transform.Find("StageName").GetComponentInChildren<Text>();
+            // 携帯画面にステージパネルを出す
+            _phoneScreen.SetUp();
 
-			ChangeStageName(_phoneScreen.SelectIndex);
-		}
+            // ステージ名テキストを取得
+            _stageName = this.transform.transform.Find("StageName").GetComponentInChildren<Text>();
 
-		public override void EnterComplete()
-		{
-			base.EnterComplete();
-		}
+            ChangeStageName(_phoneScreen.SelectIndex);
 
-		public override void Exit()
-		{
-			base.Exit();
-		}
+            _timePanel.UpdateView(_phoneScreen.SelectIndex);
+        }
 
-		public override void KeyInput()
-		{
+        public override void EnterComplete()
+        {
+            base.EnterComplete();
+        }
 
-			var controller = GameController.Instance;
+        public override void Exit()
+        {
+            base.Exit();
+        }
 
-			if (controller.GetConnectFlag())
-			{
-				// コントローラー
-				if (controller.ButtonDown(Button.B))
-				{
-					DisplayManager.Instance.ChangeDisplay(_titleDisplay);
-				}
+        public override void KeyInput()
+        {
 
-				if (controller.Move(Direction.Front))
-				{
-					var index = _phoneScreen.PanelBefore();
-					ChangeStageName(index);
-				}
+            var controller = GameController.Instance;
 
-				if (controller.Move(Direction.Back))
-				{
-					var index = _phoneScreen.PanelNext();
-					ChangeStageName(index);
-				}
+            if (controller.GetConnectFlag())
+            {
+                // コントローラー
+                if (controller.ButtonDown(Button.B))
+                {
+                    DisplayManager.Instance.ChangeDisplay(_titleDisplay);
+                }
 
-				if (Input.GetKeyDown(KeyCode.A))
-				{
-					Play.InGameManager.Destroy();
-					var index = _phoneScreen.SelectIndex;
-					TakeOverData.Instance.StageNum = index + 1;
-					// 呼び出しはこれ
-					Util.Scene.SceneManager.Instance.ChangeSceneFadeInOut("Game");
-				}
-			}
-			else
-			{
-				// キーボード
-				if (Input.GetKeyDown(KeyCode.Space))
-				{
-					DisplayManager.Instance.ChangeDisplay(_titleDisplay);
-				}
+                if (controller.Move(Direction.Front))
+                {
+                    var index = _phoneScreen.PanelBefore();
+                    ChangeStageName(index);
+                    _timePanel.UpdateView(_phoneScreen.SelectIndex);
+                }
 
-				if (Input.GetKey(KeyCode.UpArrow))
-				{
-					var index = _phoneScreen.PanelBefore();
-					ChangeStageName(index);
-				}
+                if (controller.Move(Direction.Back))
+                {
+                    var index = _phoneScreen.PanelNext();
+                    ChangeStageName(index);
+                    _timePanel.UpdateView(_phoneScreen.SelectIndex);
+                }
 
-				if (Input.GetKey(KeyCode.DownArrow))
-				{
-					var index = _phoneScreen.PanelNext();
-					ChangeStageName(index);
-				}
+                if (Input.GetKeyDown(KeyCode.A))
+                {
+                    Play.InGameManager.Destroy();
+                    var index = _phoneScreen.SelectIndex;
+                    TakeOverData.Instance.StageNum = index + 1;
+                    // 呼び出しはこれ
+                    Util.Scene.SceneManager.Instance.ChangeSceneFadeInOut("Game");
+                }
+            }
+            else
+            {
+                // キーボード
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    DisplayManager.Instance.ChangeDisplay(_titleDisplay);
+                }
 
-				if (Input.GetKeyDown(KeyCode.Z))
-				{
-					Play.InGameManager.Destroy();
-					var index = _phoneScreen.SelectIndex;
-					TakeOverData.Instance.StageNum = index + 1;
+                if (Input.GetKey(KeyCode.UpArrow))
+                {
+                    var index = _phoneScreen.PanelBefore();
+                    ChangeStageName(index);
+                    _timePanel.UpdateView(_phoneScreen.SelectIndex);
+                }
 
-					// 呼び出しはこれ
-					Util.Scene.SceneManager.Instance.ChangeSceneFadeInOut("Game");
-				}
-			}
-		}
+                if (Input.GetKey(KeyCode.DownArrow))
+                {
+                    var index = _phoneScreen.PanelNext();
+                    ChangeStageName(index);
+                    _timePanel.UpdateView(_phoneScreen.SelectIndex);
+                }
 
-		/// <summary>
-		/// ステージ名変更
-		/// </summary>
-		/// <param name="index"></param>
-		private void ChangeStageName(int index)
-		{
-			if (0 <= index)
-			{
-				var stage = index + 1;
-				_stageName.text = "STAGE " + stage;
-			}
-		}
-	}
+                if (Input.GetKeyDown(KeyCode.Z))
+                {
+                    Play.InGameManager.Destroy();
+                    var index = _phoneScreen.SelectIndex;
+                    TakeOverData.Instance.StageNum = index + 1;
+
+                    // 呼び出しはこれ
+                    Util.Scene.SceneManager.Instance.ChangeSceneFadeInOut("Game");
+                }
+            }
+        }
+
+        /// <summary>
+        /// ステージ名変更
+        /// </summary>
+        /// <param name="index"></param>
+        private void ChangeStageName(int index)
+        {
+            if (0 <= index)
+            {
+                var stage = index + 1;
+                _stageName.text = "STAGE " + stage;
+            }
+        }
+    }
 }
