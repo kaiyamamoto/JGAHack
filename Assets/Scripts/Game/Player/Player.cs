@@ -172,8 +172,6 @@ namespace Play
             _playerState = State.Alive;
             //復帰時のアニメーション変更（デフォルト下向き）
             gameObject.GetComponent<PlayerAnimController>().ChangeAnim(PlayerAnimController.ANIMATION_ID.Back);
-            //プレイヤー死亡処理
-
         }
     }
 }
