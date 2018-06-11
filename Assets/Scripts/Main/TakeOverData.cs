@@ -7,7 +7,7 @@ namespace Main
 	public class TakeOverData : Util.SingletonMonoBehaviour<TakeOverData>
 	{
 		// ステージ番号
-		[SerializeField, Extensions.ReadOnly]
+		[SerializeField]
 		private int _stageNum = 0;
 
 		public int StageNum
