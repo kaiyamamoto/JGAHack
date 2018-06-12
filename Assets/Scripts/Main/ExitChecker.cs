@@ -40,6 +40,7 @@ public class ExitChecker : MonoBehaviour
         bool result = false;
 
         yield return StartCoroutine(pop.ShowPopUp("ゲームを終了しますか？", (flag) => result = flag));
+        Time.timeScale = 1.0f;
 
         if (result) Application.Quit();
 #if UNITY_EDITOR
