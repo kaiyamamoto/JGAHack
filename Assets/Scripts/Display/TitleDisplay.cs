@@ -100,12 +100,16 @@ namespace Main
 
             yield return StartCoroutine(pop.ShowPopUp("チュートリアルをプレイしますか？", (flag) => result = flag));
 
+            Time.timeScale = 1.0f;
+
             if (result)
             {
                 Play.InGameManager.Destroy();
                 TakeOverData.Instance.StageNum = 0;
                 // 呼び出しはこれ
                 Util.Scene.SceneManager.Instance.ChangeSceneFadeInOut("Game");
+
+                yield break;
             }
 
             DisplayManager.Instance.ChangeDisplay(_selectDisplay);

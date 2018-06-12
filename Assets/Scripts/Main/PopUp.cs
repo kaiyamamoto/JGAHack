@@ -65,7 +65,7 @@ public class PopUp : MonoBehaviour
 
         yield return new WaitWhile(() => !_push);
 
-        Time.timeScale = 1.0f;
+        //Time.timeScale = 1.0f;
 
         bool flag = false;
         if (_selectNum == 0) flag = true;
