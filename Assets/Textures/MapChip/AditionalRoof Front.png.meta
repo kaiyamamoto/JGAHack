@@ -1,18 +1,12 @@
 fileFormatVersion: 2
-guid: 7eb9a1ad38aeb0c4a8425f52da23dc62
-timeCreated: 1528165944
+guid: f48ee1e9ee716e04caa7f9c8f8f350cc
+timeCreated: 1528268117
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Roof_0
-    21300002: Roof_1
-    21300004: Roof_2
-    21300006: Roof_3
-    21300008: Roof_4
-    21300010: Roof_5
-    21300012: Roof_6
-    21300014: Roof_7
-    21300016: Roof_8
+    21300000: AditionalRoof_0
+    21300002: AditionalRoof_1
+    21300004: AditionalRoof_2
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -100,61 +94,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Roof_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape:
-      - - {x: -16, y: -16}
-        - {x: -16, y: -6.1852264}
-        - {x: 16, y: -6.1852264}
-        - {x: 16, y: -16}
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Roof_1
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape:
-      - - {x: -16, y: -16}
-        - {x: -16, y: -6.263405}
-        - {x: 16, y: -6.159836}
-        - {x: 16, y: -16}
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Roof_2
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape:
-      - - {x: -16, y: -16}
-        - {x: -16, y: -5.950836}
-        - {x: 16, y: -6.029663}
-        - {x: 16, y: -16}
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Roof_3
+      name: AditionalRoof_0
       rect:
         serializedVersion: 2
         x: 0
@@ -165,10 +105,14 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -16, y: -16}
+        - {x: -16, y: 16}
+        - {x: 16, y: 16}
+        - {x: 16, y: -16}
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Roof_4
+      name: AditionalRoof_1
       rect:
         serializedVersion: 2
         x: 32
@@ -179,55 +123,17 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -16, y: -16}
+        - {x: -16, y: 16}
+        - {x: 16, y: 16}
+        - {x: 16, y: -16}
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Roof_5
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Roof_6
+      name: AditionalRoof_2
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Roof_7
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Roof_8
-      rect:
-        serializedVersion: 2
-        x: 64
         y: 0
         width: 32
         height: 32

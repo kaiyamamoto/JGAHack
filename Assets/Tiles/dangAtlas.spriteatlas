@@ -33,6 +33,9 @@ SpriteAtlas:
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: 1708eb894b8fea946a2f1c17f5631beb, type: 3}
+  - {fileID: 21300004, guid: f48ee1e9ee716e04caa7f9c8f8f350cc, type: 3}
+  - {fileID: 21300002, guid: f48ee1e9ee716e04caa7f9c8f8f350cc, type: 3}
+  - {fileID: 21300000, guid: f48ee1e9ee716e04caa7f9c8f8f350cc, type: 3}
   - {fileID: 21300006, guid: 20a4ccad5237dff4ba05755dfa38152d, type: 3}
   - {fileID: 21300004, guid: 20a4ccad5237dff4ba05755dfa38152d, type: 3}
   - {fileID: 21300002, guid: 20a4ccad5237dff4ba05755dfa38152d, type: 3}
@@ -118,6 +121,9 @@ SpriteAtlas:
   - {fileID: 21300018, guid: 172ca59226c40444980c9eff0f913fa2, type: 3}
   m_PackedSpriteNamesToIndex:
   - Lift
+  - AditionalRoof_2
+  - AditionalRoof_1
+  - AditionalRoof_0
   - Roof_2_3
   - Roof_2_2
   - Roof_2_1
