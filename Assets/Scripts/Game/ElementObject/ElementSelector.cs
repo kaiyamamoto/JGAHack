@@ -122,12 +122,7 @@ namespace Play
             if (isChange)
             {
                 if (_targetObject)
-                {
-                    //コピー時エフェクト
-                    PasteEffect();
-                    //復帰演出セット
-                    RecoverSet();
-             
+                {         
                     MoveElement(_targetObject);
                 }
             }
@@ -358,11 +353,14 @@ namespace Play
         {
             // リストを記憶していない場合は移動しない
             if (_container.List == null) return;
-
             // すべての要素を移動
             selectObj.ReceiveAllElement(_container.List.ToArray());
             //Console更新
             ConsoleUpDate(selectObj);
+            //コピー時エフェクト
+            PasteEffect();
+            //復帰演出セット
+            RecoverSet();
             // ターゲット解除
             TargetUIRelease();
         }
