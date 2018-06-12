@@ -329,7 +329,7 @@ GameObject:
   - component: {fileID: 61681952159967174}
   - component: {fileID: 114189408745693134}
   - component: {fileID: 114033644504683574}
-  m_Layer: 11
+  m_Layer: 13
   m_Name: ObjectElement
   m_TagString: Element
   m_Icon: {fileID: 0}
@@ -369,8 +369,8 @@ GameObject:
   - component: {fileID: 4495208769820756}
   - component: {fileID: 114839572672836086}
   - component: {fileID: 114234720218546582}
-  - component: {fileID: 114975647334269534}
   - component: {fileID: 114860936754776258}
+  - component: {fileID: 114887246188086084}
   m_Layer: 0
   m_Name: ObjectElement
   m_TagString: Element
@@ -496,7 +496,7 @@ GameObject:
   - component: {fileID: 61966887299292452}
   - component: {fileID: 114857455255486492}
   - component: {fileID: 114182020826948808}
-  m_Layer: 11
+  m_Layer: 13
   m_Name: ObjectElement
   m_TagString: Element
   m_Icon: {fileID: 0}
@@ -2266,6 +2266,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _direction: 0
+--- !u!114 &114887246188086084
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1833041218672378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dace2293f285387429ab4f58b48897c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 0
+  _moveAmount: 2
+  _requiredTime: 2
+  _reversFlag: 0
+  _isSetRevers: 0
+  _basePos: {x: 0, y: 0, z: 0}
+  _RightEndPos: {x: 0, y: 0, z: 0}
+  _LeftEndPos: {x: 0, y: 0, z: 0}
+  _moveCount: 0
 --- !u!114 &114914159882161530
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2300,26 +2320,6 @@ MonoBehaviour:
   _initPos: {x: 0, y: 0, z: 0}
   _overwritePos: []
   _returnTime: 8
---- !u!114 &114975647334269534
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1833041218672378}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f80f39e18a722144bc74025249e1f80, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _speed: 0
-  _moveAmount: 3
-  _requiredTime: 3
-  _reversFlag: 0
-  _isSetRevers: 0
-  _basePos: {x: 0, y: 0, z: 0}
-  _UpEndPos: {x: 0, y: 0, z: 0}
-  _DownEndPos: {x: 0, y: 0, z: 0}
-  _moveCount: 0
 --- !u!198 &198283720550632404
 ParticleSystem:
   m_ObjectHideFlags: 1
