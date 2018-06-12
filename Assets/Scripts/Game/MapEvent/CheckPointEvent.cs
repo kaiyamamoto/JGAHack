@@ -12,10 +12,12 @@ namespace Play
 			{
 				if (other.GetComponent<Player>())
 				{
+					if (InGameManager.IsInstance() == false) return;
+
 					// チェックポイントの更新
 					InGameManager.Instance.StageManager.UpdateCheckPoint(this);
-                    //カメラマネージャに現在のチェックポイントを記憶＆カメラ移動
-                    CameraManager.Instance.CheckPointUpDate(gameObject.transform);
+					//カメラマネージャに現在のチェックポイントを記憶＆カメラ移動
+					CameraManager.Instance.CheckPointUpDate(gameObject.transform);
 				}
 			};
 		}

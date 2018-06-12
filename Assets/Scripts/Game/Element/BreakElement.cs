@@ -23,11 +23,13 @@ namespace Play.Element
 
 		private void OnTriggerEnter2D(Collider2D collision)
 		{
+			if (InGameManager.IsInstance() == false) return;
+
 			//TODO 接触物判定
 			if (collision.gameObject)
 			{
 
-                EffectManager.Instance.CreateEffect(EffectID.DestoryEnemy, gameObject.transform.position);
+				EffectManager.Instance.CreateEffect(EffectID.DestoryEnemy, gameObject.transform.position);
 				//復活可能なら
 				if (_canRebirth)
 				{
