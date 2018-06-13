@@ -84,8 +84,8 @@ namespace Play
             else
             {
                 isTarget = Input.GetKeyDown(KeyCode.Space) ? TargetChoice.Next : TargetChoice.None;
-                isSelect = Input.GetKeyDown(KeyCode.Z);
-                isChange = Input.GetKeyDown(KeyCode.C);
+                isSelect = Input.GetKeyDown(KeyCode.C);
+                isChange = Input.GetKeyDown(KeyCode.V);
             }
 
             if (isTarget != TargetChoice.None)
@@ -122,7 +122,7 @@ namespace Play
             if (isChange)
             {
                 if (_targetObject)
-                {         
+                {
                     MoveElement(_targetObject);
                 }
             }
@@ -418,7 +418,7 @@ namespace Play
 
         //復帰演出セット
         void RecoverSet()
-        { 
+        {
             //復帰演出セット＆開始
             GameObject recover = EffectManager.Instance.CreateEffect(EffectID.EnemyRecovery, _targetObject.transform.position);
             recover.GetComponent<UISet>().SetTransform(_targetObject.transform);
