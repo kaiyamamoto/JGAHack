@@ -1585,7 +1585,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1cc148e8fa494f45bf2b7302165a5c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _fixedSentence: "{0}\u4F4D {1}"
+  _fixedSentence: "{0}\u4F4D \"{1}:{2}"
   textHead: Text
   _textsParent: {fileID: 35801121}
 --- !u!1 &1833635799
