@@ -27,16 +27,12 @@ namespace Play.Tutrial
 			Release();
 		}
 
-		public void Set(GameObject obj)
+		public IEnumerator SetForcus(GameObject obj)
 		{
 			_target = obj;
-			StartCoroutine(SetForcus(obj));
-		}
 
-		private IEnumerator SetForcus(GameObject obj)
-		{
 			_back.DOColor(_changeColor, _time);
-			_moveTween = _forcus.transform.DOMove(obj.transform.position, _time);
+			_moveTween = _forcus.transform.DOLocalMove(obj.transform.position, _time);
 
 			yield return new WaitForSeconds(_time);
 		}

@@ -33,6 +33,9 @@ namespace Play.Tutrial
 		[SerializeField]
 		private Forcus _forcus = null;
 
+		[SerializeField]
+		private ButtonIcon _icon = null;
+
 		void Start()
 		{
 			_step = 0;
@@ -64,16 +67,33 @@ namespace Play.Tutrial
 			var data = _stepData[_step];
 			messenger.SetMessagePanel(data.text);
 
+			StartCoroutine(NextCorutine(data));
+		}
+
+		private IEnumerator NextCorutine(StepData data)
+		{
+			_icon.Hide();
+
+			if (_stepData.Count - 1 <= _step)
+			{
+				_forcus.Release();
+				yield break;
+			}
+
 			// フォーカスする
 			if (data.targetObj != null)
 			{
-				_forcus.Set(data.targetObj.gameObject);
+				yield return StartCoroutine(_forcus.SetForcus(data.targetObj.gameObject));
 			}
 			else if (data.isMove)
 			{
 				_forcus.Release();
 			}
+
+			// 右下に対応した画像を表示
+			_icon.Show(data);
 		}
+
 
 		// 確認メソッドたち
 
