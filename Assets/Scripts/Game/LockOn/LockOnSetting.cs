@@ -10,5 +10,9 @@ namespace Play.LockOn
         // ターゲットのゲームオブジェクト
         [SerializeField]
         public GameObject _target = null;
+
+        // TODO:選択したオブジェクトの要素テキスト
+        [SerializeField]
+        public Text _elementText;
     }
 }
