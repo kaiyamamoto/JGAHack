@@ -2207,10 +2207,10 @@ MonoBehaviour:
   _container: {fileID: 0}
   _elementText: {fileID: 0}
   _textList: []
-  _step2Object: {fileID: 114628733162074406}
-  _step4Object: {fileID: 114371380089068104}
-  _step7Object: {fileID: 114432482319336916}
-  _step10Object: {fileID: 114905900437231178}
+  _step2Object: {fileID: 0}
+  _step4Object: {fileID: 0}
+  _step7Object: {fileID: 0}
+  _step10Object: {fileID: 0}
 --- !u!114 &114300794996049362
 MonoBehaviour:
   m_ObjectHideFlags: 1
