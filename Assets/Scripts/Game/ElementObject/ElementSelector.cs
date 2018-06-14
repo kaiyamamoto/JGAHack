@@ -185,6 +185,11 @@ namespace Play
                     }
                 }
             }
+            else
+            {
+
+                ChangeConsoleIcon(0, "Nodata", obj.gameObject);
+            }
 
 
             if (obj.GetComponent<ElementObject>().ElementList.Length != 0)
@@ -245,6 +250,17 @@ namespace Play
                 _console.GetComponent<ConsoleCon>().SetIcon(iconNum, ConsoleCon.CONSOLE_ICON.Shot);
             }
 
+            if (typeName == "Tackle")
+            {
+                _console.GetComponent<ConsoleCon>().SetIcon(iconNum, ConsoleCon.CONSOLE_ICON.Tackle);
+            }
+
+            if (typeName == "RideFloor")
+            {
+                _console.GetComponent<ConsoleCon>().SetIcon(iconNum, ConsoleCon.CONSOLE_ICON.RideOn);
+            }
+
+
             if (typeName == "SideMove")
             {
                 _console.GetComponent<ConsoleCon>().SetIcon(iconNum, ConsoleCon.CONSOLE_ICON.Side);
@@ -259,6 +275,13 @@ namespace Play
             {
 
                 _console.GetComponent<ConsoleCon>().SetIcon(iconNum, ConsoleCon.CONSOLE_ICON.Updown);
+            }
+
+
+            if (typeName == "Nodata")
+            {
+
+                _console.GetComponent<ConsoleCon>().SetIcon(iconNum, ConsoleCon.CONSOLE_ICON.Nodata);
             }
         }
 
@@ -403,7 +426,7 @@ namespace Play
         void CopyEffect()
         {
             //コピー時エフェクト
-            GameObject effect = EffectManager.Instance.CreateEffect(EffectID.Wave, _targetObject.transform.position, 2);
+            GameObject effect = EffectManager.Instance.CreateEffect(EffectID.Wave, _targetObject.transform.position);
             effect.GetComponent<WaveContoller>().setVelocity(gameObject.transform.parent.transform);
         }
 
@@ -411,7 +434,7 @@ namespace Play
         void PasteEffect()
         {
             //送信エフェクト
-            GameObject effect = EffectManager.Instance.CreateEffect(EffectID.Wave, gameObject.transform.parent.position, 2);
+            GameObject effect = EffectManager.Instance.CreateEffect(EffectID.Wave, gameObject.transform.parent.position);
             effect.GetComponent<WaveContoller>().setVelocity(_targetObject.transform);
         }
 
