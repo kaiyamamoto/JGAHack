@@ -61,10 +61,9 @@ namespace Play
 
         void Update()
         {
-            if (!InGameManager.IsInstance())
-            {
-                return;
-            }
+            if (!InGameManager.IsInstance()) return;
+
+            if (InGameManager.Instance.GameState != InGameManager.State.Play) return;
 
             // 選択
             var con = GameController.Instance;
