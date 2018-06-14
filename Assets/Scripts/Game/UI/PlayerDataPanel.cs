@@ -11,20 +11,7 @@ namespace Play
     public class PlayerDataPanel :MonoBehaviour
     {
 
-        public enum CONSOLE_ICON
-        {
-            Direction_Down,
-            Direction_Left,
-            Direction_Right,
-            Direction_Up,
-            Nodata,
-            RideOn,
-            Shot,
-            Side,
-            Stop,
-            Tackle,
-            Updown
-        }
+       
 
         //アイコンセット
         [SerializeField, ReadOnly]
@@ -53,19 +40,19 @@ namespace Play
                 switch (dir)
                 {
                     case Direction.Back:
-                        _icons[slotNum].GetComponent<Image>().sprite = _iconImages[(int)CONSOLE_ICON.Direction_Down];
+                        _icons[slotNum].GetComponent<Image>().sprite = _iconImages[(int)CONSOLE_ICON_ID.Direction_Down];
                         break;
 
                     case Direction.Left:
-                        _icons[slotNum].GetComponent<Image>().sprite = _iconImages[(int)CONSOLE_ICON.Direction_Left];
+                        _icons[slotNum].GetComponent<Image>().sprite = _iconImages[(int)CONSOLE_ICON_ID.Direction_Left];
                         break;
 
                     case Direction.Right:
-                        _icons[slotNum].GetComponent<Image>().sprite = _iconImages[(int)CONSOLE_ICON.Direction_Right];
+                        _icons[slotNum].GetComponent<Image>().sprite = _iconImages[(int)CONSOLE_ICON_ID.Direction_Right];
                         break;
 
                     case Direction.Front:
-                        _icons[slotNum].GetComponent<Image>().sprite = _iconImages[(int)CONSOLE_ICON.Direction_Up];
+                        _icons[slotNum].GetComponent<Image>().sprite = _iconImages[(int)CONSOLE_ICON_ID.Direction_Up];
                         break;
 
                     default:
@@ -76,41 +63,41 @@ namespace Play
 
             if (typeName == "TestShot")
             {
-                _icons[slotNum].GetComponent<Image>().sprite = _iconImages[(int)CONSOLE_ICON.Shot];
+                _icons[slotNum].GetComponent<Image>().sprite = _iconImages[(int)CONSOLE_ICON_ID.Shot];
             }
 
             if (typeName == "Tackle")
             {
-                _icons[slotNum].GetComponent<Image>().sprite = _iconImages[(int)CONSOLE_ICON.Tackle];
+                _icons[slotNum].GetComponent<Image>().sprite = _iconImages[(int)CONSOLE_ICON_ID.Tackle];
             }
 
             if (typeName == "RideFloor")
             {
-                _icons[slotNum].GetComponent<Image>().sprite = _iconImages[(int)CONSOLE_ICON.RideOn];
+                _icons[slotNum].GetComponent<Image>().sprite = _iconImages[(int)CONSOLE_ICON_ID.RideOn];
             }
 
 
             if (typeName == "SideMove")
             {
-                _icons[slotNum].GetComponent<Image>().sprite = _iconImages[(int)CONSOLE_ICON.Side];
+                _icons[slotNum].GetComponent<Image>().sprite = _iconImages[(int)CONSOLE_ICON_ID.Side];
             }
 
             if (typeName == "Stay")
             {
-                _icons[slotNum].GetComponent<Image>().sprite = _iconImages[(int)CONSOLE_ICON.Stop];
+                _icons[slotNum].GetComponent<Image>().sprite = _iconImages[(int)CONSOLE_ICON_ID.Stop];
             }
 
             if (typeName == "UpDownMove")
             {
 
-                _icons[slotNum].GetComponent<Image>().sprite = _iconImages[(int)CONSOLE_ICON.Updown];
+                _icons[slotNum].GetComponent<Image>().sprite = _iconImages[(int)CONSOLE_ICON_ID.Updown];
             }
 
 
             if (typeName == "Nodata")
             {
 
-                _icons[slotNum].GetComponent<Image>().sprite = _iconImages[(int)CONSOLE_ICON.Nodata];
+                _icons[slotNum].GetComponent<Image>().sprite = _iconImages[(int)CONSOLE_ICON_ID.Nodata];
             }
         }
 
@@ -119,7 +106,7 @@ namespace Play
           
             for (int i = 0; i < _icons.Length; i++)
             {
-                _icons[i].GetComponent<Image>().sprite = _iconImages[(int)CONSOLE_ICON.Nodata];
+                _icons[i].GetComponent<Image>().sprite = _iconImages[(int)CONSOLE_ICON_ID.Nodata];
             }        
         }
 
