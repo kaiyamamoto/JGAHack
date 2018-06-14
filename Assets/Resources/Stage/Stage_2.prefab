@@ -4006,6 +4006,10 @@ MonoBehaviour:
   _shotOffset: {x: 0, y: 0, z: 0}
   _shotInterval: 0.2
   _shotCount: 0
+  _canShot: 0
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &114234176614772666
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4114,6 +4118,10 @@ MonoBehaviour:
   _shotOffset: {x: 0, y: 0, z: 0}
   _shotInterval: 0.2
   _shotCount: 0
+  _canShot: 0
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &114263122582453178
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4131,6 +4139,10 @@ MonoBehaviour:
   _shotOffset: {x: 0, y: 0, z: 0}
   _shotInterval: 0.2
   _shotCount: 0
+  _canShot: 0
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &114265733719327664
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4208,6 +4220,10 @@ MonoBehaviour:
   _shotOffset: {x: 0, y: 0, z: 0}
   _shotInterval: 0.2
   _shotCount: 0
+  _canShot: 0
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &114302649367716538
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4335,6 +4351,10 @@ MonoBehaviour:
   _shotOffset: {x: 0, y: 0, z: 0}
   _shotInterval: 0.2
   _shotCount: 0
+  _canShot: 0
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &114396005554269086
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4461,6 +4481,10 @@ MonoBehaviour:
   _shotOffset: {x: 0, y: 0, z: 0}
   _shotInterval: 0.2
   _shotCount: 0
+  _canShot: 0
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &114476145090073072
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4634,6 +4658,10 @@ MonoBehaviour:
   _shotOffset: {x: 0, y: 0, z: 0}
   _shotInterval: 0.2
   _shotCount: 0
+  _canShot: 0
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &114605047593555450
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4780,6 +4808,10 @@ MonoBehaviour:
   _shotOffset: {x: 0, y: 0, z: 0}
   _shotInterval: 0.2
   _shotCount: 0
+  _canShot: 0
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &114801464292739208
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4828,6 +4860,10 @@ MonoBehaviour:
   _shotOffset: {x: 0, y: 0, z: 0}
   _shotInterval: 0.2
   _shotCount: 0
+  _canShot: 0
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &114843268830208066
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4842,9 +4878,6 @@ MonoBehaviour:
   _targetObject: {fileID: 0}
   _console: {fileID: 0}
   _container: {fileID: 0}
-  _elementText: {fileID: 114226643485333420, guid: 546392ba5ab9045488d4cf8c5c867df5,
-    type: 2}
-  _textList: []
 --- !u!114 &114892541673603608
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4981,6 +5014,10 @@ MonoBehaviour:
   _shotOffset: {x: 0, y: 0, z: 0}
   _shotInterval: 0.2
   _shotCount: 0
+  _canShot: 0
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!198 &198454642867229068
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -10234,7 +10271,7 @@ Tilemap:
   - first: {x: -13, y: -3, z: 0}
     second:
       m_TileIndex: 3
-      m_TileSpriteIndex: 13
+      m_TileSpriteIndex: 11
       m_TileMatrixIndex: 5
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 0}
@@ -12241,7 +12278,7 @@ Tilemap:
   - first: {x: -13, y: 7, z: 0}
     second:
       m_TileIndex: 3
-      m_TileSpriteIndex: 13
+      m_TileSpriteIndex: 11
       m_TileMatrixIndex: 5
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 0}
@@ -12277,7 +12314,7 @@ Tilemap:
   - first: {x: -6, y: 7, z: 0}
     second:
       m_TileIndex: 3
-      m_TileSpriteIndex: 13
+      m_TileSpriteIndex: 11
       m_TileMatrixIndex: 5
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 0}
@@ -12478,11 +12515,11 @@ Tilemap:
     m_Data: {fileID: 21300004, guid: 4aef3cff113085145bf671058677fb17, type: 3}
   - m_RefCount: 22
     m_Data: {fileID: 21300002, guid: 4aef3cff113085145bf671058677fb17, type: 3}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 3
+    m_Data: {fileID: 21300000, guid: 4aef3cff113085145bf671058677fb17, type: 3}
   - m_RefCount: 18
     m_Data: {fileID: 21300010, guid: 4aef3cff113085145bf671058677fb17, type: 3}
-  - m_RefCount: 215
+  - m_RefCount: 212
     m_Data: {fileID: 21300000, guid: d37c2859d63e4da42806281348d3f7da, type: 3}
   - m_RefCount: 14
     m_Data: {fileID: 21300006, guid: 4aef3cff113085145bf671058677fb17, type: 3}
