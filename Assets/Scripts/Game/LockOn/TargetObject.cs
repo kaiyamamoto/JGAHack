@@ -42,34 +42,17 @@ namespace Play.LockOn
             // ======================================================
             // 子に要素追加
             var setting = Setting;
-            var text = GameObject.Instantiate(setting._elementText);
-            transform.SetChild(text.gameObject);
+            var canvas = new GameObject("Canvas");
+            transform.SetChild(canvas.gameObject);
             // ターゲットマーカー作成
             var obj = Instantiate(setting._target);
-            text.transform.SetChild(obj);
-            text.transform.localPosition = Vector3.zero;
-            text.gameObject.AddComponent<Canvas>();
-            var scaler = text.gameObject.AddComponent<CanvasScaler>();
+            canvas.transform.SetChild(obj);
+            canvas.transform.localPosition = Vector3.zero;
+            canvas.gameObject.AddComponent<Canvas>();
+            var scaler = canvas.gameObject.AddComponent<CanvasScaler>();
             scaler.dynamicPixelsPerUnit = 20;
-            text.transform.localPosition = new Vector3(0.0f, 0.5f, 0.0f);
-            text.transform.localScale = new Vector3(0.3f, 0.3f, 1.0f);
-            text.fontSize = 1;
-            text.alignment = TextAnchor.MiddleLeft;
-
-            // テキスト変更
-
-            text.text = string.Empty;
-            foreach (var element in ElementObj.ElementList)
-            {
-                if (element)
-                {
-                    text.text += element.Type.ToString() + "\n";
-                }
-            }
-            if (text.text == string.Empty)
-            {
-                text.text = "NoneElement";
-            }
+            canvas.transform.localPosition = new Vector3(0.0f, 0.5f, 0.0f);
+            canvas.transform.localScale = new Vector3(0.3f, 0.3f, 1.0f);
             // ======================================================
         }
 
@@ -100,7 +83,7 @@ namespace Play.LockOn
             var childs = transform.GetAllChild();
             foreach (var c in childs)
             {
-                if (c.name == "ElementText(Clone)")
+                if (c.name == "Canvas")
                 {
                     Destroy(c.gameObject);
                 }
