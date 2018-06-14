@@ -14,7 +14,7 @@ namespace Play.Tutrial
         [SerializeField]
         private ElementObject _step7Object = null;
         [SerializeField]
-        private ElementObject _step10Object = null;
+        private ElementObject _step9Object = null;
 
         /// <summary>
         /// オブジェクトをターゲット
@@ -42,8 +42,8 @@ namespace Play.Tutrial
                         base.TargetObject(_step7Object);
                         tutrial.NextStep();
                         break;
-                    case 9:
-                        base.TargetObject(_step10Object);
+                    case 8:
+                        base.TargetObject(_step9Object);
                         tutrial.NextStep();
                         break;
                     default:
