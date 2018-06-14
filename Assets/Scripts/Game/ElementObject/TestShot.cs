@@ -122,12 +122,11 @@ namespace Play.Element
                 hitInfo = Physics2D.Raycast(gameObject.transform.position, _rayDirection, _rayDistance, _layerMask);
                 //レイの当たり判定
                 if (hitInfo.collider != null)
-                {
-                    Debug.Log("うてん");
+                {                 
                     _canShot = false;
                 }
-                else {
-                    Debug.Log("うてる");
+                else
+                {                
                     _canShot = true;
                 }
 
