@@ -100,10 +100,14 @@ namespace Play
             {
                 if (_targetObject)
                 {
+
+                    
                     //コピー時エフェクト
                     CopyEffect();
 
                     SelectObject();
+
+                    _container.DataIconSet();
                 }
             }
 

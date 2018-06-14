@@ -49,6 +49,13 @@ namespace Play.Element
             //Debug.Log(_list[2].Type);
 
 
+            
+            return true;
+        }
+
+
+        public void DataIconSet()
+        {
             for (int i = 0; i < _list.Count; i++)
             {
                 if (_list[i].Type == ElementType.Action)
@@ -64,7 +71,6 @@ namespace Play.Element
                     _dataPanel.GetComponent<PlayerDataPanel>().SetIcon(2, _list[i].GetType().Name, GetComponent<DiectionTest>().GetDir());
                 }
             }
-            return true;
         }
 
         /// <summary>
