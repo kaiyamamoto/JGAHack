@@ -203,62 +203,62 @@ namespace Play
                 switch (obj.GetComponent<DiectionTest>().GetDir())
                 {
                     case Direction.Back:
-                        _console.GetComponent<ConsoleCon>().SetIcon(iconNum, ConsoleCon.CONSOLE_ICON.Direction_Down);
+                        _console.GetComponent<ConsoleCon>().SetIcon(iconNum, CONSOLE_ICON_ID.Direction_Down);
                         break;
 
                     case Direction.Left:
-                        _console.GetComponent<ConsoleCon>().SetIcon(iconNum, ConsoleCon.CONSOLE_ICON.Direction_Left);
+                        _console.GetComponent<ConsoleCon>().SetIcon(iconNum, CONSOLE_ICON_ID.Direction_Left);
                         break;
 
                     case Direction.Right:
-                        _console.GetComponent<ConsoleCon>().SetIcon(iconNum, ConsoleCon.CONSOLE_ICON.Direction_Right);
+                        _console.GetComponent<ConsoleCon>().SetIcon(iconNum, CONSOLE_ICON_ID.Direction_Right);
                         break;
 
                     case Direction.Front:
-                        _console.GetComponent<ConsoleCon>().SetIcon(iconNum, ConsoleCon.CONSOLE_ICON.Direction_Up);
+                        _console.GetComponent<ConsoleCon>().SetIcon(iconNum, CONSOLE_ICON_ID.Direction_Up);
                         break;
 
                     default:
-
+                        Debug.Log("武家ている");
                         break;
                 }
             }
 
             if (typeName == "TestShot")
             {
-                _console.GetComponent<ConsoleCon>().SetIcon(iconNum, ConsoleCon.CONSOLE_ICON.Shot);
+                _console.GetComponent<ConsoleCon>().SetIcon(iconNum, CONSOLE_ICON_ID.ShotRock);
             }
 
             if (typeName == "Tackle")
             {
-                _console.GetComponent<ConsoleCon>().SetIcon(iconNum, ConsoleCon.CONSOLE_ICON.Tackle);
+                _console.GetComponent<ConsoleCon>().SetIcon(iconNum, CONSOLE_ICON_ID.TackleRock);
             }
 
             if (typeName == "RideFloor")
             {
-                _console.GetComponent<ConsoleCon>().SetIcon(iconNum, ConsoleCon.CONSOLE_ICON.RideOn);
+                _console.GetComponent<ConsoleCon>().SetIcon(iconNum, CONSOLE_ICON_ID.RideOnRock);
             }
 
             if (typeName == "SideMove")
             {
-                _console.GetComponent<ConsoleCon>().SetIcon(iconNum, ConsoleCon.CONSOLE_ICON.Side);
+                _console.GetComponent<ConsoleCon>().SetIcon(iconNum, CONSOLE_ICON_ID.Side);
             }
 
             if (typeName == "Stay")
             {
-                _console.GetComponent<ConsoleCon>().SetIcon(iconNum, ConsoleCon.CONSOLE_ICON.Stop);
+                _console.GetComponent<ConsoleCon>().SetIcon(iconNum, CONSOLE_ICON_ID.Stop);
             }
 
             if (typeName == "UpDownMove")
             {
 
-                _console.GetComponent<ConsoleCon>().SetIcon(iconNum, ConsoleCon.CONSOLE_ICON.Updown);
+                _console.GetComponent<ConsoleCon>().SetIcon(iconNum, CONSOLE_ICON_ID.Updown);
             }
 
             if (typeName == "Nodata")
             {
 
-                _console.GetComponent<ConsoleCon>().SetIcon(iconNum, ConsoleCon.CONSOLE_ICON.Nodata);
+                _console.GetComponent<ConsoleCon>().SetIcon(iconNum, CONSOLE_ICON_ID.Nodata);
             }
         }
 

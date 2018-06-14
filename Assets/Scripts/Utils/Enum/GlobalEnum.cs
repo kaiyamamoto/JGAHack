@@ -78,4 +78,28 @@ public static class EffectIDEx
         }
         return isRect;
     }
+
+
+
+    
+}
+
+
+
+public enum CONSOLE_ICON_ID
+{
+    Direction_Down,
+    Direction_Left,
+    Direction_Right,
+    Direction_Up,
+    Nodata,
+    RideOn,
+    RideOnRock,
+    Shot,
+    ShotRock,
+    Side,
+    Stop,
+    Tackle,
+    TackleRock,
+    Updown
 }

@@ -128,7 +128,7 @@ namespace Play.Element
 			// 忘れてはいけないものがない…
 			if (_rememberList == null)
 			{
-				int index = (int)ElementType.length - 1;
+				int index = (int)ElementType.length;
 				_rememberList = new ElementBase[index];
 
 				// 現在の要素を止める
