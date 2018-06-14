@@ -482,7 +482,7 @@ MonoBehaviour:
   _panelList: []
   _initPos: {x: 15, y: 0, z: 0}
   _popOffSet: {x: 15, y: 15}
-  STAGE_NUM: 20
+  STAGE_NUM: 10
 --- !u!1 &525899249
 GameObject:
   m_ObjectHideFlags: 0
