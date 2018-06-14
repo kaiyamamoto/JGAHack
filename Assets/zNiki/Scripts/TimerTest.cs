@@ -3,28 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TimerTest : MonoBehaviour {
+public class TimerTest : MonoBehaviour
+{
 
-    [SerializeField]
-    private Play.Timer timer;
+	[SerializeField]
+	private Play.Timer timer;
 
-    [SerializeField]
-    private Text minuteText;
-    [SerializeField]
-    private Text secondText;
-    [SerializeField]
-    private Text millisecondText;
+	[SerializeField]
+	private Text minuteText;
+	[SerializeField]
+	private Text secondText;
+	[SerializeField]
+	private Text millisecondText;
 
 	// Use this for initialization
-	void Start () {
-        
+	void Start()
+	{
+
 	}
-	
+
 	// Update is called once per frame
-	void Update () {
-        timer.StartTimer();
-        minuteText.text = "Min: " + timer.GetMinute().ToString();
-        secondText.text = "Sec: " + timer.GetSecond().ToString();
-        millisecondText.text = "Msec: " + timer.GetMillisecond().ToString();
-    }
+	void Update()
+	{
+		timer.StartTimer();
+		millisecondText.text = "Msec: " + timer.GetMillisecond().ToString();
+	}
 }

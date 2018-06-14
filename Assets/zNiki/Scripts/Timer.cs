@@ -7,10 +7,6 @@ namespace Play
 {
 	public class Timer : MonoBehaviour
 	{
-		// 分数カウント
-		private int _minuteCount;
-		// 秒数カウント
-		private float _secondCount;
 		// 経過時間カウント（ミリ秒）
 		private float _msecondCount;
 		// 計測中か
@@ -28,20 +24,11 @@ namespace Play
 		}
 		private IEnumerator TimerCorutine()
 		{
-			//計測中なら
-			while (_isCounting)
+			yield return new WaitWhile(() =>
 			{
-				//時間加算
-				_secondCount += Time.deltaTime;
 				_msecondCount += Time.deltaTime;
-
-				if (_secondCount >= 60.0f)
-				{
-					_minuteCount++;
-					_secondCount -= 60.0f;
-				}
-				yield return null;
-			}
+				return _isCounting;
+			});
 		}
 
 		//時間計測停止
@@ -53,28 +40,22 @@ namespace Play
 		//時間計測リセット
 		public void ResetTimer()
 		{
-			_minuteCount = 0;
-			_secondCount = 0;
 			_msecondCount = 0;
 		}
 
 		// テキストに表示
-		public string DisplayTime()
+		static public string DisplayTime(float mScecond)
 		{
-			return _minuteCount.ToString("00") + ":" + _secondCount.ToString("00.00");
+			var time = mScecond;
+			int minute = 0;
+			if (time >= 60f)
+			{
+				minute++;
+				time = time - 60;
+			}
+			return minute.ToString("00") + ":" + time.ToString("00.00");
 		}
 
-		// タイム取得（分）
-		public int GetMinute()
-		{
-			return _minuteCount;
-		}
-
-		// タイム取得（秒）
-		public float GetSecond()
-		{
-			return _secondCount;
-		}
 
 		// タイム取得（ミリ秒）
 		public float GetMillisecond()

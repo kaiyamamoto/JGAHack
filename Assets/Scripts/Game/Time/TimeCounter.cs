@@ -32,8 +32,8 @@ namespace Play
 
 		void Update()
 		{
-			_text.text = _timer.DisplayTime();
+			var time = _timer.GetMillisecond();
+			_text.text = Timer.DisplayTime(time);
 		}
-
 	}
 }
