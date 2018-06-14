@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Extensions;
 
 
 
@@ -33,6 +34,17 @@ namespace Play.Element
         // レンダラー
         SpriteRenderer _renderer = null;
 
+
+        [SerializeField]
+        bool _canShot;
+
+        [SerializeField]
+         LayerMask _layerMask;
+        //射撃可能判定用レイ情報
+        Vector2 _rayDirection;
+        //TODO レイの距離(今は大体１マス分)
+        float _rayDistance = 1.0f;
+
         void Awake()
         {
             _type = ElementType.Action;
@@ -42,12 +54,15 @@ namespace Play.Element
         // Use this for initialization
         public override void Initialize()
         {
-                   
+            //マスク設定
+            _layerMask = LayerMask.GetMask(new string[] { "Default", "Immortal" });
         }
 
 
         public void OnEnable()
         {
+            //マスク設定
+            _layerMask = LayerMask.GetMask(new string[] { "Default", "Immortal" });
             //弾置き場探し
             _bulletPlace = GameObject.Find("BulletPlace");
             //発射カウントのリセット
@@ -99,21 +114,41 @@ namespace Play.Element
                         break;
                 }
 
-                // 弾丸の複製
-                GameObject bullets = GameObject.Instantiate(_bullet) as GameObject;
-                // 弾速設定
-                bullets.GetComponent<Rigidbody2D>().velocity = _bulletVel * _bulletSpeed;
-                // 弾丸の位置を調整
-                bullets.transform.position = transform.position + _shotOffset;
-                if (_bulletPlace)
-                {
-                    //弾丸を弾置き場の子供に設定
-                    bullets.transform.parent = _bulletPlace.transform;
+                //レイによる射撃可能判定
+                RaycastHit2D hitInfo;
+                //レイの向き
+                _rayDirection = _bulletVel;
+                //レイの作成
+                hitInfo = Physics2D.Raycast(gameObject.transform.position, _rayDirection, _rayDistance, _layerMask);
+                //レイの当たり判定
+                if (hitInfo.collider != null)
+                {                 
+                    _canShot = false;
                 }
                 else
+                {                
+                    _canShot = true;
+                }
+
+                //打てるなら打つ
+                if (_canShot)
                 {
-                    //弾丸をゲームオブジェクトの子供に設定
-                    bullets.transform.parent = transform;
+                    // 弾丸の複製
+                    GameObject bullets = GameObject.Instantiate(_bullet) as GameObject;
+                    // 弾速設定
+                    bullets.GetComponent<Rigidbody2D>().velocity = _bulletVel * _bulletSpeed;
+                    // 弾丸の位置を調整
+                    bullets.transform.position = transform.position + _shotOffset;
+                    if (_bulletPlace)
+                    {
+                        //弾丸を弾置き場の子供に設定
+                        bullets.transform.parent = _bulletPlace.transform;
+                    }
+                    else
+                    {
+                        //弾丸をゲームオブジェクトの子供に設定
+                        bullets.transform.parent = transform;
+                    }
                 }
 
                 //発車時間の再設定
