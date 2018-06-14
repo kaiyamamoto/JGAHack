@@ -39,7 +39,17 @@ public class ExitChecker : MonoBehaviour
 
         bool result = false;
 
-        yield return StartCoroutine(pop.ShowPopUp("ゲームを終了しますか？", (flag) => result = flag));
+        yield return StartCoroutine(pop.ShowPopUp("ゲームを終了しますか？", (flag) => result = flag,
+        () =>
+        {
+            var con = GameController.Instance;
+            if (con.GetConnectFlag())
+            {
+                if (con.ButtonDown(Button.BACK)) return true;
+            }
+            else if (Input.GetKeyDown(KeyCode.Escape)) return true;
+            return false;
+        }));
         Time.timeScale = 1.0f;
 
         if (result) Application.Quit();

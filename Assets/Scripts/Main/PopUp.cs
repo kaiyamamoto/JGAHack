@@ -38,12 +38,16 @@ public class PopUp : MonoBehaviour
 
     private bool _push = false;
 
-    public IEnumerator ShowPopUp(string text, System.Action<bool> action)
+    System.Func<bool> _inputBack = null;
+
+    public IEnumerator ShowPopUp(string text, System.Action<bool> action, System.Func<bool> input = null)
     {
         _text.text = text;
 
         _select[0] = _yes;
         _select[1] = _no;
+
+        _inputBack = input;
 
         // 矢印の設定
         SetArrow();
@@ -136,6 +140,12 @@ public class PopUp : MonoBehaviour
                 _selectNum = 1;
                 _push = true;
             }
+        }
+
+        if (_inputBack())
+        {
+            _selectNum = 1;
+            _push = true;
         }
     }
 
