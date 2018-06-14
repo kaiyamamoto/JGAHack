@@ -159,26 +159,7 @@ namespace Play
             //Consoleをオブジェクトにセット
             _console.GetComponent<UISet>().SetTransform(obj.transform);
 
-            if (obj.GetComponent<ElementObject>().ActionList.Count != 0)
-            {
-                //アクション画像
-                for (int i = 0; i < obj.GetComponent<ElementObject>().ActionList.Count; i++)
-                {
-                    if (obj.GetComponent<ElementObject>().ActionList[i])
-                    {
-                        if (obj.GetComponent<ElementObject>().ActionList[i].Type == ElementType.Action)
-                        {
-                            var element = obj.GetComponent<ElementObject>().ActionList[i].GetType().Name;
-                            ChangeConsoleIcon(0, element, obj.gameObject);
-                        }
-                    }
-                }
-            }
-            else
-            {
 
-                ChangeConsoleIcon(0, "Nodata", obj.gameObject);
-            }
 
             if (obj.GetComponent<ElementObject>().ElementList.Length != 0)
             {
@@ -188,16 +169,26 @@ namespace Play
                     if (obj.GetComponent<ElementObject>().ElementList[i])
                     {
 
-                        if (obj.GetComponent<ElementObject>().ElementList[i].Type == ElementType.Move)
+                        if (obj.GetComponent<ElementObject>().ElementList[i].Type == ElementType.Action)
+                        {
+
+                            var element = obj.GetComponent<ElementObject>().ElementList[i].GetType().Name;
+                            ChangeConsoleIcon(0, element, obj.gameObject);
+
+                        }
+                        else if (obj.GetComponent<ElementObject>().ElementList[i].Type == ElementType.Move)
                         {
                             var element = obj.GetComponent<ElementObject>().ElementList[i].GetType().Name;
                             ChangeConsoleIcon(1, element, obj.gameObject);
                         }
-
-                        if (obj.GetComponent<ElementObject>().ElementList[i].Type == ElementType.Direction)
+                        else if (obj.GetComponent<ElementObject>().ElementList[i].Type == ElementType.Direction)
                         {
                             var element = obj.GetComponent<ElementObject>().ElementList[i].GetType().Name;
                             ChangeConsoleIcon(2, element, obj.gameObject);
+                        }
+                        else
+                        {
+                            ChangeConsoleIcon(0, "Nodata", obj.gameObject);
                         }
                     }
                 }

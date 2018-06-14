@@ -9,8 +9,9 @@ namespace Play.Element
     {
         None = -1,
         Move = 0,
-        Direction,
         Action,
+        Direction,
+        
         length
     }
 
