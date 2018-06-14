@@ -109,6 +109,11 @@ public class PopUp : MonoBehaviour
             {
                 _push = true;
             }
+            if (controller.ButtonDown(Button.B))
+            {
+                _selectNum = 1;
+                _push = true;
+            }
         }
         else
         {
@@ -121,8 +126,14 @@ public class PopUp : MonoBehaviour
                 SetArrow();
             }
 
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.C))
             {
+                _push = true;
+            }
+
+            if (Input.GetKeyDown(KeyCode.V))
+            {
+                _selectNum = 1;
                 _push = true;
             }
         }

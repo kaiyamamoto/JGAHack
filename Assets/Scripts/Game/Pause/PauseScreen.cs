@@ -157,7 +157,7 @@ namespace Play
                 SelectChange(1);
             }
 
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.C))
             {
                 StartCoroutine(ItemCorutine(_itemData[_selectIndex]));
             }

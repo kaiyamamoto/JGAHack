@@ -104,7 +104,7 @@ namespace Main
             else
             {
                 // キーボード
-                if (Input.GetKeyDown(KeyCode.Space))
+                if (Input.GetKeyDown(KeyCode.V))
                 {
                     DisplayManager.Instance.ChangeDisplay(_titleDisplay);
                 }
@@ -123,7 +123,7 @@ namespace Main
                     _timePanel.UpdateView(_phoneScreen.SelectIndex);
                 }
 
-                if (Input.GetKeyDown(KeyCode.Z))
+                if (Input.GetKeyDown(KeyCode.C))
                 {
                     Play.InGameManager.Destroy();
                     var index = _phoneScreen.SelectIndex;

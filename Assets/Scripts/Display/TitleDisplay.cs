@@ -66,7 +66,7 @@ namespace Main
             }
             else
             {
-                if (Input.anyKeyDown)
+                if (Input.GetKeyDown(KeyCode.C))
                 {
                     StartCoroutine(Change());
                 }
