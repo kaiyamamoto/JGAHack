@@ -49,26 +49,11 @@ namespace Play.Element
             //Debug.Log(_list[2].Type);
 
 
-            for (int i = 0; i < _list.Count; i++)
-            {
-                if (_list[i].Type == ElementType.Action)
-                {
-                    _dataPanel.GetComponent<PlayerDataPanel>().SetIcon(0, _list[i].GetType().Name, GetComponent<DiectionTest>().GetDir());
-                }
-                else if (_list[i].Type == ElementType.Move)
-                {
-                    _dataPanel.GetComponent<PlayerDataPanel>().SetIcon(1, _list[i].GetType().Name, GetComponent<DiectionTest>().GetDir());
-                }
-                else if (_list[i].Type == ElementType.Direction)
-                {
-                    _dataPanel.GetComponent<PlayerDataPanel>().SetIcon(2, _list[i].GetType().Name, GetComponent<DiectionTest>().GetDir());
-                }
-            }
-
+            
             return true;
         }
 
-
+    
         public void DataIconSet()
         {
             for (int i = 0; i < _list.Count; i++)
