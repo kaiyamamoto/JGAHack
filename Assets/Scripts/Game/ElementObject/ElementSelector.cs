@@ -32,12 +32,6 @@ namespace Play
         [SerializeField, ReadOnly]
         private ElementContainer _container = null;
 
-        // TODO:選択したオブジェクトの要素テキスト
-        [SerializeField]
-        public Text _elementText;
-        [SerializeField, ReadOnly]
-        private Text[] _textList = null;
-
         // ロックオン
         private LockOn.LockOn _lockOn = null;
 
@@ -50,10 +44,6 @@ namespace Play
         {
             // コンテナ取得
             _container = GetComponent<ElementContainer>();
-
-            // TODO: テキストリスト作成
-            int num = (int)ElementType.length - 1;
-            _textList = new Text[num];
 
             // ロックオン関連の初期化
             _lockOn = this.gameObject.AddComponent<LockOn.LockOn>();
@@ -149,7 +139,7 @@ namespace Play
             // 要素をターゲット
             TargetElementObject(obj);
 
-            ////Console更新
+            // Console更新
             ConsoleUpDate(obj);
             //操作ガイドの変更
             GuidUI.Instance.GetComponent<GuidUI>().ChangeGuid(GuidUI.GUID_STEP.Lockon);
@@ -158,7 +148,6 @@ namespace Play
         //Console更新
         private void ConsoleUpDate(ElementObject obj)
         {
-
             //古いConsoleを破棄
             if (_console)
             {
@@ -190,7 +179,6 @@ namespace Play
 
                 ChangeConsoleIcon(0, "Nodata", obj.gameObject);
             }
-
 
             if (obj.GetComponent<ElementObject>().ElementList.Length != 0)
             {
@@ -260,7 +248,6 @@ namespace Play
                 _console.GetComponent<ConsoleCon>().SetIcon(iconNum, ConsoleCon.CONSOLE_ICON.RideOn);
             }
 
-
             if (typeName == "SideMove")
             {
                 _console.GetComponent<ConsoleCon>().SetIcon(iconNum, ConsoleCon.CONSOLE_ICON.Side);
@@ -277,14 +264,12 @@ namespace Play
                 _console.GetComponent<ConsoleCon>().SetIcon(iconNum, ConsoleCon.CONSOLE_ICON.Updown);
             }
 
-
             if (typeName == "Nodata")
             {
 
                 _console.GetComponent<ConsoleCon>().SetIcon(iconNum, ConsoleCon.CONSOLE_ICON.Nodata);
             }
         }
-
 
         private void ConsoleOut()
         {
@@ -349,8 +334,6 @@ namespace Play
             _container.ReceiveAllElement(_targetObject.ElementList);
             // ターゲット解除
             TargetUIRelease();
-            // TODO: テキスト追加
-            AddText(_container.List.ToArray());
         }
 
         /// <summary>
@@ -358,13 +341,6 @@ namespace Play
         /// </summary>
         private void SelectRelease()
         {
-            foreach (var text in _textList)
-            {
-                if (text)
-                {
-                    GameObject.Destroy(text.gameObject);
-                }
-            }
             _container.AllDelete();
         }
 
@@ -387,40 +363,6 @@ namespace Play
             // ターゲット解除
             TargetUIRelease();
         }
-        // TODO: 要素テキスト追加
-        private void AddText(ElementBase[] elements)
-        {
-            // テキスト削除
-            float y = 0.0f;
-            foreach (var element in elements)
-            {
-                if (element == null)
-                {
-                    continue;
-                }
-
-                var type = element.Type;
-
-                // 子に要素追加
-                var pos = new Vector3(-430.0f, -50.0f + y, 0.0f);
-                var text = GameObject.Instantiate(_elementText);
-
-                // UIルート取得
-                var root = InGameManager.Instance.UIRoot;
-                root.gameObject.transform.SetChild(text.gameObject);
-
-                text.transform.localPosition = pos;
-
-                // テキスト変更
-                text.text = type.ToString();
-
-                _textList[(int)type] = text;
-
-                y -= 30.0f;
-            }
-        }
-
-
 
         //コピー時エフェクト
         void CopyEffect()
@@ -446,30 +388,6 @@ namespace Play
             recover.GetComponent<UISet>().SetTransform(_targetObject.transform);
             recover.GetComponent<EnemyRecovery>().SetTime(_targetObject.GetComponent<ElementObject>().GetReturnTime());
             _targetObject.GetComponent<ElementObject>().EffectUpDate(recover);
-        }
-
-
-
-
-        /// <summary>
-        /// TODO:左クリックしたオブジェクトを取得 
-        /// </summary>
-        /// <returns></returns>
-        private ElementObject GetClickObject()
-        {
-            ElementObject result = null;
-
-            // 左クリックされた場所のオブジェクトを取得
-            if (Input.GetMouseButtonDown(0))
-            {
-                Vector2 tapPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                Collider2D collition2d = Physics2D.OverlapPoint(tapPoint);
-                if (collition2d)
-                {
-                    result = collition2d.GetComponent<ElementObject>();
-                }
-            }
-            return result;
         }
     }
 }
