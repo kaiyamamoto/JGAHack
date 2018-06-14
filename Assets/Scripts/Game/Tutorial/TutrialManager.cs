@@ -6,80 +6,120 @@ using Extensions;
 
 namespace Play.Tutrial
 {
-    public class TutrialManager : SingletonMonoBehaviour<TutrialManager>
-    {
-        [System.Serializable]
-        public struct StepData
-        {
-            public string text;
-            public bool isMove;
-            public bool isTarget;
-            public bool isCopy;
-            public bool isPaste;
-        }
+	public class TutrialManager : SingletonMonoBehaviour<TutrialManager>
+	{
+		[System.Serializable]
+		public struct StepData
+		{
+			public string text;
+			public bool isMove;
+			public bool isTarget;
+			public bool isCopy;
+			public bool isPaste;
+			public Element.ElementObject targetObj;
+		}
 
-        [SerializeField]
-        private List<StepData> _stepData = new List<StepData>();
+		[SerializeField]
+		private List<StepData> _stepData = new List<StepData>();
 
-        [SerializeField, ReadOnly]
-        private int _step = 0;
+		[SerializeField, ReadOnly]
+		private int _step = 0;
 
-        public int Step
-        {
-            get { return _step; }
-        }
+		public int Step
+		{
+			get { return _step; }
+		}
 
-        void Start()
-        {
-            _step = 0;
-            StartCoroutine(StartText());
-        }
+		[SerializeField]
+		private Forcus _forcus = null;
 
-        IEnumerator StartText()
-        {
-            var manager = InGameManager.Instance;
-            var cameraMan = manager.CameraManager;
+		[SerializeField]
+		private ButtonIcon _icon = null;
 
-            yield return new WaitUntil(() => cameraMan.GetEndProduction());
+		void Start()
+		{
+			_step = 0;
+			_forcus.Release();
+			StartCoroutine(StartText());
+		}
 
-            var messenger = manager.Messenger;
-            messenger.SetMessagePanel(_stepData[_step].text);
-        }
+		IEnumerator StartText()
+		{
+			var manager = InGameManager.Instance;
+			var cameraMan = manager.CameraManager;
 
-        /// <summary>
-        /// 次のステップに移行
-        /// </summary>
-        public void NextStep()
-        {
-            if (_stepData.Count - 1 <= _step) return;
+			yield return new WaitUntil(() => cameraMan.GetEndProduction());
 
-            _step++;
-            var manager = InGameManager.Instance;
-            var messenger = manager.Messenger;
-            var data = _stepData[_step];
-            messenger.SetMessagePanel(data.text);
-        }
+			var messenger = manager.Messenger;
+			messenger.SetMessagePanel(_stepData[_step].text);
+		}
 
-        // 確認メソッドたち
+		/// <summary>
+		/// 次のステップに移行
+		/// </summary>
+		public void NextStep()
+		{
+			if (_stepData.Count - 1 <= _step) return;
 
-        public bool CanTarget()
-        {
-            return _stepData[_step].isTarget;
-        }
+			_step++;
+			var manager = InGameManager.Instance;
+			var messenger = manager.Messenger;
+			var data = _stepData[_step];
+			messenger.SetMessagePanel(data.text);
 
-        public bool CanCopy()
-        {
-            return _stepData[_step].isCopy;
-        }
+			StartCoroutine(NextCorutine(data));
+		}
 
-        public bool CanMove()
-        {
-            return _stepData[_step].isMove;
-        }
+		private IEnumerator NextCorutine(StepData data)
+		{
+			_icon.Hide();
 
-        public bool CanPaste()
-        {
-            return _stepData[_step].isPaste;
-        }
-    }
+			if (_stepData.Count - 1 <= _step)
+			{
+				_forcus.Release();
+				yield break;
+			}
+
+			// フォーカスする
+			if (data.targetObj != null)
+			{
+				yield return StartCoroutine(_forcus.SetForcus(data.targetObj.gameObject));
+			}
+			else if (data.isMove)
+			{
+				_forcus.Release();
+			}
+
+			// 右下に対応した画像を表示
+			_icon.Show(data);
+		}
+
+
+		// 確認メソッドたち
+
+		public bool CanTarget()
+		{
+			return _stepData[_step].isTarget;
+		}
+
+		public bool CanCopy()
+		{
+			return _stepData[_step].isCopy;
+		}
+
+		public bool CanMove()
+		{
+			return _stepData[_step].isMove;
+		}
+
+		public bool CanPaste()
+		{
+			return _stepData[_step].isPaste;
+		}
+
+		public Element.ElementObject GetTargetObj()
+		{
+			return _stepData[_step].targetObj;
+		}
+	}
 }
