@@ -132,6 +132,10 @@ namespace Play
         }
 
 
+        //Consoleのアイコン変更
+
+
+
         //アイコン変更
         public void SetIcon(int slotNum, CONSOLE_ICON_ID id)
         {
