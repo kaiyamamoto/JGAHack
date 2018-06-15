@@ -96,6 +96,9 @@ namespace Play
 
         private IEnumerator StartSetUp()
         {
+            // BGM再生
+            Util.Sound.SoundManager.Instance.Play(AudioKey.PlayBGM);
+
             // 復活マネージャーの取得
             _rebornManager = this.GetComponent<RebornManager>();
 

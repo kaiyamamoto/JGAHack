@@ -5,6 +5,7 @@ using System;
 [System.Serializable]
 public enum AudioKey
 {
-	TestSE,
+	MainBGM,
+	PlayBGM,
 
 }
