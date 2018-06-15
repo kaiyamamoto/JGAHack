@@ -34,6 +34,7 @@ namespace Play.Element
         // レンダラー
         SpriteRenderer _renderer = null;
 
+        Direction _dir;
 
         [SerializeField]
         bool _canShot;
@@ -80,9 +81,9 @@ namespace Play.Element
             if (_shotCount <= 0)
             {
                 // 向きの取得
-                var dir = GetEnemyDirection();
+                 _dir = GetEnemyDirection();
 
-                switch (dir)
+                switch (_dir)
                 {
                     case Direction.Front:
                         //弾の方向設定（正面）
@@ -139,6 +140,8 @@ namespace Play.Element
                     bullets.GetComponent<Rigidbody2D>().velocity = _bulletVel * _bulletSpeed;
                     // 弾丸の位置を調整
                     bullets.transform.position = transform.position + _shotOffset;
+
+                   
                     if (_bulletPlace)
                     {
                         //弾丸を弾置き場の子供に設定
@@ -149,6 +152,7 @@ namespace Play.Element
                         //弾丸をゲームオブジェクトの子供に設定
                         bullets.transform.parent = transform;
                     }
+                    bullets.GetComponent<BulletAniCon>().ChangeAnim(_dir);
                 }
 
                 //発車時間の再設定

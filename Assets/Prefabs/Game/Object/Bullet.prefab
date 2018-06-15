@@ -26,6 +26,7 @@ GameObject:
   - component: {fileID: 114662975698088400}
   - component: {fileID: 95367970668191070}
   - component: {fileID: 114266690047157270}
+  - component: {fileID: 114589239904943092}
   m_Layer: 10
   m_Name: Bullet
   m_TagString: Untagged
@@ -41,7 +42,7 @@ Transform:
   m_GameObject: {fileID: 1007883470759848}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -124,11 +125,34 @@ MonoBehaviour:
   m_AnimatePhysics: 0
   m_CullingMode: 1
   m_WrapMode: 0
-  m_Clip: {fileID: 7400000, guid: e813993fe2a2cd04f9fef546848c1cd2, type: 2}
+  m_Clip: {fileID: 7400000, guid: 4ebc371ea1f4ef947bc91dbb3d598b7a, type: 2}
   m_States:
-  - clip: {fileID: 7400000, guid: e813993fe2a2cd04f9fef546848c1cd2, type: 2}
+  - clip: {fileID: 7400000, guid: 4ebc371ea1f4ef947bc91dbb3d598b7a, type: 2}
     name: Default
     defaultState: 1
+  - clip: {fileID: 7400000, guid: 4ebc371ea1f4ef947bc91dbb3d598b7a, type: 2}
+    name: Front
+    defaultState: 0
+  - clip: {fileID: 7400000, guid: 6a9b7a2c6bbace9479312e12cab93dab, type: 2}
+    name: Left
+    defaultState: 0
+  - clip: {fileID: 7400000, guid: 8f8cc76ad9205974082cd34e41650be1, type: 2}
+    name: Right
+    defaultState: 0
+  - clip: {fileID: 7400000, guid: d70b3450a30a3a54b8f0fe6f93edc06b, type: 2}
+    name: Back
+    defaultState: 0
+--- !u!114 &114589239904943092
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1007883470759848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1d31ee322f86fd499f59f782d7c2c6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114662975698088400
 MonoBehaviour:
   m_ObjectHideFlags: 1
