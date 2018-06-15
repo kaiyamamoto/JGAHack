@@ -36,15 +36,7 @@ namespace Play.Element
 			set { _elementList = value; }
 		}
 
-		// 付与されている要素たち
-		[SerializeField, Extensions.ReadOnly]
-		private List<ElementBase> _actionList = null;
-
-		public List<ElementBase> ActionList
-		{
-			get { return _actionList; }
-			set { _actionList = value; }
-		}
+		
 
 		// 忘れない要素
 		private ElementBase[] _rememberList = null;
@@ -68,8 +60,12 @@ namespace Play.Element
 		[SerializeField, ReadOnly]
 		private GameObject _myEffect;
 
-		//もともとの向き
-		[SerializeField, ReadOnly]
+        //今のの向き
+        [SerializeField, ReadOnly]
+        private Direction _currentDirection;
+
+        //もともとの向き
+        [SerializeField, ReadOnly]
 		private Direction _tmpDirection;
 
 		/// <summary>
@@ -81,6 +77,7 @@ namespace Play.Element
 			_rigidBody2d = gameObject.transform.parent.GetComponent<Rigidbody2D>();
 			_initPos = _rigidBody2d.transform.position;
 			_tmpDirection = gameObject.GetComponent<DiectionTest>().GetDir();
+            _currentDirection = _tmpDirection;
 		}
 		private void Start()
 		{
@@ -92,12 +89,12 @@ namespace Play.Element
 		/// </summary>
 		public void ElementUpdate()
 		{
-			int index = (int)ElementType.length - 1;
+			int index = (int)ElementType.length;
 			_elementList = new ElementBase[index];
 
 			var array = this.GetComponents<ElementBase>();
 
-			_actionList = new List<ElementBase>();
+			
 
 			foreach (var element in array)
 			{
@@ -114,14 +111,7 @@ namespace Play.Element
 				{
 					continue;
 				}
-				//アクションタイプを別リストに保存
-				if (element.Type == ElementType.Action)
-				{
-					_actionList.Add(element);
-					element.Initialize();
-					continue;
-				}
-
+			
 
 				if (_elementList[typeIndex])
 				{
@@ -140,32 +130,47 @@ namespace Play.Element
 		/// </summary>
 		public bool ReceiveAllElement(ElementBase[] receiveList)
 		{
-			// 忘れてはいけないものがない…
-			if (_rememberList == null)
+
+            // 忘れてはいけないものがない…
+            if (_rememberList == null)
 			{
-				int index = (int)ElementType.length - 1;
+				int index = (int)ElementType.length;
 				_rememberList = new ElementBase[index];
 
 				// 現在の要素を止める
 				for (int i = 0; i < _elementList.Length; i++)
 				{
-					if (_elementList[i])
-					{
-						_elementList[i].enabled = false;
+                    if (_elementList[i])
+                    {
+                        if (_elementList[i].Type != ElementType.Action)
+                        {
+                            _elementList[i].enabled = false;
+                        }             
 						_rememberList[i] = _elementList[i];
 					}
 				}
 			}
+
+          
+
+            
 
 			// 要素のコピー移動
 			foreach (var element in receiveList)
 			{
 				if (element)
 				{
-					this.CopyComponent(element);
-
-					// 要素の更新
-					this.ElementUpdate();
+                    if (element.Type != ElementType.Action)
+                    {
+                        this.CopyComponent(element);
+                        //現在の向きを取得
+                        if (element.Type != ElementType.Direction)
+                        {
+                            _currentDirection = element.GetComponent<DiectionTest>().GetDir();
+                        }
+                        // 要素の更新
+                        this.ElementUpdate();
+                    }         
 				}
 			}
 
@@ -276,7 +281,11 @@ namespace Play.Element
 			{
 				if (element)
 				{
-					Destroy(element);
+                    //アクション以外は忘れる
+                    if (element.Type != ElementType.Action)
+                    {
+                        Destroy(element);
+                    }              
 				}
 			}
 			_elementList = null;
@@ -292,7 +301,12 @@ namespace Play.Element
 				if (element)
 				{
 					element.enabled = true;
-				}
+
+                    if (element.Type != ElementType.Direction)
+                    {
+                        _currentDirection = element.GetComponent<DiectionTest>().GetDir();
+                    }
+                }
 			}
 
 			// 忘れてはいけないものを忘れる…
@@ -362,13 +376,24 @@ namespace Play.Element
 			_myEffect = newEffect;
 		}
 
+
+        //復帰までの時間取得
 		public float GetReturnTime()
 		{
 			return _returnTime;
 
 		}
 
-		public Direction GetTmpDirection()
+
+        //現在向き取得
+        public Direction GetCurrentDirection()
+        {
+            return _currentDirection;
+
+        }
+
+        //もともとの向き取得
+        public Direction GetTmpDirection()
 		{
 			return _tmpDirection;
 

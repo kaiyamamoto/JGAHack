@@ -35,6 +35,9 @@ namespace Play
         // ロックオン
         private LockOn.LockOn _lockOn = null;
 
+
+        private GameObject _dataPanel;
+
         public LockOn.LockOn LockOnObj
         {
             get { return _lockOn; }
@@ -47,6 +50,12 @@ namespace Play
 
             // ロックオン関連の初期化
             _lockOn = this.gameObject.AddComponent<LockOn.LockOn>();
+
+
+            if (!_dataPanel)
+            {
+                _dataPanel = GameObject.Find("DataPanel");
+            }
         }
 
         void Update()
@@ -102,7 +111,8 @@ namespace Play
                 {
                     //コピー時エフェクト
                     CopyEffect();
-
+                    //Dataパネル更新
+                    DataPanelUpDate(_targetObject);
                     SelectObject();
                 }
             }
@@ -112,7 +122,9 @@ namespace Play
             {
                 if (_targetObject)
                 {
+                 
                     MoveElement(_targetObject);
+                   
                 }
             }
 
@@ -148,6 +160,9 @@ namespace Play
         //Console更新
         private void ConsoleUpDate(ElementObject obj)
         {
+
+            if (obj.GetComponent<ElementObject>().ElementList == null) return;
+
             //古いConsoleを破棄
             if (_console)
             {
@@ -159,45 +174,31 @@ namespace Play
             //Consoleをオブジェクトにセット
             _console.GetComponent<UISet>().SetTransform(obj.transform);
 
-            if (obj.GetComponent<ElementObject>().ActionList.Count != 0)
-            {
-                //アクション画像
-                for (int i = 0; i < obj.GetComponent<ElementObject>().ActionList.Count; i++)
-                {
-                    if (obj.GetComponent<ElementObject>().ActionList[i])
-                    {
-                        if (obj.GetComponent<ElementObject>().ActionList[i].Type == ElementType.Action)
-                        {
-                            var element = obj.GetComponent<ElementObject>().ActionList[i].GetType().Name;
-                            ChangeConsoleIcon(0, element, obj.gameObject);
-                        }
-                    }
-                }
-            }
-            else
-            {
-
-                ChangeConsoleIcon(0, "Nodata", obj.gameObject);
-            }
 
             if (obj.GetComponent<ElementObject>().ElementList.Length != 0)
             {
                 //ムーブ,ディレクション画像
-                for (int i = 0; i < obj.GetComponent<ElementObject>().ElementList.Length; i++)
+                for (int i = 0; i < obj.ElementList.Length; i++)
                 {
-                    if (obj.GetComponent<ElementObject>().ElementList[i])
+                    if (obj.ElementList[i])
                     {
 
-                        if (obj.GetComponent<ElementObject>().ElementList[i].Type == ElementType.Move)
+                        if (obj.ElementList[i].Type == ElementType.Action)
                         {
-                            var element = obj.GetComponent<ElementObject>().ElementList[i].GetType().Name;
-                            ChangeConsoleIcon(1, element, obj.gameObject);
+                            var element = obj.ElementList[i].GetType().Name;
+                            ChangeConsoleIcon(0, element, obj);
                         }
 
-                        if (obj.GetComponent<ElementObject>().ElementList[i].Type == ElementType.Direction)
+                        if (obj.ElementList[i].Type == ElementType.Move)
                         {
-                            var element = obj.GetComponent<ElementObject>().ElementList[i].GetType().Name;
-                            ChangeConsoleIcon(2, element, obj.gameObject);
+                            var element = obj.ElementList[i].GetType().Name;
+                            ChangeConsoleIcon(1, element, obj);
+                        }
+
+                        if (obj.ElementList[i].Type == ElementType.Direction)
+                        {
+                            var element = obj.ElementList[i].GetType().Name;
+                            ChangeConsoleIcon(2, element, obj);
                         }
                     }
                 }
@@ -205,26 +206,28 @@ namespace Play
         }
 
         //Consoleのアイコン変更
-        private void ChangeConsoleIcon(int iconNum, string typeName, GameObject obj)
+        private void ChangeConsoleIcon(int iconNum, string typeName, ElementObject obj)
         {
+
+
             if (typeName == "DiectionTest")
             {
-                switch (obj.GetComponent<DiectionTest>().GetDir())
+                switch (obj.GetCurrentDirection())
                 {
                     case Direction.Back:
-                        _console.GetComponent<ConsoleCon>().SetIcon(iconNum, ConsoleCon.CONSOLE_ICON.Direction_Down);
+                        _console.GetComponent<ConsoleCon>().SetIcon(iconNum, CONSOLE_ICON_ID.Direction_Down);
                         break;
 
                     case Direction.Left:
-                        _console.GetComponent<ConsoleCon>().SetIcon(iconNum, ConsoleCon.CONSOLE_ICON.Direction_Left);
+                        _console.GetComponent<ConsoleCon>().SetIcon(iconNum, CONSOLE_ICON_ID.Direction_Left);
                         break;
 
                     case Direction.Right:
-                        _console.GetComponent<ConsoleCon>().SetIcon(iconNum, ConsoleCon.CONSOLE_ICON.Direction_Right);
+                        _console.GetComponent<ConsoleCon>().SetIcon(iconNum, CONSOLE_ICON_ID.Direction_Right);
                         break;
 
                     case Direction.Front:
-                        _console.GetComponent<ConsoleCon>().SetIcon(iconNum, ConsoleCon.CONSOLE_ICON.Direction_Up);
+                        _console.GetComponent<ConsoleCon>().SetIcon(iconNum, CONSOLE_ICON_ID.Direction_Up);
                         break;
 
                     default:
@@ -235,39 +238,143 @@ namespace Play
 
             if (typeName == "TestShot")
             {
-                _console.GetComponent<ConsoleCon>().SetIcon(iconNum, ConsoleCon.CONSOLE_ICON.Shot);
+                _console.GetComponent<ConsoleCon>().SetIcon(iconNum, CONSOLE_ICON_ID.ShotRock);
             }
 
             if (typeName == "Tackle")
             {
-                _console.GetComponent<ConsoleCon>().SetIcon(iconNum, ConsoleCon.CONSOLE_ICON.Tackle);
+                _console.GetComponent<ConsoleCon>().SetIcon(iconNum, CONSOLE_ICON_ID.TackleRock);
             }
 
             if (typeName == "RideFloor")
             {
-                _console.GetComponent<ConsoleCon>().SetIcon(iconNum, ConsoleCon.CONSOLE_ICON.RideOn);
+                _console.GetComponent<ConsoleCon>().SetIcon(iconNum, CONSOLE_ICON_ID.RideOnRock);
             }
 
             if (typeName == "SideMove")
             {
-                _console.GetComponent<ConsoleCon>().SetIcon(iconNum, ConsoleCon.CONSOLE_ICON.Side);
+                _console.GetComponent<ConsoleCon>().SetIcon(iconNum, CONSOLE_ICON_ID.Side);
             }
 
             if (typeName == "Stay")
             {
-                _console.GetComponent<ConsoleCon>().SetIcon(iconNum, ConsoleCon.CONSOLE_ICON.Stop);
+                _console.GetComponent<ConsoleCon>().SetIcon(iconNum, CONSOLE_ICON_ID.Stop);
             }
 
             if (typeName == "UpDownMove")
             {
 
-                _console.GetComponent<ConsoleCon>().SetIcon(iconNum, ConsoleCon.CONSOLE_ICON.Updown);
+                _console.GetComponent<ConsoleCon>().SetIcon(iconNum, CONSOLE_ICON_ID.Updown);
             }
 
-            if (typeName == "Nodata")
+            if (typeName == "NoData")
             {
 
-                _console.GetComponent<ConsoleCon>().SetIcon(iconNum, ConsoleCon.CONSOLE_ICON.Nodata);
+                _console.GetComponent<ConsoleCon>().SetIcon(iconNum, CONSOLE_ICON_ID.Nodata);
+            }
+        }
+
+
+        private void DataPanelUpDate(ElementObject obj)
+        {
+
+            if (obj.GetComponent<ElementObject>().ElementList == null) return;
+
+            if (obj.GetComponent<ElementObject>().ElementList.Length != 0)
+            {
+                //ムーブ,ディレクション画像
+                for (int i = 0; i < obj.GetComponent<ElementObject>().ElementList.Length; i++)
+                {
+                    if (obj.ElementList[i])
+                    {
+
+                        if (obj.ElementList[i].Type == ElementType.Action)
+                        {
+
+                            var element = obj.ElementList[i].GetType().Name;
+                            DataIconSet(0, element, obj);
+
+                        }
+                        else if (obj.ElementList[i].Type == ElementType.Move)
+                        {
+                            var element = obj.ElementList[i].GetType().Name;
+                            DataIconSet(1, element, obj);
+                        }
+                        else if (obj.ElementList[i].Type == ElementType.Direction)
+                        {
+                            var element = obj.ElementList[i].GetType().Name;
+                            DataIconSet(2, element, obj);
+                        }               
+                    }
+                }
+            }
+        }
+
+
+        private void DataIconSet(int iconNum, string typeName, ElementObject obj)
+        {
+            if (typeName == "DiectionTest")
+            {
+                switch (obj.GetCurrentDirection())
+                {
+                    case Direction.Back:
+                        _dataPanel.GetComponent<PlayerDataPanel>().SetIcon(iconNum, CONSOLE_ICON_ID.Direction_Down);
+                        break;
+
+                    case Direction.Left:
+                        _dataPanel.GetComponent<PlayerDataPanel>().SetIcon(iconNum, CONSOLE_ICON_ID.Direction_Left);
+                        break;
+
+                    case Direction.Right:
+                        _dataPanel.GetComponent<PlayerDataPanel>().SetIcon(iconNum, CONSOLE_ICON_ID.Direction_Right);
+                        break;
+
+                    case Direction.Front:
+                        _dataPanel.GetComponent<PlayerDataPanel>().SetIcon(iconNum, CONSOLE_ICON_ID.Direction_Up);
+                        break;
+
+                    default:
+                    
+                        break;
+                }
+            }
+
+            
+
+            if (typeName == "TestShot")
+            {
+                _dataPanel.GetComponent<PlayerDataPanel>().SetIcon(iconNum, CONSOLE_ICON_ID.Shot);
+            }
+
+            if (typeName == "Tackle")
+            {
+                _dataPanel.GetComponent<PlayerDataPanel>().SetIcon(iconNum, CONSOLE_ICON_ID.Tackle);
+            }
+
+            if (typeName == "RideFloor")
+            {
+                _dataPanel.GetComponent<PlayerDataPanel>().SetIcon(iconNum, CONSOLE_ICON_ID.RideOn);
+            }
+
+            if (typeName == "SideMove")
+            {
+                _dataPanel.GetComponent<PlayerDataPanel>().SetIcon(iconNum, CONSOLE_ICON_ID.Side);
+            }
+
+            if (typeName == "Stay")
+            {
+                _dataPanel.GetComponent<PlayerDataPanel>().SetIcon(iconNum, CONSOLE_ICON_ID.Stop);
+            }
+
+            if (typeName == "UpDownMove")
+            {
+
+                _dataPanel.GetComponent<PlayerDataPanel>().SetIcon(iconNum, CONSOLE_ICON_ID.Updown);
+            }
+
+            if (typeName == "NoData")
+            {
+                _dataPanel.GetComponent<PlayerDataPanel>().SetIcon(iconNum, CONSOLE_ICON_ID.Nodata);
             }
         }
 
@@ -356,7 +463,8 @@ namespace Play
             selectObj.ReceiveAllElement(_container.List.ToArray());
             //Console更新
             ConsoleUpDate(selectObj);
-            //コピー時エフェクト
+            
+            //ペースト時エフェクト
             PasteEffect();
             //復帰演出セット
             RecoverSet();
@@ -388,6 +496,6 @@ namespace Play
             recover.GetComponent<UISet>().SetTransform(_targetObject.transform);
             recover.GetComponent<EnemyRecovery>().SetTime(_targetObject.GetComponent<ElementObject>().GetReturnTime());
             _targetObject.GetComponent<ElementObject>().EffectUpDate(recover);
-        }
+        }    
     }
 }

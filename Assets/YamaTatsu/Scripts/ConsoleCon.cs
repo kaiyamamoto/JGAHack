@@ -18,20 +18,7 @@ namespace Play
             MiddleDown  //下
         }
 
-        public enum CONSOLE_ICON
-        {
-            Direction_Down,
-            Direction_Left,
-            Direction_Right,
-            Direction_Up,
-            Nodata,
-            RideOn,
-            Shot,
-            Side,
-            Stop,
-            Tackle,
-            Updown
-        }
+      
 
         private RectTransform rect;
         private Image image;
@@ -145,57 +132,73 @@ namespace Play
         }
 
 
+        //Consoleのアイコン変更
+
+
+
         //アイコン変更
-        public void SetIcon(int slotNum, CONSOLE_ICON id)
+        public void SetIcon(int slotNum, CONSOLE_ICON_ID id)
         {
             switch (id)
             {
-                case CONSOLE_ICON.Direction_Down:
-                    _icons[slotNum].GetComponent<Image>().sprite = _iconImages[(int)CONSOLE_ICON.Direction_Down];
+                case CONSOLE_ICON_ID.Direction_Down:
+                    _icons[slotNum].GetComponent<Image>().sprite = _iconImages[(int)CONSOLE_ICON_ID.Direction_Down];
                     break;
 
-                case CONSOLE_ICON.Direction_Left:
-                    _icons[slotNum].GetComponent<Image>().sprite = _iconImages[(int)CONSOLE_ICON.Direction_Left];
+                case CONSOLE_ICON_ID.Direction_Left:
+                    _icons[slotNum].GetComponent<Image>().sprite = _iconImages[(int)CONSOLE_ICON_ID.Direction_Left];
                     break;
 
-                case CONSOLE_ICON.Direction_Right:
-                    _icons[slotNum].GetComponent<Image>().sprite = _iconImages[(int)CONSOLE_ICON.Direction_Right];
+                case CONSOLE_ICON_ID.Direction_Right:
+                    _icons[slotNum].GetComponent<Image>().sprite = _iconImages[(int)CONSOLE_ICON_ID.Direction_Right];
                     break;
 
-                case CONSOLE_ICON.Direction_Up:
-                    _icons[slotNum].GetComponent<Image>().sprite = _iconImages[(int)CONSOLE_ICON.Direction_Up];
+                case CONSOLE_ICON_ID.Direction_Up:
+                    _icons[slotNum].GetComponent<Image>().sprite = _iconImages[(int)CONSOLE_ICON_ID.Direction_Up];
                     break;
 
-                case CONSOLE_ICON.Nodata:
-                    _icons[slotNum].GetComponent<Image>().sprite = _iconImages[(int)CONSOLE_ICON.Nodata];
+                case CONSOLE_ICON_ID.Nodata:
+                    _icons[slotNum].GetComponent<Image>().sprite = _iconImages[(int)CONSOLE_ICON_ID.Nodata];
                     break;
 
-                case CONSOLE_ICON.RideOn:
-                    _icons[slotNum].GetComponent<Image>().sprite = _iconImages[(int)CONSOLE_ICON.RideOn];
+                case CONSOLE_ICON_ID.RideOn:
+                    _icons[slotNum].GetComponent<Image>().sprite = _iconImages[(int)CONSOLE_ICON_ID.RideOn];
                     break;
 
-                case CONSOLE_ICON.Shot:
-                    _icons[slotNum].GetComponent<Image>().sprite = _iconImages[(int)CONSOLE_ICON.Shot];
+                case CONSOLE_ICON_ID.RideOnRock:
+                    _icons[slotNum].GetComponent<Image>().sprite = _iconImages[(int)CONSOLE_ICON_ID.RideOnRock];
                     break;
 
-                case CONSOLE_ICON.Side:
-                    _icons[slotNum].GetComponent<Image>().sprite = _iconImages[(int)CONSOLE_ICON.Side];
+                case CONSOLE_ICON_ID.Shot:
+                    _icons[slotNum].GetComponent<Image>().sprite = _iconImages[(int)CONSOLE_ICON_ID.Shot];
                     break;
 
-                case CONSOLE_ICON.Stop:
-                    _icons[slotNum].GetComponent<Image>().sprite = _iconImages[(int)CONSOLE_ICON.Stop];
+                case CONSOLE_ICON_ID.ShotRock:
+                    _icons[slotNum].GetComponent<Image>().sprite = _iconImages[(int)CONSOLE_ICON_ID.ShotRock];
                     break;
 
-                case CONSOLE_ICON.Tackle:
-                    _icons[slotNum].GetComponent<Image>().sprite = _iconImages[(int)CONSOLE_ICON.Tackle];
+                case CONSOLE_ICON_ID.Side:
+                    _icons[slotNum].GetComponent<Image>().sprite = _iconImages[(int)CONSOLE_ICON_ID.Side];
                     break;
 
-                case CONSOLE_ICON.Updown:
-                    _icons[slotNum].GetComponent<Image>().sprite = _iconImages[(int)CONSOLE_ICON.Updown];
+                case CONSOLE_ICON_ID.Stop:
+                    _icons[slotNum].GetComponent<Image>().sprite = _iconImages[(int)CONSOLE_ICON_ID.Stop];
+                    break;
+
+                case CONSOLE_ICON_ID.Tackle:
+                    _icons[slotNum].GetComponent<Image>().sprite = _iconImages[(int)CONSOLE_ICON_ID.Tackle];
+                    break;
+
+                case CONSOLE_ICON_ID.TackleRock:
+                    _icons[slotNum].GetComponent<Image>().sprite = _iconImages[(int)CONSOLE_ICON_ID.TackleRock];
+                    break;
+
+                case CONSOLE_ICON_ID.Updown:
+                    _icons[slotNum].GetComponent<Image>().sprite = _iconImages[(int)CONSOLE_ICON_ID.Updown];
                     break;
 
                 default:
-                    _icons[slotNum].GetComponent<Image>().sprite = _iconImages[(int)CONSOLE_ICON.Nodata];
+                    _icons[slotNum].GetComponent<Image>().sprite = _iconImages[(int)CONSOLE_ICON_ID.Nodata];
                     break;
             }
         }
