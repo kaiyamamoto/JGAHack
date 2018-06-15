@@ -13,18 +13,16 @@ public class TackleRange : MonoBehaviour {
     [SerializeField]
     private float _cnt;
 
-    GameObject Tackle;
-    SpriteRenderer spriteRenderer;
+    GameObject _tackle;
+    SpriteRenderer _spriteRenderer;
 
    
     // Use this for initialization
     void Start () {
 
-        Tackle = transform.Find("TackleRange").gameObject;
+        _tackle = transform.Find("TackleRange").gameObject;
 
-        spriteRenderer = transform.Find("TackleRange").GetComponent<SpriteRenderer>();
-
-        spriteRenderer.bounds.size.Scale.
+        _spriteRenderer = transform.Find("TackleRange").GetComponent<SpriteRenderer>();
 
     }
 	
@@ -43,11 +41,11 @@ public class TackleRange : MonoBehaviour {
 
                 if(_flag)
                 {
-                    Tackle.SetActive(true);
+                    _tackle.SetActive(true);
                 }
                 else
                 {
-                    Tackle.SetActive(false);
+                    _tackle.SetActive(false);
                 }
 
             }
