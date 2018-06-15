@@ -15,8 +15,6 @@ public class BulletAniCon : MonoBehaviour {
 
     public void ChangeAnim(Direction dir)
     {
-        
-
         switch (dir)
         {
             case Direction.Front:              
