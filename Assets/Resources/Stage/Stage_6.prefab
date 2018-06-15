@@ -213,6 +213,7 @@ GameObject:
   - component: {fileID: 114217934106510370}
   - component: {fileID: 114432007762006130}
   - component: {fileID: 114577993142399112}
+  - component: {fileID: 114749458985696070}
   m_Layer: 0
   m_Name: ObjectElement
   m_TagString: Element
@@ -683,6 +684,7 @@ GameObject:
   - component: {fileID: 61928459992942128}
   - component: {fileID: 114663679750730864}
   - component: {fileID: 114690402961975652}
+  - component: {fileID: 114313725830532842}
   m_Layer: 11
   m_Name: ObjectElement
   m_TagString: Element
@@ -701,6 +703,7 @@ GameObject:
   - component: {fileID: 114733341165532454}
   - component: {fileID: 114425687335233382}
   - component: {fileID: 114291083689870120}
+  - component: {fileID: 114359617307175164}
   m_Layer: 0
   m_Name: ObjectElement
   m_TagString: Element
@@ -754,6 +757,8 @@ GameObject:
   - component: {fileID: 114199767460076604}
   - component: {fileID: 114622066081139284}
   - component: {fileID: 114557734251177086}
+  - component: {fileID: 114724847800943742}
+  - component: {fileID: 114770245551876788}
   m_Layer: 0
   m_Name: ObjectElement
   m_TagString: Element
@@ -2463,7 +2468,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.15}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -2474,7 +2479,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.8, y: 1}
+  m_Size: {x: 0.8, y: 0.7}
   m_EdgeRadius: 0
 --- !u!61 &61464213860555700
 BoxCollider2D:
@@ -2538,7 +2543,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.15}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -2549,7 +2554,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.8, y: 1}
+  m_Size: {x: 0.8, y: 0.7}
   m_EdgeRadius: 0
 --- !u!61 &61505226961140368
 BoxCollider2D:
@@ -2713,7 +2718,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.15}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -2724,7 +2729,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.8, y: 1}
+  m_Size: {x: 0.8, y: 0.7}
   m_EdgeRadius: 0
 --- !u!61 &61852493006859566
 BoxCollider2D:
@@ -2763,7 +2768,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.15}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -2774,7 +2779,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.8, y: 1}
+  m_Size: {x: 0.8, y: 0.7}
   m_EdgeRadius: 0
 --- !u!61 &61928459992942128
 BoxCollider2D:
@@ -3984,11 +3989,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _stats: 0
   _elementList: []
-  _actionList: []
   _initPos: {x: 0, y: 0, z: 0}
   _overwritePos: []
   _returnTime: 15
   _myEffect: {fileID: 0}
+  _currentDirection: 0
   _tmpDirection: 0
 --- !u!114 &114049361535587748
 MonoBehaviour:
@@ -4051,11 +4056,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _stats: 0
   _elementList: []
-  _actionList: []
   _initPos: {x: 0, y: 0, z: 0}
   _overwritePos: []
   _returnTime: 10
   _myEffect: {fileID: 0}
+  _currentDirection: 0
   _tmpDirection: 0
 --- !u!114 &114098652837987350
 MonoBehaviour:
@@ -4116,11 +4121,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _stats: 0
   _elementList: []
-  _actionList: []
   _initPos: {x: 0, y: 0, z: 0}
   _overwritePos: []
   _returnTime: 5
   _myEffect: {fileID: 0}
+  _currentDirection: 0
   _tmpDirection: 0
 --- !u!114 &114203845519723562
 MonoBehaviour:
@@ -4147,11 +4152,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _stats: 0
   _elementList: []
-  _actionList: []
   _initPos: {x: 0, y: 0, z: 0}
   _overwritePos: []
   _returnTime: 15
   _myEffect: {fileID: 0}
+  _currentDirection: 0
   _tmpDirection: 0
 --- !u!114 &114230362532602158
 MonoBehaviour:
@@ -4191,9 +4196,6 @@ MonoBehaviour:
   _targetObject: {fileID: 0}
   _console: {fileID: 0}
   _container: {fileID: 0}
-  _elementText: {fileID: 114226643485333420, guid: 546392ba5ab9045488d4cf8c5c867df5,
-    type: 2}
-  _textList: []
 --- !u!114 &114289329224428148
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4248,6 +4250,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stayPos: {x: 0, y: 0, z: 0}
+--- !u!114 &114313725830532842
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1638954075334554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9453b5115129ed843a09c1719c1945bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _direction: 0
 --- !u!114 &114326401245085446
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4261,11 +4275,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _stats: 0
   _elementList: []
-  _actionList: []
   _initPos: {x: 0, y: 0, z: 0}
   _overwritePos: []
   _returnTime: 5
   _myEffect: {fileID: 0}
+  _currentDirection: 0
   _tmpDirection: 0
 --- !u!114 &114338192434538312
 MonoBehaviour:
@@ -4322,6 +4336,21 @@ MonoBehaviour:
   _shotOffset: {x: 0, y: 0, z: 0}
   _shotInterval: 0.2
   _shotCount: 0
+  _canShot: 0
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 0
+--- !u!114 &114359617307175164
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1654010521337824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9884166f1c8c70847a5263398e29cff9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114367136432281896
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4406,11 +4435,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _stats: 0
   _elementList: []
-  _actionList: []
   _initPos: {x: 0, y: 0, z: 0}
   _overwritePos: []
   _returnTime: 5
   _myEffect: {fileID: 0}
+  _currentDirection: 0
   _tmpDirection: 0
 --- !u!114 &114432007762006130
 MonoBehaviour:
@@ -4481,11 +4510,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _stats: 0
   _elementList: []
-  _actionList: []
   _initPos: {x: 0, y: 0, z: 0}
   _overwritePos: []
   _returnTime: 20
   _myEffect: {fileID: 0}
+  _currentDirection: 0
   _tmpDirection: 0
 --- !u!114 &114557734251177086
 MonoBehaviour:
@@ -4616,6 +4645,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _currentAnim: 0
+--- !u!114 &114724847800943742
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1700540093406872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9884166f1c8c70847a5263398e29cff9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114732784999317508
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4664,11 +4704,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _stats: 0
   _elementList: []
-  _actionList: []
   _initPos: {x: 0, y: 0, z: 0}
   _overwritePos: []
   _returnTime: 15
   _myEffect: {fileID: 0}
+  _currentDirection: 0
   _tmpDirection: 0
 --- !u!114 &114748231571512034
 MonoBehaviour:
@@ -4683,12 +4723,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _stats: 0
   _elementList: []
-  _actionList: []
   _initPos: {x: 0, y: 0, z: 0}
   _overwritePos: []
   _returnTime: 20
   _myEffect: {fileID: 0}
+  _currentDirection: 0
   _tmpDirection: 0
+--- !u!114 &114749458985696070
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1184774145930886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9884166f1c8c70847a5263398e29cff9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114770245551876788
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1700540093406872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9884166f1c8c70847a5263398e29cff9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114820059080809952
 MonoBehaviour:
   m_ObjectHideFlags: 1

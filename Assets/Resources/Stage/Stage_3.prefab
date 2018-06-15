@@ -406,6 +406,7 @@ GameObject:
   - component: {fileID: 114730931545371354}
   - component: {fileID: 114475414055914748}
   - component: {fileID: 114620350302133990}
+  - component: {fileID: 114144038434301284}
   m_Layer: 0
   m_Name: ObjectElement
   m_TagString: Element
@@ -514,6 +515,7 @@ GameObject:
   - component: {fileID: 114970978734456468}
   - component: {fileID: 114537097156877134}
   - component: {fileID: 114659475500548240}
+  - component: {fileID: 114602292056081876}
   m_Layer: 0
   m_Name: ObjectElement
   m_TagString: Element
@@ -1393,7 +1395,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.15}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -1404,7 +1406,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.8, y: 0.7}
   m_EdgeRadius: 0
 --- !u!61 &61689486710784006
 BoxCollider2D:
@@ -1518,7 +1520,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.15}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -1529,7 +1531,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.8, y: 0.7}
   m_EdgeRadius: 0
 --- !u!66 &66230839552167218
 CompositeCollider2D:
@@ -2517,9 +2519,6 @@ MonoBehaviour:
   _targetObject: {fileID: 0}
   _console: {fileID: 0}
   _container: {fileID: 0}
-  _elementText: {fileID: 114226643485333420, guid: 546392ba5ab9045488d4cf8c5c867df5,
-    type: 2}
-  _textList: []
 --- !u!114 &114080941893050656
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2568,11 +2567,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _stats: 0
   _elementList: []
-  _actionList: []
   _initPos: {x: 0, y: 0, z: 0}
   _overwritePos: []
   _returnTime: 5
   _myEffect: {fileID: 0}
+  _currentDirection: 0
   _tmpDirection: 0
 --- !u!114 &114136340334114630
 MonoBehaviour:
@@ -2587,6 +2586,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _player: {fileID: 114160359094182506}
   _goal: {fileID: 114573198336531042}
+--- !u!114 &114144038434301284
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1809784925309934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9884166f1c8c70847a5263398e29cff9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114160359094182506
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2655,11 +2665,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _stats: 0
   _elementList: []
-  _actionList: []
   _initPos: {x: 0, y: 0, z: 0}
   _overwritePos: []
   _returnTime: 5
   _myEffect: {fileID: 0}
+  _currentDirection: 0
   _tmpDirection: 0
 --- !u!114 &114360461128840324
 MonoBehaviour:
@@ -2785,11 +2795,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _stats: 0
   _elementList: []
-  _actionList: []
   _initPos: {x: 0, y: 0, z: 0}
   _overwritePos: []
   _returnTime: 5
   _myEffect: {fileID: 0}
+  _currentDirection: 0
   _tmpDirection: 0
 --- !u!114 &114537097156877134
 MonoBehaviour:
@@ -2849,6 +2859,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f39074c3396a5a4a97e464b907dc313, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114602292056081876
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1931598714700548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9884166f1c8c70847a5263398e29cff9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114620350302133990
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2902,11 +2923,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _stats: 0
   _elementList: []
-  _actionList: []
   _initPos: {x: 0, y: 0, z: 0}
   _overwritePos: []
   _returnTime: 5
   _myEffect: {fileID: 0}
+  _currentDirection: 0
   _tmpDirection: 0
 --- !u!114 &114970978734456468
 MonoBehaviour:
@@ -2921,11 +2942,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _stats: 0
   _elementList: []
-  _actionList: []
   _initPos: {x: 0, y: 0, z: 0}
   _overwritePos: []
   _returnTime: 5
   _myEffect: {fileID: 0}
+  _currentDirection: 0
   _tmpDirection: 0
 --- !u!114 &114982608907766784
 MonoBehaviour:

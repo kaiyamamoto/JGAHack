@@ -298,6 +298,7 @@ GameObject:
   - component: {fileID: 114878475640513754}
   - component: {fileID: 114316435028512258}
   - component: {fileID: 114589394965789822}
+  - component: {fileID: 114206426718669384}
   m_Layer: 0
   m_Name: ObjectElement
   m_TagString: Element
@@ -353,6 +354,7 @@ GameObject:
   - component: {fileID: 114576955352218530}
   - component: {fileID: 114510277611456636}
   - component: {fileID: 114760023190119284}
+  - component: {fileID: 114801713700036286}
   m_Layer: 0
   m_Name: ObjectElement
   m_TagString: Element
@@ -1193,7 +1195,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.15}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -1204,7 +1206,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.8, y: 1}
+  m_Size: {x: 0.8, y: 0.7}
   m_EdgeRadius: 0
 --- !u!61 &61789139894435808
 BoxCollider2D:
@@ -1218,7 +1220,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.15}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -1229,7 +1231,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.8, y: 1}
+  m_Size: {x: 0.8, y: 0.7}
   m_EdgeRadius: 0
 --- !u!61 &61886937284848022
 BoxCollider2D:
@@ -2472,6 +2474,10 @@ MonoBehaviour:
   _shotOffset: {x: 0, y: 0, z: 0}
   _shotInterval: 0.2
   _shotCount: 0
+  _canShot: 0
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &114135884139269260
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2511,6 +2517,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7f39074c3396a5a4a97e464b907dc313, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114206426718669384
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1578406685646886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9884166f1c8c70847a5263398e29cff9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &114255817359725250
@@ -2631,11 +2648,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _stats: 0
   _elementList: []
-  _actionList: []
   _initPos: {x: 0, y: 0, z: 0}
   _overwritePos: []
   _returnTime: 5
   _myEffect: {fileID: 0}
+  _currentDirection: 0
   _tmpDirection: 0
 --- !u!114 &114576955352218530
 MonoBehaviour:
@@ -2650,11 +2667,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _stats: 0
   _elementList: []
-  _actionList: []
   _initPos: {x: 0, y: 0, z: 0}
   _overwritePos: []
   _returnTime: 5
   _myEffect: {fileID: 0}
+  _currentDirection: 0
   _tmpDirection: 0
 --- !u!114 &114589394965789822
 MonoBehaviour:
@@ -2801,9 +2818,17 @@ MonoBehaviour:
   _targetObject: {fileID: 0}
   _console: {fileID: 0}
   _container: {fileID: 0}
-  _elementText: {fileID: 114226643485333420, guid: 546392ba5ab9045488d4cf8c5c867df5,
-    type: 2}
-  _textList: []
+--- !u!114 &114801713700036286
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1787747590608558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9884166f1c8c70847a5263398e29cff9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114811703965662780
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2864,11 +2889,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _stats: 0
   _elementList: []
-  _actionList: []
   _initPos: {x: 0, y: 0, z: 0}
   _overwritePos: []
   _returnTime: 5
   _myEffect: {fileID: 0}
+  _currentDirection: 0
   _tmpDirection: 0
 --- !u!114 &114919174008056822
 MonoBehaviour:
@@ -2899,6 +2924,10 @@ MonoBehaviour:
   _shotOffset: {x: 0, y: 0, z: 0}
   _shotInterval: 0.2
   _shotCount: 0
+  _canShot: 0
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &114943819909344740
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2944,11 +2973,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _stats: 0
   _elementList: []
-  _actionList: []
   _initPos: {x: 0, y: 0, z: 0}
   _overwritePos: []
   _returnTime: 5
   _myEffect: {fileID: 0}
+  _currentDirection: 0
   _tmpDirection: 0
 --- !u!198 &198159649643882272
 ParticleSystem:
