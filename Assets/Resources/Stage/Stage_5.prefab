@@ -62,6 +62,7 @@ GameObject:
   - component: {fileID: 114581050176593902}
   - component: {fileID: 114403198780478896}
   - component: {fileID: 114966466474036472}
+  - component: {fileID: 114164102373598136}
   m_Layer: 0
   m_Name: ObjectElement
   m_TagString: Element
@@ -315,6 +316,7 @@ GameObject:
   - component: {fileID: 114118813224321216}
   - component: {fileID: 114160511218167970}
   - component: {fileID: 114860960172485458}
+  - component: {fileID: 114546783355192934}
   m_Layer: 0
   m_Name: ObjectElement
   m_TagString: Element
@@ -341,7 +343,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1532551127359132
 GameObject:
   m_ObjectHideFlags: 0
@@ -395,7 +397,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1648364663949896
 GameObject:
   m_ObjectHideFlags: 1
@@ -407,6 +409,7 @@ GameObject:
   - component: {fileID: 114154538164230000}
   - component: {fileID: 114046517414091222}
   - component: {fileID: 114323827974364772}
+  - component: {fileID: 114960782607724276}
   m_Layer: 0
   m_Name: ObjectElement
   m_TagString: Element
@@ -1463,7 +1466,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.15}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -1474,7 +1477,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.8, y: 1}
+  m_Size: {x: 0.8, y: 0.7}
   m_EdgeRadius: 0
 --- !u!61 &61359756114946972
 BoxCollider2D:
@@ -1588,7 +1591,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.15}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -1599,7 +1602,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.8, y: 1}
+  m_Size: {x: 0.8, y: 0.7}
   m_EdgeRadius: 0
 --- !u!61 &61876595214630910
 BoxCollider2D:
@@ -1613,7 +1616,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.15}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -1624,7 +1627,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.8, y: 1}
+  m_Size: {x: 0.8, y: 0.7}
   m_EdgeRadius: 0
 --- !u!61 &61971150610846126
 BoxCollider2D:
@@ -1667,7 +1670,147 @@ CompositeCollider2D:
   m_GeometryType: 0
   m_GenerationType: 0
   m_EdgeRadius: 0
-  m_ColliderPaths: []
+  m_ColliderPaths:
+  - m_Collider: {fileID: 2113883505241960522}
+    m_ColliderPaths:
+    - - X: -90000000
+        Y: 53115732
+      - X: -100000000
+        Y: 53140364
+      - X: -100000000
+        Y: 53075052
+      - X: -110000000
+        Y: 53042688
+      - X: -110000000
+        Y: 53075052
+      - X: -120000000
+        Y: 53042688
+      - X: -120000000
+        Y: 53075052
+      - X: -130000000
+        Y: 53042688
+      - X: -130000000
+        Y: 50000000
+      - X: -90000000
+        Y: 50000000
+    - - X: -40000000
+        Y: 43115732
+      - X: -50000000
+        Y: 43140364
+      - X: -50000000
+        Y: 43075052
+      - X: -60000000
+        Y: 43042688
+      - X: -60000000
+        Y: 43075052
+      - X: -70000000
+        Y: 43042688
+      - X: -70000000
+        Y: 43075052
+      - X: -80000000
+        Y: 43042688
+      - X: -80000000
+        Y: 43075052
+      - X: -90000000
+        Y: 43042688
+      - X: -90000000
+        Y: 40000000
+      - X: -40000000
+        Y: 40000000
+    - - X: 130000000
+        Y: 3075051
+      - X: 120000000
+        Y: 3042686
+      - X: 120000000
+        Y: 3075051
+      - X: 110000000
+        Y: 3042686
+      - X: 110000000
+        Y: 3075051
+      - X: 100000000
+        Y: 3042686
+      - X: 100000000
+        Y: 3075051
+      - X: 90000000
+        Y: 3042686
+      - X: 90000000
+        Y: 3075051
+      - X: 80000000
+        Y: 3042686
+      - X: 80000000
+        Y: 3067116
+      - X: 70000000
+        Y: 3067116
+      - X: 70000000
+        Y: 0
+      - X: 130000000
+        Y: 0
+    - - X: 130000000
+        Y: -50000000
+      - X: 126309072
+        Y: -50000000
+      - X: 120000000
+        Y: -56628352
+      - X: 120000000
+        Y: -56924948
+      - X: 110000000
+        Y: -56957312
+      - X: 110000000
+        Y: -56924948
+      - X: 100000000
+        Y: -56957312
+      - X: 100000000
+        Y: -56924948
+      - X: 90000000
+        Y: -56957312
+      - X: 90000000
+        Y: -56924948
+      - X: 80000000
+        Y: -56957312
+      - X: 80000000
+        Y: -56924948
+      - X: 70000000
+        Y: -56957312
+      - X: 70000000
+        Y: -56924948
+      - X: 60000000
+        Y: -56957312
+      - X: 60000000
+        Y: -60000000
+      - X: 130000000
+        Y: -60000000
+    - - X: 30000000
+        Y: -56924948
+      - X: 20000000
+        Y: -56957312
+      - X: 20000000
+        Y: -56924948
+      - X: 10000000
+        Y: -56957312
+      - X: 10000000
+        Y: -56924948
+      - X: 0
+        Y: -56957312
+      - X: 0
+        Y: -56924948
+      - X: -10000000
+        Y: -56957312
+      - X: -10000000
+        Y: -56924948
+      - X: -20000000
+        Y: -56957312
+      - X: -20000000
+        Y: -56924948
+      - X: -30000000
+        Y: -56957312
+      - X: -30000000
+        Y: -56924948
+      - X: -40000000
+        Y: -56957312
+      - X: -40000000
+        Y: -60000000
+      - X: 30000000
+        Y: -60000000
   m_CompositePaths:
     m_Paths:
     - - {x: -9, y: 5.311573}
@@ -1778,7 +1921,201 @@ CompositeCollider2D:
   m_GeometryType: 0
   m_GenerationType: 0
   m_EdgeRadius: 0
-  m_ColliderPaths: []
+  m_ColliderPaths:
+  - m_Collider: {fileID: 2113883504625820928}
+    m_ColliderPaths:
+    - - X: 180000000
+        Y: 130000000
+      - X: -140000000
+        Y: 130000000
+      - X: -140000000
+        Y: -90000000
+      - X: 180000000
+        Y: -90000000
+    - - X: -130000000
+        Y: 110000000
+      - X: -126641992
+        Y: 110000000
+      - X: -130000000
+        Y: 106831272
+    - - X: 0
+        Y: 110000000
+      - X: 3358014
+        Y: 110000000
+      - X: 0
+        Y: 106831272
+    - - X: -33292184
+        Y: 110000000
+      - X: -30000000
+        Y: 110000000
+      - X: -30000000
+        Y: 106667960
+    - - X: 126707824
+        Y: 110000000
+      - X: 130000000
+        Y: 110000000
+      - X: 130000000
+        Y: 106667960
+    - - X: -40000000
+        Y: -60000000
+      - X: -40000000
+        Y: 40000000
+      - X: -90000000
+        Y: 40000000
+      - X: -90000000
+        Y: 50000000
+      - X: -130000000
+        Y: 50000000
+      - X: -130000000
+        Y: 81769544
+      - X: -126522640
+        Y: 85061728
+      - X: -120000000
+        Y: 85020584
+      - X: -120000000
+        Y: 85102880
+      - X: -110000000
+        Y: 85061728
+      - X: -110000000
+        Y: 85102880
+      - X: -100000000
+        Y: 85061728
+      - X: -100000000
+        Y: 84375000
+      - X: -95625000
+        Y: 84375000
+      - X: -95000000
+        Y: 85000000
+      - X: -95000000
+        Y: 100000000
+      - X: -94687504
+        Y: 100000000
+      - X: -90000000
+        Y: 103750000
+      - X: -85312496
+        Y: 100000000
+      - X: -85000000
+        Y: 100000000
+      - X: -85000000
+        Y: 85000000
+      - X: -84375000
+        Y: 84375000
+      - X: -80000000
+        Y: 84375000
+      - X: -80000000
+        Y: 85102880
+      - X: -70000000
+        Y: 85061728
+      - X: -70000000
+        Y: 85102880
+      - X: -60000000
+        Y: 85061728
+      - X: -60000000
+        Y: 85102880
+      - X: -50000000
+        Y: 85061728
+      - X: -50000000
+        Y: 85102880
+      - X: -40000000
+        Y: 85061728
+      - X: -40000000
+        Y: 84979416
+      - X: -33436218
+        Y: 85020584
+      - X: -30000000
+        Y: 81810704
+      - X: -30000000
+        Y: -5625000
+      - X: -26875000
+        Y: -6250000
+      - X: -3125000
+        Y: -6250000
+      - X: 0
+        Y: -5625000
+      - X: 0
+        Y: 81769544
+      - X: 3477366
+        Y: 85061728
+      - X: 10000000
+        Y: 85020584
+      - X: 10000000
+        Y: 85102880
+      - X: 20000000
+        Y: 85061728
+      - X: 20000000
+        Y: 85102880
+      - X: 30000000
+        Y: 85061728
+      - X: 30000000
+        Y: 85102880
+      - X: 40000000
+        Y: 85061728
+      - X: 40000000
+        Y: 85102880
+      - X: 50000000
+        Y: 85061728
+      - X: 50000000
+        Y: 85102880
+      - X: 60000000
+        Y: 85061728
+      - X: 60000000
+        Y: 85102880
+      - X: 70000000
+        Y: 85061728
+      - X: 70000000
+        Y: 85102880
+      - X: 80000000
+        Y: 85061728
+      - X: 80000000
+        Y: 85102880
+      - X: 90000000
+        Y: 85061728
+      - X: 90000000
+        Y: 85102880
+      - X: 100000000
+        Y: 85061728
+      - X: 100000000
+        Y: 85102880
+      - X: 110000000
+        Y: 85061728
+      - X: 110000000
+        Y: 85102880
+      - X: 120000000
+        Y: 85061728
+      - X: 120000000
+        Y: 84979416
+      - X: 126563776
+        Y: 85020584
+      - X: 130000000
+        Y: 81810704
+      - X: 130000000
+        Y: 0
+      - X: 70000000
+        Y: 0
+      - X: 70000000
+        Y: -17500000
+      - X: 72500000
+        Y: -20000000
+      - X: 130000000
+        Y: -20000000
+      - X: 130000000
+        Y: -60000000
+      - X: 60000000
+        Y: -60000000
+      - X: 60000000
+        Y: 3115730
+      - X: 50000000
+        Y: 3140363
+      - X: 50000000
+        Y: 3075051
+      - X: 40000000
+        Y: 3042686
+      - X: 40000000
+        Y: 3067116
+      - X: 30000000
+        Y: 3067116
+      - X: 30000000
+        Y: -60000000
   m_CompositePaths:
     m_Paths:
     - - {x: 18, y: 13}
@@ -1897,18 +2234,6 @@ CompositeCollider2D:
   m_ColliderPaths:
   - m_Collider: {fileID: 2113883506066704376}
     m_ColliderPaths:
-    - - X: -30000000
-        Y: 80000000
-      - X: -130000000
-        Y: 80000000
-      - X: -130000000
-        Y: 40000000
-      - X: -40000000
-        Y: 40000000
-      - X: -40000000
-        Y: 10000000
-      - X: -30000000
-        Y: 10000000
     - - X: 30000000
         Y: 0
       - X: 60000000
@@ -1933,14 +2258,20 @@ CompositeCollider2D:
         Y: -60000000
       - X: 30000000
         Y: -60000000
+    - - X: -30000000
+        Y: 80000000
+      - X: -130000000
+        Y: 80000000
+      - X: -130000000
+        Y: 40000000
+      - X: -40000000
+        Y: 40000000
+      - X: -40000000
+        Y: 10000000
+      - X: -30000000
+        Y: 10000000
   m_CompositePaths:
     m_Paths:
-    - - {x: -3, y: 8}
-      - {x: -13, y: 8}
-      - {x: -13, y: 4}
-      - {x: -4, y: 4}
-      - {x: -4, y: 1}
-      - {x: -3, y: 1}
     - - {x: 3, y: 0}
       - {x: 6, y: 0}
       - {x: 6, y: -6}
@@ -1953,6 +2284,12 @@ CompositeCollider2D:
       - {x: -4, y: 0.99999994}
       - {x: -4, y: -6}
       - {x: 3, y: -6}
+    - - {x: -3, y: 8}
+      - {x: -13, y: 8}
+      - {x: -13, y: 4}
+      - {x: -4, y: 4}
+      - {x: -4, y: 1}
+      - {x: -3, y: 1}
   m_VertexDistance: 0.0005
 --- !u!95 &95158817528690618
 Animator:
@@ -2160,11 +2497,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _stats: 0
   _elementList: []
-  _actionList: []
   _initPos: {x: 0, y: 0, z: 0}
   _overwritePos: []
   _returnTime: 5
   _myEffect: {fileID: 0}
+  _currentDirection: 0
   _tmpDirection: 0
 --- !u!114 &114120338840920956
 MonoBehaviour:
@@ -2237,11 +2574,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _stats: 0
   _elementList: []
-  _actionList: []
   _initPos: {x: 0, y: 0, z: 0}
   _overwritePos: []
   _returnTime: 5
   _myEffect: {fileID: 0}
+  _currentDirection: 0
   _tmpDirection: 0
 --- !u!114 &114160511218167970
 MonoBehaviour:
@@ -2255,6 +2592,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _direction: 2
+--- !u!114 &114164102373598136
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1068257552568516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9884166f1c8c70847a5263398e29cff9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114218654308961582
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2517,6 +2865,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf193fb9fd433b641b51ceae0252663d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114546783355192934
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1513101159107120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9884166f1c8c70847a5263398e29cff9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114554911721459806
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2546,11 +2905,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _stats: 0
   _elementList: []
-  _actionList: []
   _initPos: {x: 0, y: 0, z: 0}
   _overwritePos: []
   _returnTime: 5
   _myEffect: {fileID: 0}
+  _currentDirection: 0
   _tmpDirection: 0
 --- !u!114 &114597814770963938
 MonoBehaviour:
@@ -2651,11 +3010,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _stats: 0
   _elementList: []
-  _actionList: []
   _initPos: {x: 0, y: 0, z: 0}
   _overwritePos: []
   _returnTime: 10
   _myEffect: {fileID: 0}
+  _currentDirection: 0
   _tmpDirection: 0
 --- !u!114 &114860960172485458
 MonoBehaviour:
@@ -2731,6 +3090,17 @@ MonoBehaviour:
   - {fileID: 21300002, guid: 82cd24677a3d6d547af6e64d3f4cd2e4, type: 3}
   _dir: 0
   _tmpDir: 0
+--- !u!114 &114960782607724276
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1648364663949896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9884166f1c8c70847a5263398e29cff9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114966466474036472
 MonoBehaviour:
   m_ObjectHideFlags: 1
