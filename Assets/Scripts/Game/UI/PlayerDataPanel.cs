@@ -11,8 +11,6 @@ namespace Play
     public class PlayerDataPanel :MonoBehaviour
     {
 
-       
-
         //アイコンセット
         [SerializeField, ReadOnly]
         private GameObject[] _icons;
@@ -33,82 +31,97 @@ namespace Play
             IconReset();
         }
 
-        public void SetIcon(int slotNum, string typeName ,Direction dir)
+        public void SetIcon(int slotNum, CONSOLE_ICON_ID id)
         {
-            if (typeName == "DiectionTest")
+            _icons[slotNum].GetComponent<Image>().color = Color.white;
+            switch (id)
             {
-                switch (dir)
-                {
-                    case Direction.Back:
-                        _icons[slotNum].GetComponent<Image>().sprite = _iconImages[(int)CONSOLE_ICON_ID.Direction_Down];
-                        break;
+                case CONSOLE_ICON_ID.Direction_Down:
+                    _icons[slotNum].GetComponent<Image>().sprite = _iconImages[(int)CONSOLE_ICON_ID.Direction_Down];
+                    break;
 
-                    case Direction.Left:
-                        _icons[slotNum].GetComponent<Image>().sprite = _iconImages[(int)CONSOLE_ICON_ID.Direction_Left];
-                        break;
+                case CONSOLE_ICON_ID.Direction_Left:
+                    _icons[slotNum].GetComponent<Image>().sprite = _iconImages[(int)CONSOLE_ICON_ID.Direction_Left];
+                    break;
 
-                    case Direction.Right:
-                        _icons[slotNum].GetComponent<Image>().sprite = _iconImages[(int)CONSOLE_ICON_ID.Direction_Right];
-                        break;
+                case CONSOLE_ICON_ID.Direction_Right:
+                    _icons[slotNum].GetComponent<Image>().sprite = _iconImages[(int)CONSOLE_ICON_ID.Direction_Right];
+                    break;
 
-                    case Direction.Front:
-                        _icons[slotNum].GetComponent<Image>().sprite = _iconImages[(int)CONSOLE_ICON_ID.Direction_Up];
-                        break;
+                case CONSOLE_ICON_ID.Direction_Up:
+                    _icons[slotNum].GetComponent<Image>().sprite = _iconImages[(int)CONSOLE_ICON_ID.Direction_Up];
+                    break;
 
-                    default:
+                case CONSOLE_ICON_ID.Nodata:
+                    //_icons[slotNum].GetComponent<Image>().sprite = _iconImages[(int)CONSOLE_ICON_ID.Nodata];
+                    _icons[slotNum].GetComponent<Image>().color = Color.clear;
+                    _icons[3].GetComponent<Image>().color = Color.clear;
+                    break;
 
-                        break;
-                }
-            }
+                case CONSOLE_ICON_ID.RideOn:
+                    _icons[slotNum].GetComponent<Image>().sprite = _iconImages[(int)CONSOLE_ICON_ID.RideOn];
+                    _icons[3].GetComponent<Image>().color = Color.white;
+                    break;
 
-            if (typeName == "TestShot")
-            {
-                _icons[slotNum].GetComponent<Image>().sprite = _iconImages[(int)CONSOLE_ICON_ID.Shot];
-            }
+                case CONSOLE_ICON_ID.RideOnRock:
+                    _icons[slotNum].GetComponent<Image>().sprite = _iconImages[(int)CONSOLE_ICON_ID.RideOnRock];
+                    break;
 
-            if (typeName == "Tackle")
-            {
-                _icons[slotNum].GetComponent<Image>().sprite = _iconImages[(int)CONSOLE_ICON_ID.Tackle];
-            }
+                case CONSOLE_ICON_ID.Shot:
+                    _icons[slotNum].GetComponent<Image>().sprite = _iconImages[(int)CONSOLE_ICON_ID.Shot];
+                    _icons[3].GetComponent<Image>().color = Color.white;
+                    break;
 
-            if (typeName == "RideFloor")
-            {
-                _icons[slotNum].GetComponent<Image>().sprite = _iconImages[(int)CONSOLE_ICON_ID.RideOn];
-            }
+                case CONSOLE_ICON_ID.ShotRock:
+                    _icons[slotNum].GetComponent<Image>().sprite = _iconImages[(int)CONSOLE_ICON_ID.ShotRock];
+                    break;
 
+                case CONSOLE_ICON_ID.Side:
+                    _icons[slotNum].GetComponent<Image>().sprite = _iconImages[(int)CONSOLE_ICON_ID.Side];
+                    break;
 
-            if (typeName == "SideMove")
-            {
-                _icons[slotNum].GetComponent<Image>().sprite = _iconImages[(int)CONSOLE_ICON_ID.Side];
-            }
+                case CONSOLE_ICON_ID.Stop:
+                    _icons[slotNum].GetComponent<Image>().sprite = _iconImages[(int)CONSOLE_ICON_ID.Stop];
+                    break;
 
-            if (typeName == "Stay")
-            {
-                _icons[slotNum].GetComponent<Image>().sprite = _iconImages[(int)CONSOLE_ICON_ID.Stop];
-            }
+                case CONSOLE_ICON_ID.Tackle:
+                    _icons[slotNum].GetComponent<Image>().sprite = _iconImages[(int)CONSOLE_ICON_ID.Tackle];
+                    _icons[3].GetComponent<Image>().color = Color.white;
+                    break;
 
-            if (typeName == "UpDownMove")
-            {
+                case CONSOLE_ICON_ID.TackleRock:
+                    _icons[slotNum].GetComponent<Image>().sprite = _iconImages[(int)CONSOLE_ICON_ID.TackleRock];
+                    break;
 
-                _icons[slotNum].GetComponent<Image>().sprite = _iconImages[(int)CONSOLE_ICON_ID.Updown];
-            }
+                case CONSOLE_ICON_ID.Updown:
+                    _icons[slotNum].GetComponent<Image>().sprite = _iconImages[(int)CONSOLE_ICON_ID.Updown];
+                    break;
 
-
-            if (typeName == "Nodata")
-            {
-
-                _icons[slotNum].GetComponent<Image>().sprite = _iconImages[(int)CONSOLE_ICON_ID.Nodata];
+                default:
+                    _icons[slotNum].GetComponent<Image>().sprite = null;
+                    break;
             }
         }
 
         public void IconReset()
-        {
-          
+        {         
             for (int i = 0; i < _icons.Length; i++)
             {
-                _icons[i].GetComponent<Image>().sprite = _iconImages[(int)CONSOLE_ICON_ID.Nodata];
+                _icons[i].GetComponent<Image>().color = Color.clear;
             }        
         }
 
+        public void ShowSlot(int iconNam ,bool flag)
+        {
+            if (flag == true)
+            {
+                _icons[iconNam].GetComponent<Image>().color = Color.white;
+            }
+            else
+            {
+
+                _icons[iconNam].GetComponent<Image>().color = Color.clear;
+            }           
+        }
     }
 }

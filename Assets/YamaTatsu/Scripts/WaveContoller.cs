@@ -17,13 +17,8 @@ public class WaveContoller : MonoBehaviour {
     private float _speed = 0.5f;
 
     //ターゲットの範囲
-    private float _range = 0.1f;
+    private float _range = 0.3f;
    
-    // 起動時
-    void Start()
-    {
-      
-    }
 
     // 更新
     void Update()

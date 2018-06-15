@@ -89,12 +89,17 @@ namespace Play.Element
         //プレイヤー発見用のコライダーを作成。
         private void SetCollider()
         {
-            //// オブジェクトにBoxCollider2Dを貼り付ける
-            gameObject.AddComponent<BoxCollider2D>();
-            //新しく作成した空のオブジェクトに自分をはっつける
-            gameObject.transform.parent = transform;
-            //トリガーに設定
-            gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
+            if (!gameObject.GetComponent<BoxCollider2D>())
+            {
+                //// オブジェクトにBoxCollider2Dを貼り付ける
+                gameObject.AddComponent<BoxCollider2D>();
+                //新しく作成した空のオブジェクトに自分をはっつける
+                gameObject.transform.parent = transform;
+                //トリガーに設定
+                gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
+            }
+
+           
             //当たり判定のセット
             switch (_dir)
             {
@@ -131,7 +136,7 @@ namespace Play.Element
 
         public void ChangeDirection(Direction dir)
         {
-            Debug.Log("向き変更");
+            
             //当たり判定のセット
             switch (_dir)
             {
