@@ -59,6 +59,9 @@ namespace Util.Scene
             // フェード
             yield return StartCoroutine(FadeManager.Instance.FadeIn(inInterval));
 
+            // 音停止
+            Util.Sound.SoundManager.Instance.AllStop();
+
             // 読み込み待ち
             yield return new WaitUntil(() => load.IsLoading == false);
 

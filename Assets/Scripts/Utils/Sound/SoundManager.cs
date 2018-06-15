@@ -74,6 +74,9 @@ namespace Util.Sound
             _soundSetting.BGMVolume = 1f;
             SEVolum = _soundSetting.SEVolume;
             BGMVolum = _soundSetting.BGMVolume;
+
+            // シーン変更時に破棄させない
+            DontDestroyOnLoad(this.gameObject);
         }
 
         /// <summary>
@@ -117,6 +120,17 @@ namespace Util.Sound
         public void Stop(string key)
         {
             Stop(ConvertAudioKey(key));
+        }
+
+        /// <summary>
+        /// 全ての音をストップ
+        /// </summary>
+        public void AllStop()
+        {
+            foreach (var source in _audioDatas)
+            {
+                source.Stop();
+            }
         }
 
         /// <summary>

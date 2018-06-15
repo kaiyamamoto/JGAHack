@@ -34,6 +34,9 @@ namespace Main
         {
             _backStage.ChangeStage(1);
 
+            // BGM開始
+            Util.Sound.SoundManager.Instance.Play(AudioKey.MainBGM);
+
             // カメラの左右移動
             var camera = Camera.main;
             var pos = camera.transform.localPosition;
