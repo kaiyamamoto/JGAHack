@@ -26,6 +26,7 @@ namespace Play
 		{
 			yield return new WaitWhile(() =>
 			{
+				if (!_isCounting) return _isCounting;
 				_msecondCount += Time.deltaTime;
 				return _isCounting;
 			});
