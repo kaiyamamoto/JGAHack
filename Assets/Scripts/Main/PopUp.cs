@@ -59,7 +59,7 @@ public class PopUp : MonoBehaviour
 
 		yield return new WaitWhile(() =>
 		{
-			scaler.scaleFactor += 0.15f;
+			scaler.scaleFactor += 0.1f;
 			if (scaler.scaleFactor < 1.0f)
 			{
 				return true;
