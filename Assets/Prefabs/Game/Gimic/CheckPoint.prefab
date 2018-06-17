@@ -74,9 +74,9 @@ MonoBehaviour:
   m_AnimatePhysics: 0
   m_CullingMode: 1
   m_WrapMode: 0
-  m_Clip: {fileID: 7400000, guid: 9a82542a128e96343b422a0b44a32c64, type: 2}
+  m_Clip: {fileID: 7400000, guid: 5dac37818dd6e6c4590d803efed84e64, type: 2}
   m_States:
-  - clip: {fileID: 7400000, guid: 9a82542a128e96343b422a0b44a32c64, type: 2}
+  - clip: {fileID: 7400000, guid: 5dac37818dd6e6c4590d803efed84e64, type: 2}
     name: Default
     defaultState: 1
 --- !u!212 &212330036229649240
