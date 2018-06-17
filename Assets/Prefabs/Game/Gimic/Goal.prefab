@@ -36,7 +36,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1617421437749060}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.94, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -74,9 +74,9 @@ MonoBehaviour:
   m_AnimatePhysics: 0
   m_CullingMode: 1
   m_WrapMode: 0
-  m_Clip: {fileID: 7400000, guid: 9c3c2ab39e444cd4c996a0090dc58f91, type: 2}
+  m_Clip: {fileID: 7400000, guid: 607a8b47e159ea747aa3eb57ae2ba012, type: 2}
   m_States:
-  - clip: {fileID: 7400000, guid: 9c3c2ab39e444cd4c996a0090dc58f91, type: 2}
+  - clip: {fileID: 7400000, guid: 607a8b47e159ea747aa3eb57ae2ba012, type: 2}
     name: Default
     defaultState: 1
 --- !u!212 &212541917985061892
