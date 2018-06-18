@@ -87,10 +87,21 @@ namespace Main
 		/// <param name="c"></param>
 		private int PanelSlide(int c)
 		{
-			if ((_moveTween != null) ||
-				(!IndexIsContained(_selectIndex + c)))
+
+			if (_moveTween != null)
 			{
 				return -1;
+			}
+
+			// 上下の場合スキップ移動
+			var count = STAGE_NUM;
+			if (_selectIndex + c < 0)
+			{
+				c = STAGE_NUM - 1;
+			}
+			else if (count <= _selectIndex + c)
+			{
+				c = -STAGE_NUM + 1;
 			}
 
 			var margin = _panelRect.y + _popOffSet.y;
@@ -100,16 +111,5 @@ namespace Main
 
 			return _selectIndex;
 		}
-
-		private bool IndexIsContained(int index)
-		{
-			var count = STAGE_NUM;
-			if ((index < 0) || (count <= index))
-			{
-				return false;
-			}
-			return true;
-		}
-
 	}
 }
