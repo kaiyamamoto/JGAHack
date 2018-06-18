@@ -72,7 +72,16 @@ public class PopUp : MonoBehaviour
 		//Time.timeScale = 1.0f;
 
 		bool flag = false;
-		if (_selectNum == 0) flag = true;
+
+		if (_selectNum == 0)
+		{
+			Util.Sound.SoundManager.Instance.PlayOneShot(AudioKey.sy_pop_enter);
+			flag = true;
+		}
+		else
+		{
+			Util.Sound.SoundManager.Instance.PlayOneShot(AudioKey.sy_pop_cancel);
+		}
 
 		action(flag);
 
