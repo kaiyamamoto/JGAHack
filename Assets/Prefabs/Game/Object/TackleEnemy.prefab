@@ -218,7 +218,9 @@ MonoBehaviour:
   _startPos: {x: 0, y: 0, z: 0}
   _endPos: {x: 0, y: 0, z: 0}
   _isFound: 0
-  _rangeSprite: {fileID: 21300000, guid: 591493e08ca080b4f935912522abdbd5, type: 3}
+  _rangeSprite:
+  - {fileID: 21300000, guid: 26f606b566de09346979714471d8f6aa, type: 3}
+  - {fileID: 21300000, guid: 88d4962f3b5f6fa4aba0aaa5fedf86f2, type: 3}
 --- !u!114 &114259316114877626
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -230,7 +232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9453b5115129ed843a09c1719c1945bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _direction: 3
+  _direction: 2
 --- !u!114 &114304469841264728
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -300,11 +302,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _stats: 0
   _elementList: []
-  _actionList: []
   _initPos: {x: 0, y: 0, z: 0}
   _overwritePos: []
   _returnTime: 5
   _myEffect: {fileID: 0}
+  _currentDirection: 0
+  _tmpDirection: 0
 --- !u!212 &212218378488984864
 SpriteRenderer:
   m_ObjectHideFlags: 1

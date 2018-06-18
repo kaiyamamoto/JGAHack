@@ -9,6 +9,7 @@ namespace Play.Element
     //タックルアクション
     public class Tackle : ElementBase
     {
+
         //タックルの速度
         [SerializeField]
         private float _speed;
@@ -37,7 +38,7 @@ namespace Play.Element
 
         //可視範囲用画像
         [SerializeField]
-        private Sprite _rangeSprite;
+        private Sprite[] _rangeSprite;
 
         private GameObject Range;
 
@@ -184,12 +185,25 @@ namespace Play.Element
             Range.transform.SetParent(gameObject.transform);
             //判定オブジェクトにSpriteRendererを取り付け
             Range.gameObject.AddComponent<SpriteRenderer>();
+            Range.gameObject.AddComponent<Flashing>();
+          
+
             //画像の設定
             var spr = Range.gameObject.GetComponent<SpriteRenderer>();
             //スプライト設定
-            spr.sprite = _rangeSprite;
+            if (_dir == Direction.Front || _dir == Direction.Back)
+            {
+                spr.sprite = _rangeSprite[0];
+            }
+            else if(_dir == Direction.Left || _dir == Direction.Right)
+            {
+                spr.sprite = _rangeSprite[1];
+            }
+
+           
             //カラー設定
             spr.color = new Vector4(1, 0, 0, 0.2f);
+
             //表示優先度
             spr.sortingOrder = 10;
             //当たり判定取得
